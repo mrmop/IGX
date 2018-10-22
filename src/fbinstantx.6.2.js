@@ -5,7 +5,7 @@ var FBInstant = {
         ApiKey: "",             // Game service back-end API key
         ApiSecret: "",          // Game service back-end API secret
         DevMode: "sandbox",     // sandbox or prod
-        ShareURI: "http://yourcomain.com/index.php", // URI used by shareAsync dialog
+        ShareURI: "http://yourdomain.com/index.php", // URI used by shareAsync dialog
         ShareDlgWidth: 600,     // shareAsync dialog width
         ShareDlgHeight: 400,    // shareAsync dialog height
     },
