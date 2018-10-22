@@ -65,7 +65,7 @@ The API consists of the following files:
 </ul>
 
 <h2>Extensions</h2>
-A lot of extra functionality has been added to the FBInstant API which is not available in the FBINstant API. These are provided via the FBInstant.ext object. For example, to log in the user via Facebook you would call FBInstant.ext.loginWithFacebookAccessTokenAsync().
+A lot of extra functionality has been added to the IGX API which is not available in the FBInstant API. These are provided via the FBInstant.ext object. For example, to log in the user via Facebook you would call FBInstant.ext.loginWithFacebookAccessTokenAsync().
 
 <h2>Logging the user in</h2>
 The user is by default logged in anonymously. This creates an account for them with Xtralife which allows their game data to be stored and retrieved. It also allows them to submit leaderboard scores and retrieve leaderboards. You can disable anonymous login by setting FBInstant.options.AllowAnonymous to false. Lets take a look at an example that shows how to log the user in via Facebook:
@@ -81,7 +81,7 @@ The user is by default logged in anonymously. This creates an account for them w
 	}
 ```
 
-Note that if the user is already logged in anonymously then you can log in via the Facebook SDK and then convert the account from anonymous using:
+Note that if the user is already logged in anonymously then you can log in via the Facebook SDK and convert the account from anonymous using:
 
 ```
 	if (FBInstant.ext !== undefined)
