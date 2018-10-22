@@ -46,12 +46,12 @@ Once you have an account and have added a game to the system you will be given a
 
 To set this up in code use:
 
-<code>
+```
 FBInstant.options.ApiKey = "Your games Xtralife key";
 FBInstant.options.ApiSecret = "Your games Xtralife secret";
 FBInstant.options.DevMode = "sandbox";
 new GameService(FBInstant.options.ServiceName);	// Default is xtralife.
-</code>
+```
 
 The API is designed so that back-ends can be swapped, so if you are not happy with a specific API then you can replace it.
 
@@ -70,7 +70,7 @@ A lot of extra functionality has been added to the FBInstant API which is not av
 <h2>Logging the user in</h2>
 The user is by default logged in anonymously. This creates an account for them with Xtralife which allows their game data to be stored and retrieved. It also allows them to submit leaderboard scores and retrieve leaderboards. You can disable anonymous login by setting FBInstant.options.AllowAnonymous to false. Lets take a look at an example that shows how to log the user in via Facebook:
 
-<code>
+```
 	if (FBInstant.ext !== undefined)
 	{
 		LibSocial.Facebook.Login(function(response) {
@@ -79,18 +79,18 @@ The user is by default logged in anonymously. This creates an account for them w
 			});
 		});
 	}
-</code>
+```
 
 Note that if the user is already logged in anonymously then you can log in via the Facebook SDK and then convert the account from anonymous using:
 
-<code>
+```
 	if (FBInstant.ext !== undefined)
 	{
 		FBInstant.ext.convertAccountAsync("facebook", response.authResponse.userID, response.authResponse.accessToken, function(error) {
 			// Account was converted
 		});
 	}
-</code>
+```
 
 <h2>Entry Point Data</h2>
 Entry point data is passed via the URL in the data parameter. The data object passed must be url encoded. Note that when you make a call to shareAsync the data object passed in options.data will be sent with the URL. When a user clicks the link the data will be available via getEntryPointData().
@@ -98,7 +98,7 @@ Entry point data is passed via the URL in the data parameter. The data object pa
 <h2>Sharing</h2>
 In order for Facebook sharing to work via shareAsync, you must assign the URL which takes care of the sharing to FBInstant.options.ShareURI. Special parameters will be passed to this URL which enables Facebook to pull a proper preview of what is being shared. The destination URL will need to be a script that can handle the passed parameters. An example script is shown below:
 
-<code>
+```
 &lt;!DOCTYPE html&gt;  
 &lt;html&gt;  
 &lt;head&gt;  
@@ -136,4 +136,4 @@ In order for Facebook sharing to work via shareAsync, you must assign the URL wh
 &lt;body&gt;
 &lt;/body&gt;  
 &lt;/html&gt;
-</code>
+```
