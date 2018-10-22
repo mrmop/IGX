@@ -1,4 +1,4 @@
-<h1>IGX - The replacement for FBINstant for Facebook Instant Game Developers</h1>
+<h1>IGX - The replacement for FBInstant for Facebook Instant Game Developers</h1>
 
 <h2>What is IGX?</h2>
 IGX stands for Instant Games Extension, it is basically a replacement for the Facebook Instant Games API which enableds developers to deploy games they create using the Facebook Instants API to the web and beyond with little to no code changes.
@@ -8,29 +8,35 @@ IGX was created to enable developers to maximise their development time and mone
 
 <h2>What features are available?</h2>
 The following features are available:
-- Initialilsation including entry point data via the url
-- User login / management (anonymous, credentials, Faceook and shortcode logins)
-- User data persistence on server
-- Facebook sharing
-- Leaderboards
+<ul>
+<li>Initialilsation including entry point data via the url</li>
+<li>User login / management (anonymous, credentials, Faceook and shortcode logins)</li>
+<li>User data persistence on server</li>
+<li>Facebook sharing</li>
+<li>Leaderboards</li>
+</ul>
 
 <h2>What other features are available?</h2>
 The layer also includes additional functionality that is available outside of the Facebook Instants API, these features include:
-- Login status
-- User registration
-- Account conversion
-- Password management
-- Profile query and modification
-- Add / remove / find friends
-- Real time user to user messaging
-- Referral system
-- Sharing on Twitter
+<ul>
+<li>Login status</li>
+<li>User registration</li>
+<li>Account conversion</li>
+<li>Password management</li>
+<li>Profile query and modification</li>
+<li>Add / remove / find friends</li>
+<li>Real time user to user messaging</li>
+<li>Referral system</li>
+<li>Sharing on Twitter</li>
+</ul>
 
 <h2>What features will be coming?</h2>
-- Ads
-- Payments
-- Contexts
-- Portal specific services
+<ul>
+<li>Ads</li>
+<li>Payments</li>
+<li>Contexts</li>
+<li>Portal specific services</li>
+</ul>
 
 <h2>How to get started</h2>
 Instead of linking to the Facebook Instants JS file, add igx_min.js and xtralife-3.2.1.min.js to your index page.
@@ -40,19 +46,23 @@ Once you have an account and have added a game to the system you will be given a
 
 To set this up in code use:
 
+<code>
 FBInstant.options.ApiKey = "Your games Xtralife key";
 FBInstant.options.ApiSecret = "Your games Xtralife secret";
 FBInstant.options.DevMode = "sandbox";
 new GameService(FBInstant.options.ServiceName);	// Default is xtralife.
+</code>
 
 The API is designed so that back-ends can be swapped, so if you are not happy with a specific API then you can replace it.
 
 The API consists of the following files:
-- fbinstantx.6.2.js - This contains the replacment FBInstant data and functions
-- lib_ads.js - Ads interface. No ads back-end currently available yet
-- lib_gameservice.js - Game service interface which wraps game services
-- lib_socials - Wrappers for various social API's, Facebook is currently the only one implemented (provides login etc)
-- lib_xtralife - Xtralife implementation of game service
+<ul>
+<li>fbinstantx.6.2.js - This contains the replacment FBInstant data and functions</li>
+<li>lib_ads.js - Ads interface. No ads back-end currently available yet</li>
+<li>lib_gameservice.js - Game service interface which wraps game services</li>
+<li>lib_socials - Wrappers for various social API's, Facebook is currently the only one implemented (provides login etc)</li>
+<li>lib_xtralife - Xtralife implementation of game service</li>
+</ul>
 
 <h2>Extensions</h2>
 A lot of extra functionality has been added to the FBInstant API which is not available in the FBINstant API. These are provided via the FBInstant.ext object. For example, to log in the user via Facebook you would call FBInstant.ext.loginWithFacebookAccessTokenAsync().
@@ -60,6 +70,7 @@ A lot of extra functionality has been added to the FBInstant API which is not av
 <h2>Logging the user in</h2>
 The user is by default logged in anonymously. This creates an account for them with Xtralife which allows their game data to be stored and retrieved. It also allows them to submit leaderboard scores and retrieve leaderboards. You can disable anonymous login by setting FBInstant.options.AllowAnonymous to false. Lets take a look at an example that shows how to log the user in via Facebook:
 
+<code>
 	if (FBInstant.ext !== undefined)
 	{
 		LibSocial.Facebook.Login(function(response) {
@@ -68,15 +79,18 @@ The user is by default logged in anonymously. This creates an account for them w
 			});
 		});
 	}
+</code>
 
 Note that if the user is already logged in anonymously then you can log in via the Facebook SDK and then convert the account from anonymous using:
 
+<code>
 	if (FBInstant.ext !== undefined)
 	{
 		FBInstant.ext.convertAccountAsync("facebook", response.authResponse.userID, response.authResponse.accessToken, function(error) {
 			// Account was converted
 		});
 	}
+</code>
 
 <h2>Entry Point Data</h2>
 Entry point data is passed via the URL in the data parameter. The data object passed must be url encoded. Note that when you make a call to shareAsync the data object passed in options.data will be sent with the URL. When a user clicks the link the data will be available via getEntryPointData().
@@ -84,15 +98,11 @@ Entry point data is passed via the URL in the data parameter. The data object pa
 <h2>Sharing</h2>
 In order for Facebook sharing to work via shareAsync, you must assign the URL which takes care of the sharing to FBInstant.options.ShareURI. Special parameters will be passed to this URL which enables Facebook to pull a proper preview of what is being shared. The destination URL will need to be a script that can handle the passed parameters. An example script is shown below:
 
-<pre>
+<code>
 &lt;!DOCTYPE html&gt;  
 &lt;html&gt;  
 &lt;head&gt;  
 	&lt;meta charset='utf-8'&gt;  
-	&lt;meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui, viewport-fit=cover' /&gt;
-	&lt;meta name='mobile-web-app-capable' content='yes'&gt;
-	&lt;meta name='apple-mobile-web-app-capable' content='yes'&gt;
-	&lt;meta name='apple-mobile-web-app-status-bar-style' content='translucent-black'&gt;
 	&lt;meta name='description' content='Your Game Name'&gt;
 	&lt;meta name='keywords' content=''&gt;
 	&lt;title&gt;Your Game Name&lt;/title&gt;
@@ -126,4 +136,4 @@ In order for Facebook sharing to work via shareAsync, you must assign the URL wh
 &lt;body&gt;
 &lt;/body&gt;  
 &lt;/html&gt;
-</pre>
+</code>
