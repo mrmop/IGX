@@ -99,41 +99,41 @@ Entry point data is passed via the URL in the data parameter. The data object pa
 In order for Facebook sharing to work via shareAsync, you must assign the URL which takes care of the sharing to FBInstant.options.ShareURI. Special parameters will be passed to this URL which enables Facebook to pull a proper preview of what is being shared. The destination URL will need to be a script that can handle the passed parameters. An example script is shown below:
 
 ```
-&lt;!DOCTYPE html&gt;  
-&lt;html&gt;  
-&lt;head&gt;  
-	&lt;meta charset='utf-8'&gt;  
-	&lt;meta name='description' content='Your Game Name'&gt;
-	&lt;meta name='keywords' content=''&gt;
-	&lt;title&gt;Your Game Name&lt;/title&gt;
-	&lt;meta property="og:type" content="article" /&gt;
-	&lt;meta property='og:image' content='https://yourdomain.com/your_nice_image.jpg' /&gt;
-	&lt;link rel='stylesheet' type='text/css' href='styles.css'&gt;
-&lt;?php
+<!DOCTYPE html> 
+<html>  
+<head>  
+	<meta charset='utf-8'>  
+	<meta name='description' content='Your Game Name'>
+	<meta name='keywords' content=''>
+	<title>Your Game Name</title>
+	<meta property="og:type" content="article" />
+	<meta property='og:image' content='https://yourdomain.com/your_nice_image.jpg' />
+	<link rel='stylesheet' type='text/css' href='styles.css'>
+<?php
 	$title = $_GET['t'];
 	if ($title != '')
 	{
 		$title = htmlspecialchars($title);
-		echo "    &lt;meta property='og:title' content='" . $title . "' /&gt;\n";
+		echo "    <meta property='og:title' content='" . $title . "' />\n";
 	}
 	else
 	{
-		echo "    &lt;meta property='og:title' content='Your Game Name' /&gt;";
+		echo "    <meta property='og:title' content='Your Game Name' />";
 	}
 
 	$description = $_GET['d'];
 	if ($description != '')
 	{
 		$description = htmlspecialchars(urldecode($description));
-		echo "    &lt;meta property='og:description' content='" . $description . "' /&gt;\n";
+		echo "    <meta property='og:description' content='" . $description . "' />\n";
 	}
 	else
 	{
-		echo "    &lt;meta property='og:description' content='&lt;Enter a description here&gt;' /&gt;";
+		echo "    <meta property='og:description' content='<Enter a description here>' />";
 	}
-?&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;/body&gt;  
-&lt;/html&gt;
+?>
+</head>
+<body>
+</body>  
+</html>
 ```
