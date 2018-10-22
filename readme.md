@@ -1,7 +1,7 @@
 <h1>IGX - The replacement for FBInstant for Facebook Instant Game Developers</h1>
 
 <h2>What is IGX?</h2>
-IGX stands for Instant Games Extension, it is basically a replacement for the Facebook Instant Games API which enableds developers to deploy games they create using the Facebook Instants API to the web and beyond with little to no code changes.
+IGX stands for Instant Games Extension, it is basically a replacement for the Facebook Instant Games API which enableds developers to deploy games they create using the Facebook Instants API to the web and beyond with little to no code changes. It also enables web developers to build instant game features into their games before deploying to the platform saving valuable time and money.
 
 <h2>Why IGX?</h2>
 IGX was created to enable developers to maximise their development time and money. It's difficult and time consuming to port games to Instant Games taking into consideration platform features, but its also more difficult to port games from Instant Games to web because so many features are lost. IGX attempts to replace some features that IG platform provides to enable the developer to retain functionality as much as possible.
