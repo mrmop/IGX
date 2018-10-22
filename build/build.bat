@@ -1,0 +1,1 @@
+node minify.js

@@ -1,0 +1,13 @@
+{
+  "name": "IGX",
+  "version": "1.0.0",
+  "description": "IGX",
+  "scripts": {
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concat": "^1.0.3",
+    "node-minify": "^3.5.0"
+  }
+}
