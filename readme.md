@@ -1,7 +1,3 @@
-<!DOCTYPE html>  
-<html>  
-<body>
-
 <h1>IGX - The replacement for FBINstant for Facebook Instant Game Developers</h1>
 
 <h2>What is IGX?</h2>
@@ -131,7 +127,3 @@ In order for Facebook sharing to work via shareAsync, you must assign the URL wh
 &lt;/body&gt;  
 &lt;/html&gt;
 </pre>
-
-
-</body>  
-</html>
