@@ -2,6 +2,7 @@ var FBInstant = {
     options: {
         AllowAnonymous: true,   // When set to true new users will be auto logged in with an anonymous account
         ServiceName: "xtralife",// Default back-end is Xtralife
+        AdsServiceName: "",     // Default none
         ApiKey: "",             // Game service back-end API key
         ApiSecret: "",          // Game service back-end API secret
         DevMode: "sandbox",     // sandbox or prod

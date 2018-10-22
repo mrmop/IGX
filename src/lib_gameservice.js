@@ -265,8 +265,3 @@ GameService.prototype.UseReferralCode = function(code, done_callback)
 {
     return this.service.UseReferralCode(code, done_callback);
 }
-
-
-
-
-

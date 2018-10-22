@@ -1,15 +1,17 @@
-function LibAds()
+function AdsService(name)
 {
     this.service = null;
+//    if (name === "custom")
+//        this.service = new YourAdsService();
     AdsService.instance = this;
 }
 
-LibAds.Log = function(message)
+AdsService.Log = function(message)
 {
     console.log(message);
 }
 
-LibAds.LogError = function(message)
+AdsService.LogError = function(message)
 {
     console.log(message);
 }
@@ -17,24 +19,35 @@ LibAds.LogError = function(message)
 //
 // INIT
 //
-LibAds.prototype.Init = function(options)
+AdsService.prototype.Init = function(options)
 {
-    AdsService.instance.Init(options);
+    if (this.service === null)
+        return false;
+    return this.service.Init(options);
 }
 
-LibAds.prototype.IsSupported = function(id, type)
+AdsService.prototype.IsSupported = function(id, type)
 {
-    return AdsService.instance.IsSupported(id, type);
+    if (this.service === null)
+        return false;
+    return this.service.IsSupported(id, type);
 }
 
-LibAds.prototype.PreloadAd = function(id, type, done_callback)
+//
+// Ad requests
+//
+AdsService.prototype.PreloadAd = function(id, type, done_callback)
 {
-    AdsService.instance.PreloadAd(id, type, done_callback);
+    if (this.service === null)
+        return;
+    return this.service.PreloadAd(id, type, done_callback);
 }
 
-LibAds.prototype.ShowAd = function(id, type, done_callback)
+AdsService.prototype.ShowAd = function(id, type, done_callback)
 {
-    AdsService.instance.ShowAd(id, type, done_callback);
+    if (this.service === null)
+        return;
+    return this.service.ShowAd(id, type, done_callback);
 }
 
 
