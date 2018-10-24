@@ -383,7 +383,7 @@ var FBInstant = {
                 resolve(new FBInstant.AdInstance(id, "inter"));
             else
                 reject({code: "CLIENT_UNSUPPORTED_OPERATION", message: "CLIENT_UNSUPPORTED_OPERATION"});
-        });        
+        });
     },
 
     getRewardedVideoAsync: function(id)
@@ -393,7 +393,7 @@ var FBInstant = {
                 resolve(new FBInstant.AdInstance(id, "video"));
             else
                 reject({code: "CLIENT_UNSUPPORTED_OPERATION", message: "CLIENT_UNSUPPORTED_OPERATION"});
-        });        
+        });
     },
 };
 
@@ -412,7 +412,7 @@ FBInstant.AdInstance.prototype.loadAsync = function()
             else
                 reject(error);
         })
-    });        
+    });
 }
 
 FBInstant.AdInstance.prototype.showAsync = function()
@@ -425,7 +425,7 @@ FBInstant.AdInstance.prototype.showAsync = function()
             else
                 reject(error);
         })
-    });        
+    });
 }
 
 FBInstant.Leaderboard.prototype.getEntriesAsync = function(count, start)
@@ -506,9 +506,9 @@ FBInstant.ext = {
      */
     loginWithShortCodeAsync: function(shortcode) {
         return new Promise(function(resolve, reject){
-			GameService.instance.LoginWithShortCode(shortcode, function(error, gamer) {
+            GameService.instance.LoginWithShortCode(shortcode, function(error, gamer) {
                 resolve(error, gamer);
-			})
+            })
         });
     },
     /**
@@ -561,9 +561,9 @@ FBInstant.ext = {
      */
     loginWithFacebookAccessTokenAsync: function(facebook_access_token) {
         return new Promise(function(resolve, reject){
-			GameService.instance.LoginWithFacebook(facebook_access_token, function(error, gamer) {
+            GameService.instance.LoginWithFacebook(facebook_access_token, function(error, gamer) {
                 resolve(error, gamer);
-			})
+            })
         });
     },
     /**
@@ -572,9 +572,9 @@ FBInstant.ext = {
      */
     logoutAsync: function() {
         return new Promise(function(resolve, reject){
-			GameService.instance.Logout(function(error) {
+            GameService.instance.Logout(function(error) {
                 resolve(error);
-			})
+            })
         });
     },
     /**
@@ -586,9 +586,9 @@ FBInstant.ext = {
      */
     convertAccountAsync: function(network, username_or_id, password_or_secret) {
         return new Promise(function(resolve, reject){
-			GameService.instance.ConvertAccount(network, username_or_id, password_or_secret, function(error) {
+            GameService.instance.ConvertAccount(network, username_or_id, password_or_secret, function(error) {
                 resolve(error);
-			})
+            })
         });
     },
     /**
@@ -600,9 +600,9 @@ FBInstant.ext = {
      */
     linkAccountAsync: function(network, id, secret) {
         return new Promise(function(resolve, reject){
-			GameService.instance.LinkAccount(network, id, secret, function(error) {
+            GameService.instance.LinkAccount(network, id, secret, function(error) {
                 resolve(error);
-			})
+            })
         });
     },
     /**
@@ -615,9 +615,9 @@ FBInstant.ext = {
      */
     resetPasswordAsync: function(to_email, from_email, title, body) {
         return new Promise(function(resolve, reject){
-			GameService.instance.ResetPassword(network, id, secret, function(error) {
+            GameService.instance.ResetPassword(network, id, secret, function(error) {
                 resolve(error);
-			})
+            })
         });
     },
     /**
@@ -627,9 +627,9 @@ FBInstant.ext = {
      */
     changePasswordAsync: function(new_password) {
         return new Promise(function(resolve, reject){
-			GameService.instance.ChangePassword(new_password, function(error) {
+            GameService.instance.ChangePassword(new_password, function(error) {
                 resolve(error);
-			})
+            })
         });
     },
     /**
@@ -646,9 +646,9 @@ FBInstant.ext = {
      */
     setProfileAsync: function(profile) {
         return new Promise(function(resolve, reject){
-			GameService.instance.SetProfile(profile, function(error) {
+            GameService.instance.SetProfile(profile, function(error) {
                 resolve(error);
-			})
+            })
         });
     },
     /**
@@ -658,10 +658,10 @@ FBInstant.ext = {
      */
     addFriendAsync: function(id) {
         return new Promise(function(resolve, reject){
-			GameService.instance.AddFriend(id, function(success) {
+            GameService.instance.AddFriend(id, function(success) {
                 console.log(">>>>>. addFriendAsync " + success)
                 resolve(success);
-			})
+            })
         });
     },
     /**
@@ -671,9 +671,9 @@ FBInstant.ext = {
      */
     removeFriendAsync: function(id) {
         return new Promise(function(resolve, reject){
-			GameService.instance.RemoveFriend(id, function(success) {
+            GameService.instance.RemoveFriend(id, function(success) {
                 resolve(success);
-			})
+            })
         });
     },
     /**
@@ -685,9 +685,9 @@ FBInstant.ext = {
      */
     listUsersAsync: function(match_pattern, start, limit) {
         return new Promise(function(resolve, reject){
-			GameService.instance.ListUsers(match_pattern, start, limit, function(users) {
+            GameService.instance.ListUsers(match_pattern, start, limit, function(users) {
                 resolve(users);
-			})
+            })
         });
     },
     /**

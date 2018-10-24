@@ -57,8 +57,8 @@ The IGX SDK is designed so that back-ends can be swapped, so if you are not happ
 
 The IGX SDK consists of the following files:
 <ul>
-<li>fbinstantx.6.2.js - This contains the replacment FBInstant data and functions</li>
-<li>lib_ads.js - Ads interface. No ads back-end currently available yet</li>
+<li>fbinstantx.6.2.js - Contains the replacement FBInstant data and functions</li>
+<li>lib_ads.js - Ads interface</li>
 <li>lib_gameservice.js - Game service interface which wraps game services</li>
 <li>lib_socials - Wrappers for various social API's, Facebook is currently the only one implemented (provides login etc)</li>
 <li>lib_xtralife - Xtralife implementation of game service</li>

@@ -27,7 +27,7 @@ var LibSocial = {
                         done_callback(response);
                 });
             };
-            
+
             (function(d, s, id){
                 var js, fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id)) {return;}
@@ -39,10 +39,10 @@ var LibSocial = {
         Login: function(done_callback)
         {
             FB.login(function(response)
-			{
+            {
                 if (done_callback !== undefined)
                     done_callback(response);
-			}, {scope: "public_profile,email"});
+            }, {scope: "public_profile,email"});
         },
         GetProfile: function(done_callback)
         {
@@ -59,7 +59,6 @@ var LibSocial = {
             });
         }
     }
-    
 }
 
 
