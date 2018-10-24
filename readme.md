@@ -14,6 +14,7 @@ The following features are available:
 <li>User data persistence on server</li>
 <li>Facebook sharing</li>
 <li>Leaderboards</li>
+<li>Interstitial and Rewarded adverts</li>
 </ul>
 
 <h2>What other features are available?</h2>
@@ -32,7 +33,6 @@ The layer also includes additional functionality that is available outside of th
 
 <h2>What features will be coming?</h2>
 <ul>
-<li>Ads</li>
 <li>Payments</li>
 <li>Contexts</li>
 <li>Portal specific services</li>
@@ -50,22 +50,23 @@ To set this up in code use:
 FBInstant.options.ApiKey = "Your games Xtralife key";
 FBInstant.options.ApiSecret = "Your games Xtralife secret";
 FBInstant.options.DevMode = "sandbox";
-new GameService(FBInstant.options.ServiceName);	// Default is xtralife.
+new GameService("xtralife");	// Use Xtralife back-end
 ```
 
-The API is designed so that back-ends can be swapped, so if you are not happy with a specific API then you can replace it.
+The IGX SDK is designed so that back-ends can be swapped, so if you are not happy with a specific API then you can replace it.
 
-The API consists of the following files:
+The IGX SDK consists of the following files:
 <ul>
 <li>fbinstantx.6.2.js - This contains the replacment FBInstant data and functions</li>
 <li>lib_ads.js - Ads interface. No ads back-end currently available yet</li>
 <li>lib_gameservice.js - Game service interface which wraps game services</li>
 <li>lib_socials - Wrappers for various social API's, Facebook is currently the only one implemented (provides login etc)</li>
 <li>lib_xtralife - Xtralife implementation of game service</li>
+<li>lib_crazygames - CrazyGames implementation of ads service</li>
 </ul>
 
 <h2>Extensions</h2>
-A lot of extra functionality has been added to the IGX API which is not available in the FBInstant API. These are provided via the FBInstant.ext object. For example, to log in the user via Facebook you would call FBInstant.ext.loginWithFacebookAccessTokenAsync().
+A lot of extra functionality has been added to the IGX SDK which is not available in the FBInstant API. These are provided via the FBInstant.ext object. For example, to log in the user via Facebook you would call FBInstant.ext.loginWithFacebookAccessTokenAsync().
 
 <h2>Logging the user in</h2>
 The user is by default logged in anonymously. This creates an account for them with Xtralife which allows their game data to be stored and retrieved. It also allows them to submit leaderboard scores and retrieve leaderboards. You can disable anonymous login by setting FBInstant.options.AllowAnonymous to false. Lets take a look at an example that shows how to log the user in via Facebook:
@@ -132,6 +133,31 @@ In order for Facebook sharing to work via shareAsync, you must assign the URL wh
 		echo "    <meta property='og:description' content='<Enter a description here>' />";
 	}
 ?>
+
+<h2>Ads Services and Portals</h2>
+Over time many portals and ad providers will be added to the IGX SDK. At the time of writing the following ad providers / portals have been added:
+<ul>
+<li>Crazy Games</li>
+</ul>
+
+<h2>Integrating Crazy Games</h2>
+To integrate Crazy Games, sign up and create a developer account at https://developer.crazygames.com
+Add the following script to your index.html:
+
+```
+	<script src="https://sdk.crazygames.com/crazygames-sdk-v1.js"></script>
+```
+In code, after you create the Game Service, create the ad service like this:
+
+```
+	new AdsService("crazygames");	// Use CrazyGames portal ads
+```
+
+Create a game in the Crazy Games dashboard and upload your game files as well as the sdk.html located in IGX\lib\vendors\crazygames. You may want to customise sdk.html to contain details about your particular game.
+
+Note that preloading ads is not possible using the Crazy Games SDK so calls to loadAsync() will return successfully. Finally, ensure that you read the Crazy Games guidelines at https://developer.crazygames.com/sdk#Guidelines
+
+
 </head>
 <body>
 </body>  

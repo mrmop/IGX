@@ -1,6 +1,7 @@
 function GameService(name)
 {
     this.service = null;
+    this.name = name;
     if (name === "xtralife")
         this.service = new LibXtralife();
     GameService.instance = this;

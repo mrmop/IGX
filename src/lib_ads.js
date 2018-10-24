@@ -1,19 +1,17 @@
 function AdsService(name)
 {
     this.service = null;
-//    if (name === "custom")
-//        this.service = new YourAdsService();
+    this.name = name;
+    if (name === "crazygames")
+        this.service = new LibCrazyGames();
     AdsService.instance = this;
-}
-
-AdsService.Log = function(message)
-{
-    console.log(message);
-}
-
-AdsService.LogError = function(message)
-{
-    console.log(message);
+    if (this.service !== undefined)
+    {
+        FBInstant.supportedAPIs.push("getInterstitialAdAsync");
+        FBInstant.supportedAPIs.push("getRewardedVideoAsync");
+        FBInstant.supportedAPIs.push("AdInstance.loadAsync");
+        FBInstant.supportedAPIs.push("AdInstance.showAsync");
+    }
 }
 
 //

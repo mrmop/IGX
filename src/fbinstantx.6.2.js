@@ -1,14 +1,13 @@
 var FBInstant = {
     options: {
         AllowAnonymous: true,   // When set to true new users will be auto logged in with an anonymous account
-        ServiceName: "xtralife",// Default back-end is Xtralife
-        AdsServiceName: "",     // Default none
         ApiKey: "",             // Game service back-end API key
         ApiSecret: "",          // Game service back-end API secret
         DevMode: "sandbox",     // sandbox or prod
         ShareURI: "http://yourdomain.com/index.php", // URI used by shareAsync dialog
         ShareDlgWidth: 600,     // shareAsync dialog width
         ShareDlgHeight: 400,    // shareAsync dialog height
+        AdsOptions: { },        // Ads options
     },
     supportedAPIs: [
         "player.getDataAsync",
@@ -243,6 +242,8 @@ var FBInstant = {
             FBInstant.Log(">>>> initializeAsync");
             var options = FBInstant.options;
             GameService.instance.Init(options.ApiKey, options.ApiSecret, options.DevMode);
+            if (AdsService.instance !== undefined)
+                AdsService.instance.Init(options.AdsOptions);
             resolve();
         });
     },
@@ -381,7 +382,7 @@ var FBInstant = {
             if (AdsService.instance.IsSupported(id, "inter"))
                 resolve(new FBInstant.AdInstance(id, "inter"));
             else
-                reject();
+                reject({code: "CLIENT_UNSUPPORTED_OPERATION", message: "CLIENT_UNSUPPORTED_OPERATION"});
         });        
     },
 
@@ -391,7 +392,7 @@ var FBInstant = {
             if (AdsService.instance.IsSupported(id, "video"))
                 resolve(new FBInstant.AdInstance(id, "video"));
             else
-                reject();
+                reject({code: "CLIENT_UNSUPPORTED_OPERATION", message: "CLIENT_UNSUPPORTED_OPERATION"});
         });        
     },
 };
@@ -405,11 +406,11 @@ FBInstant.AdInstance.prototype.loadAsync = function()
 {
     var self = this;
     return new Promise(function(resolve, reject) {
-        AdsService.instance.PreloadAd(self.id, self.type, function(success) {
-            if (success)
+        AdsService.instance.PreloadAd(self.id, self.type, function(error) {
+            if (error === null)
                 resolve();
             else
-                reject();
+                reject(error);
         })
     });        
 }
@@ -418,11 +419,11 @@ FBInstant.AdInstance.prototype.showAsync = function()
 {
     var self = this;
     return new Promise(function(resolve, reject) {
-        AdsService.instance.ShowAd(self.id, self.type, function(success) {
-            if (success)
+        AdsService.instance.ShowAd(self.id, self.type, function(error) {
+            if (error === null)
                 resolve();
             else
-                reject();
+                reject(error);
         })
     });        
 }
