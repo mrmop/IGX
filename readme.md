@@ -133,6 +133,11 @@ In order for Facebook sharing to work via shareAsync, you must assign the URL wh
 		echo "    <meta property='og:description' content='<Enter a description here>' />";
 	}
 ?>
+</head>
+<body>
+</body>  
+</html>
+```
 
 <h2>Ads Services and Portals</h2>
 Over time many portals and ad providers will be added to the IGX SDK. At the time of writing the following ad providers / portals have been added:
@@ -158,8 +163,3 @@ Create a game in the Crazy Games dashboard and upload your game files as well as
 Note that preloading ads is not possible using the Crazy Games SDK so calls to loadAsync() will return successfully. Finally, ensure that you read the Crazy Games guidelines at https://developer.crazygames.com/sdk#Guidelines
 
 
-</head>
-<body>
-</body>  
-</html>
-```
