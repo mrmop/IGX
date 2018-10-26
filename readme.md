@@ -145,6 +145,15 @@ In order for Facebook sharing to work via shareAsync, you must assign the URL wh
 </html>
 ```
 
+Note that many web portals do not support PHP index files so you will need to add your own generic custom OG tags to your index.html, e.g.:
+```
+	<meta property="og:type" content="article" />
+	<meta property='og:image' content='https://yourdomain.com/your_nice_image.jpg' />
+	<meta property='og:title' content='Your Game Name' />"
+	<meta property='og:description' content='<Enter a description here>' />"
+```
+You do lose the custom title and description but at least you can still have a meaningful share preview image.
+
 <h2>Ads Services and Portals</h2>
 Over time many portals and ad providers will be added to the IGX SDK. At the time of writing the following ad providers / portals have been added:
 <ul>
@@ -164,7 +173,7 @@ In code, after you create the Game Service, create the ad service like this:
 	new AdsService("crazygames");	// Use CrazyGames portal ads
 ```
 
-Create a game in the Crazy Games dashboard and upload your game files as well as the sdk.html located in IGX\lib\vendors\crazygames. You may want to customise sdk.html to contain details about your particular game.
+Create a game in the Crazy Games dashboard and upload your game files.
 
 Note that preloading ads is not possible using the Crazy Games SDK so calls to loadAsync() will return successfully. Finally, ensure that you read the Crazy Games guidelines at https://developer.crazygames.com/sdk#Guidelines
 
