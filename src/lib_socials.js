@@ -11,7 +11,7 @@ var LibSocial = {
 
     Facebook: {
         StatusChangeCallback: undefined,
-        Init: function(app_id, done_callback)
+        Init: function(app_id, done_cb)
         {
             window.fbAsyncInit = function() {
                 FB.init({
@@ -23,8 +23,8 @@ var LibSocial = {
 
                 FB.getLoginStatus(function(response)
                 {
-                    if (done_callback !== undefined)
-                        done_callback(response);
+                    if (done_cb !== undefined)
+                        done_cb(response);
                 });
             };
 
@@ -36,26 +36,26 @@ var LibSocial = {
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
         },
-        Login: function(done_callback)
+        Login: function(done_cb)
         {
             FB.login(function(response)
             {
-                if (done_callback !== undefined)
-                    done_callback(response);
+                if (done_cb !== undefined)
+                    done_cb(response);
             }, {scope: "public_profile,email"});
         },
-        GetProfile: function(done_callback)
+        GetProfile: function(done_cb)
         {
             FB.api('/me', function(response) {
-                if (done_callback !== undefined)
-                    done_callback(response);
+                if (done_cb !== undefined)
+                    done_cb(response);
             });
         },
-        Logout: function(done_callback)
+        Logout: function(done_cb)
         {
             FB.logout(function(response) {
-                if (done_callback !== undefined)
-                    done_callback(response);
+                if (done_cb !== undefined)
+                    done_cb(response);
             });
         }
     }

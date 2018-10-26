@@ -58,7 +58,7 @@ FBInstant.options.DevMode = "sandbox";
 new GameService("xtralife");	// Use Xtralife back-end
 ```
 
-The IGX SDK is designed so that back-ends can be swapped, so if you are not happy with a specific API then you can replace it.
+The IGX SDK is designed so that back-ends can be swapped, so if you are not happy with a specific API then you can replace it. If you do not want to take advantage of any of the features then pass "none" in place of "xtralife".
 
 The IGX SDK consists of the following files:
 <ul>
@@ -160,6 +160,9 @@ Over time many portals and ad providers will be added to the IGX SDK. At the tim
 <li>Crazy Games</li>
 </ul>
 
+<h2>Important Notice!</h2>
+Before releasing your game ensure that you switch from sandbox to production, users are not shared between the two.
+
 <h2>Integrating Crazy Games</h2>
 To integrate Crazy Games, sign up and create a developer account at https://developer.crazygames.com
 Add the following script to your index.html:
@@ -177,4 +180,5 @@ Create a game in the Crazy Games dashboard and upload your game files.
 
 Note that preloading ads is not possible using the Crazy Games SDK so calls to loadAsync() will return successfully. Finally, ensure that you read the Crazy Games guidelines at https://developer.crazygames.com/sdk#Guidelines
 
-
+<h2>Issues</h2>
+When switching from a sandbox to production environment, be aware that data from the sandbox session will still be stored in the browser, so when you try to log into the production environment old stale data from ths sandbox environment will be used. If this occurs you will see errors relating to 401 (Unauthorized) and possibly also No 'Access-Control-Allow-Origin' header is present on the requested resource. To fix this, clear the storage for your domain. For example, to do this in Chrome go to developer tools->Application->Clear storage then click the Clear Site Data button.

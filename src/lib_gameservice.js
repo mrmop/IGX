@@ -96,60 +96,112 @@ GameService.Game = function(id, name, login, icon, location)
 //
 GameService.prototype.Init = function(key, secret, env)
 {
+    if (this.service === null)
+        return;
     return this.service.Init(key, secret, env);
 }
 
 //
 // LOGIN AND ACCOUNTS
 //
-GameService.prototype.LoginAnonymously = function(allow_anonymous, done_callback)
+GameService.prototype.LoginAnonymously = function(allow_anonymous, done_cb)
 {
-    return this.service.LoginAnonymously(allow_anonymous, done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb("none", null);
+    }
+    else return this.service.LoginAnonymously(allow_anonymous, done_cb);
 }
 
-GameService.prototype.ResumeSession = function(gamer_id, gamer_secret, done_callback)
+GameService.prototype.ResumeSession = function(gamer_id, gamer_secret, done_cb)
 {
-    return this.service.ResumeSession(gamer_id, gamer_secret, done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb("none", null);
+    }
+    else return this.service.ResumeSession(gamer_id, gamer_secret, done_cb);
 };
 
-GameService.prototype.LoginWithCredentials = function(email, password, options, done_callback)
+GameService.prototype.LoginWithCredentials = function(email, password, options, done_cb)
 {
-    return this.service.LoginWithCredentials(email, password, options, done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb("none", null);
+    }
+    else return this.service.LoginWithCredentials(email, password, options, done_cb);
 };
 
-GameService.prototype.LoginWithShortCode = function(short_code, done_callback)
+GameService.prototype.LoginWithShortCode = function(short_code, done_cb)
 {
-    return this.service.LoginWithShortCode(short_code, done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb("none", null);
+    }
+    else return this.service.LoginWithShortCode(short_code, done_cb);
 };
 
-GameService.prototype.LoginWithFacebook = function(facebook_access_token, done_callback)
+GameService.prototype.LoginWithFacebook = function(facebook_access_token, done_cb)
 {
-    return this.service.LoginWithFacebook (facebook_access_token, done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb("none", null);
+    }
+    else return this.service.LoginWithFacebook (facebook_access_token, done_cb);
 };
 
-GameService.prototype.Logout = function(done_callback)
+GameService.prototype.Logout = function(done_cb)
 {
-    return this.service.Logout(done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb("none");
+    }
+    else return this.service.Logout(done_cb);
 };
 
-GameService.prototype.ConvertAccount = function(network, username_or_id, password_or_secret, done_callback)
+GameService.prototype.ConvertAccount = function(network, username_or_id, password_or_secret, done_cb)
 {
-    return this.service.ConvertAccount(network, username_or_id, password_or_secret, done_callback)
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb("none");
+    }
+    else return this.service.ConvertAccount(network, username_or_id, password_or_secret, done_cb)
 };
 
-GameService.prototype.LinkAccount = function(network, id, secret, done_callback)
+GameService.prototype.LinkAccount = function(network, id, secret, done_cb)
 {
-    return this.service.LinkAccount(network, id, secret, done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb("none");
+    }
+    else return this.service.LinkAccount(network, id, secret, done_cb);
 };
 
-GameService.prototype.ResetPassword = function(to_email, from_email, title, body, done_callback)
+GameService.prototype.ResetPassword = function(to_email, from_email, title, body, done_cb)
 {
-    return this.service.ResetPassword(to_email, from_email, title, body, done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb("none");
+    }
+    else return this.service.ResetPassword(to_email, from_email, title, body, done_cb);
 };
 
-GameService.prototype.ChangePassword = function(new_password, done_callback)
+GameService.prototype.ChangePassword = function(new_password, done_cb)
 {
-    return this.service.ChangePassword(new_password, done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb("none");
+    }
+    else return this.service.ChangePassword(new_password, done_cb);
 };
 
 //
@@ -157,112 +209,203 @@ GameService.prototype.ChangePassword = function(new_password, done_callback)
 //
 GameService.prototype.GetGamerData = function()
 {
-    return this.service.GetGamerData();
+    if (this.service === null)
+        return null;
+    else return this.service.GetGamerData();
 }
 
-GameService.prototype.GetProfileData = function(done_callback)
+GameService.prototype.GetProfileData = function(done_cb)
 {
-    return this.service.GetProfileData(done_callback);
+    if (this.service === null)
+        return null;
+    else return this.service.GetProfileData(done_cb);
 }
 
-GameService.prototype.GetProfile = function(done_callback)
+GameService.prototype.GetProfile = function(done_cb)
 {
-    return this.service.GetProfile(done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb("none");
+    }
+    else return this.service.GetProfile(done_cb);
 }
 
-GameService.prototype.SetProfile = function(profile_obj, done_callback)
+GameService.prototype.SetProfile = function(profile_obj, done_cb)
 {
-    return this.service.SetProfile(profile_obj, done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb("none");
+    }
+    else return this.service.SetProfile(profile_obj, done_cb);
 }
 
 GameService.prototype.GetGames = function()
 {
-    return this.service.GetGames();
+    if (this.service === null)
+        return null;
+    else return this.service.GetGames();
 }
 
 //
 // USER SEARCH
 //
-GameService.prototype.ListUsers = function(match_pattern, start, limit, done_callback)
+GameService.prototype.ListUsers = function(match_pattern, start, limit, done_cb)
 {
-    return this.service.ListUsers(match_pattern, start, limit, done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb(null);
+    }
+    else return this.service.ListUsers(match_pattern, start, limit, done_cb);
 }
 
 //
 // LEADERBOARDS
 //
-GameService.prototype.LeaderboardGetPaged = function(board_name, page_number, count, done_callback)
+GameService.prototype.LeaderboardGetPaged = function(board_name, page_number, count, done_cb)
 {
-    return this.service.LeaderboardGetPaged(board_name, page_number, count, done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb(null);
+    }
+    else return this.service.LeaderboardGetPaged(board_name, page_number, count, done_cb);
 }
 
-GameService.prototype.LeaderboardGetFriendsPaged = function(board_name, page_number, count, done_callback)
+GameService.prototype.LeaderboardGetFriendsPaged = function(board_name, page_number, count, done_cb)
 {
-    return this.service.LeaderboardGetFriendsPaged(board_name, page_number, count, done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb(null);
+    }
+    else return this.service.LeaderboardGetFriendsPaged(board_name, page_number, count, done_cb);
 }
 
-GameService.prototype.LeaderboardGetRank = function(board_name, done_callback)
+GameService.prototype.LeaderboardGetRank = function(board_name, done_cb)
 {
-    return this.service.LeaderboardGetRank(board_name, done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb(null);
+    }
+    else return this.service.LeaderboardGetRank(board_name, done_cb);
 }
 
-GameService.prototype.LeaderboardSetScore = function(board_name, sort_order, score, extra, done_callback)
+GameService.prototype.LeaderboardSetScore = function(board_name, sort_order, score, extra, done_cb)
 {
-    return this.service.LeaderboardSetScore(board_name, sort_order, score, extra, done_callback)
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb(false);
+    }
+    else return this.service.LeaderboardSetScore(board_name, sort_order, score, extra, done_cb)
 }
 
-GameService.prototype.SetUserData = function(key, value, done_callback)
+GameService.prototype.SetUserData = function(key, value, done_cb)
 {
-    return this.service.SetUserData(key, value, done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb(false);
+    }
+    else return this.service.SetUserData(key, value, done_cb);
 }
 
-GameService.prototype.GetUserData = function(key, done_callback)
+GameService.prototype.GetUserData = function(key, done_cb)
 {
-    return this.service.GetUserData(key, done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb(null);
+    }
+    else return this.service.GetUserData(key, done_cb);
 }
 
 //
 // FRIENDS
 //
-GameService.prototype.GetFriends = function(done_callback)
+GameService.prototype.GetFriends = function(done_cb)
 {
-    return this.service.GetFriends(done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb(null);
+    }
+    else return this.service.GetFriends(done_cb);
 }
 
-GameService.prototype.AddFriend = function(gamer_id, done_callback)
+GameService.prototype.AddFriend = function(gamer_id, done_cb)
 {
-    return this.service.AddFriend(gamer_id, done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb(false);
+    }
+    else return this.service.AddFriend(gamer_id, done_cb);
 }
 
-GameService.prototype.RemoveFriend = function(gamer_id, done_callback)
+GameService.prototype.RemoveFriend = function(gamer_id, done_cb)
 {
-    return this.service.RemoveFriend(gamer_id, done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb(false);
+    }
+    else return this.service.RemoveFriend(gamer_id, done_cb);
 }
 
 //
 // Events / Messaging
 //
-GameService.prototype.SendEvent = function(to_id, event_obj, done_callback)
+GameService.prototype.SendEvent = function(to_id, event_obj, done_cb)
 {
-    return this.service.SendEvent(to_id, event_obj, done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb("none");
+    }
+    else return this.service.SendEvent(to_id, event_obj, done_cb);
 }
 
-GameService.prototype.ListenForEvent = function(done_callback)
+GameService.prototype.ListenForEvent = function(done_cb)
 {
-    return this.service.ListenForEvent(done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb("none");
+    }
+    else return this.service.ListenForEvent(done_cb);
 }
 
-GameService.prototype.GetAllEvents = function(done_callback)
+GameService.prototype.GetAllEvents = function(done_cb)
 {
-    return this.service.GetAllEvents(done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb(null);
+    }
+    else return this.service.GetAllEvents(done_cb);
 }
 
-GameService.prototype.GetReferralCode = function(done_callback)
+GameService.prototype.GetReferralCode = function(done_cb)
 {
-    return this.service.GetReferralCode(done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb(null);
+    }
+    else return this.service.GetReferralCode(done_cb);
 }
 
-GameService.prototype.UseReferralCode = function(code, done_callback)
+GameService.prototype.UseReferralCode = function(code, done_cb)
 {
-    return this.service.UseReferralCode(code, done_callback);
+    if (this.service === null)
+    {
+        if (done_cb !== undefined)
+            done_cb(false);
+    }
+    else return this.service.UseReferralCode(code, done_cb);
 }

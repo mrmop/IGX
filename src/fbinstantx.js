@@ -231,10 +231,9 @@ var FBInstant = {
 
     getLocale: function() {
         var data = GameService.instance.GetProfileData();
-        if (data === undefined)
+        if (data === null)
             return "en_US";
-        var locale = data.lang;
-        return locale + "_";
+        return data.lang + "_";
     },
 
     initializeAsync: function() {

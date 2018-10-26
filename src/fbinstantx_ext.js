@@ -189,7 +189,7 @@ FBInstant.ext = {
     addFriendAsync: function(id) {
         return new Promise(function(resolve, reject){
             GameService.instance.AddFriend(id, function(success) {
-                console.log(">>>>>. addFriendAsync " + success)
+                console.log(">>>>> addFriendAsync " + success)
                 resolve(success);
             })
         });

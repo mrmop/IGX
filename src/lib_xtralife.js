@@ -26,18 +26,18 @@ LibXtralife.prototype.Init = function(key, secret, env)
 //
 // LOGIN AND ACCOUNTS
 //
-LibXtralife.prototype.LoginAnonymously = function(allow_anonymous, done_callback)
+LibXtralife.prototype.LoginAnonymously = function(allow_anonymous, done_cb)
 {
     if (this.gamerData)
     {
-        this.ResumeSession(this.gamerData.gamer_id, this.gamerData.gamer_secret, done_callback);
+        this.ResumeSession(this.gamerData.gamer_id, this.gamerData.gamer_secret, done_cb);
         return;
     }
     if (!allow_anonymous)
     {
         LibXtralife.Log(">>>> Anonymous login disabled");
-        if (done_callback !== undefined)
-            done_callback(null, null);
+        if (done_cb !== undefined)
+            done_cb(null, null);
         return;
     }
     this.clan.login(null, function(error, gamer)
@@ -50,12 +50,12 @@ LibXtralife.prototype.LoginAnonymously = function(allow_anonymous, done_callback
         }
 		
         //LibXtralife.Log(this.gamerData)
-        if (done_callback !== undefined)
-            done_callback(error, gamer);
+        if (done_cb !== undefined)
+            done_cb(error, gamer);
     }.bind(this));
 };
 
-LibXtralife.prototype.ResumeSession = function(gamer_id, gamer_secret, done_callback)
+LibXtralife.prototype.ResumeSession = function(gamer_id, gamer_secret, done_cb)
 {
     this.clan.resumeSession(gamer_id, gamer_secret, function(error, gamer)
     {
@@ -66,16 +66,16 @@ LibXtralife.prototype.ResumeSession = function(gamer_id, gamer_secret, done_call
             localStorage.setItem("gamer", JSON.stringify(gamer));
         }
 		
-        if (done_callback !== undefined)
-            done_callback(error, gamer);
+        if (done_cb !== undefined)
+            done_cb(error, gamer);
     }.bind(this));
 };
 
-LibXtralife.prototype.LoginWithCredentials = function(email, password, options, done_callback)
+LibXtralife.prototype.LoginWithCredentials = function(email, password, options, done_cb)
 {
     if (this.gamerData)
     {
-        this.ResumeSession(this.gamerData.gamer_id, this.gamerData.gamer_secret, done_callback);
+        this.ResumeSession(this.gamerData.gamer_id, this.gamerData.gamer_secret, done_cb);
         return;
     }
     this.clan.login("email", email, password, options, function(error, gamer)
@@ -86,16 +86,16 @@ LibXtralife.prototype.LoginWithCredentials = function(email, password, options, 
             localStorage.setItem("gamer", JSON.stringify(gamer));
         }
         
-        if (done_callback !== undefined)
-            done_callback(error, gamer);
+        if (done_cb !== undefined)
+            done_cb(error, gamer);
     }.bind(this));
 };
 
-LibXtralife.prototype.LoginWithShortCode = function(short_code, done_callback)
+LibXtralife.prototype.LoginWithShortCode = function(short_code, done_cb)
 {
     if (this.gamerData)
     {
-        this.ResumeSession(this.gamerData.gamer_id, this.gamerData.gamer_secret, done_callback);
+        this.ResumeSession(this.gamerData.gamer_id, this.gamerData.gamer_secret, done_cb);
         return;
     }
     this.clan.loginWithShortCode(short_code, function(error, gamer)
@@ -106,16 +106,16 @@ LibXtralife.prototype.LoginWithShortCode = function(short_code, done_callback)
             localStorage.setItem("gamer", JSON.stringify(gamer));
         }
 	
-        if (done_callback !== undefined)
-            done_callback(error, gamer);
+        if (done_cb !== undefined)
+            done_cb(error, gamer);
     }.bind(this));
 };
 
-LibXtralife.prototype.LoginWithFacebook = function(facebook_access_token, done_callback)
+LibXtralife.prototype.LoginWithFacebook = function(facebook_access_token, done_cb)
 {
     if (this.gamerData)
     {
-        this.ResumeSession(this.gamerData.gamer_id, this.gamerData.gamer_secret, done_callback);
+        this.ResumeSession(this.gamerData.gamer_id, this.gamerData.gamer_secret, done_cb);
         return;
     }
     this.clan.login("facebook", "", facebook_access_token, function(error, gamer)
@@ -126,38 +126,38 @@ LibXtralife.prototype.LoginWithFacebook = function(facebook_access_token, done_c
             localStorage.setItem("gamer", JSON.stringify(gamer));
         }
 
-        if (done_callback !== undefined)
-            done_callback(error, gamer);
+        if (done_cb !== undefined)
+            done_cb(error, gamer);
     }.bind(this));
 };
 
-LibXtralife.prototype.Logout = function(done_callback)
+LibXtralife.prototype.Logout = function(done_cb)
 {
     this.clan.logout(function(error)
     {
-        if (done_callback !== undefined)
-            done_callback(error);
+        if (done_cb !== undefined)
+            done_cb(error);
     }.bind(this));
 };
 
-LibXtralife.prototype.ConvertAccount = function(network, username_or_id, password_or_secret, done_callback)
+LibXtralife.prototype.ConvertAccount = function(network, username_or_id, password_or_secret, done_cb)
 {
     if (this.gamerData)
     {
         this.clan.withGamer(this.gamerData).convertTo(network, username_or_id, password_or_secret, function(error, result)
         {
-            if (done_callback !== undefined)
-                done_callback(error, result);
+            if (done_cb !== undefined)
+                done_cb(error, result);
         }.bind(this));
     }
     else
     {
-        if (done_callback !== undefined)
-            done_callback(null);
+        if (done_cb !== undefined)
+            done_cb("noinit");
     }
 };
 
-LibXtralife.prototype.LinkAccount = function(network, id, secret, done_callback)
+LibXtralife.prototype.LinkAccount = function(network, id, secret, done_cb)
 {
     if (this.gamerData)
     {
@@ -166,40 +166,40 @@ LibXtralife.prototype.LinkAccount = function(network, id, secret, done_callback)
         {
             console.log("LinkAccount error: " + JSON.stringify(error));
             console.log("LinkAccount result: " + JSON.stringify(result));
-            if (done_callback !== undefined)
-                done_callback(error, result);
+            if (done_cb !== undefined)
+                done_cb(error, result);
         }.bind(this));
     }
     else
     {
-        if (done_callback !== undefined)
-            done_callback(null);
+        if (done_cb !== undefined)
+            done_cb("noinit");
     }
 };
 
-LibXtralife.prototype.ResetPassword = function(to_email, from_email, title, body, done_callback)
+LibXtralife.prototype.ResetPassword = function(to_email, from_email, title, body, done_cb)
 {
     this.clan.sendResetMailPassword(to_email, from_email, title, body, function(error, result)
     {
-        if (done_callback !== undefined)
-            done_callback(error, result);
+        if (done_cb !== undefined)
+            done_cb(error, result);
     }.bind(this));
 };
 
-LibXtralife.prototype.ChangePassword = function(new_password, done_callback)
+LibXtralife.prototype.ChangePassword = function(new_password, done_cb)
 {
     if (this.gamerData)
     {
         this.clan.withGamer(this.gamerData).changePassword(new_password, function(error, result)
         {
-            if (done_callback !== undefined)
-                done_callback(error, result);
+            if (done_cb !== undefined)
+                done_cb(error, result);
         }.bind(this));
     }
     else
     {
-        if (done_callback !== undefined)
-            done_callback(null);
+        if (done_cb !== undefined)
+            done_cb("noinit");
     }
 };
 
@@ -221,23 +221,23 @@ LibXtralife.prototype.GetProfileData = function()
     return null;
 }
 
-LibXtralife.prototype.GetProfile = function(done_callback)
+LibXtralife.prototype.GetProfile = function(done_cb)
 {
     if (this.gamerData)
     {
         this.clan.withGamer(this.gamerData).profile().get(function(error, result) {
-            if (done_callback !== undefined)
-                done_callback(error, result);
+            if (done_cb !== undefined)
+                done_cb(error, result);
         });
     }
     else
     {
-        if (done_callback !== undefined)
-            done_callback(null);
+        if (done_cb !== undefined)
+            done_cb("noinit");
     }
 }
 
-LibXtralife.prototype.SetProfile = function(profile_obj, done_callback)
+LibXtralife.prototype.SetProfile = function(profile_obj, done_cb)
 {
     var self = this;
     if (this.gamerData)
@@ -250,14 +250,14 @@ LibXtralife.prototype.SetProfile = function(profile_obj, done_callback)
                     self.gamerData.profile[p] = profile_obj[p];
                 }
             }
-            if (done_callback !== undefined)
-                done_callback(error, result);
+            if (done_cb !== undefined)
+                done_cb(error, result);
         });
     }
     else
     {
-        if (done_callback !== undefined)
-            done_callback(null);
+        if (done_cb !== undefined)
+            done_cb("noinit");
     }
 }
 
@@ -278,7 +278,7 @@ LibXtralife.prototype.GetGames = function()
 //
 // USER SEARCH
 //
-LibXtralife.prototype.ListUsers = function(match_pattern, start, limit, done_callback)
+LibXtralife.prototype.ListUsers = function(match_pattern, start, limit, done_cb)
 {
     var self = this;
     if (this.gamerData)
@@ -286,26 +286,26 @@ LibXtralife.prototype.ListUsers = function(match_pattern, start, limit, done_cal
         this.clan.withGamer(this.gamerData).listUsers(encodeURIComponent(match_pattern), limit, start, function(error, result) {
             console.log("ListUsers error: " + JSON.stringify(error));
             console.log("ListUsers result: " + JSON.stringify(result));
-            if (done_callback !== undefined)
+            if (done_cb !== undefined)
             {
                 if (error !== null)
-                    done_callback(null);
+                    done_cb(null);
                 else
-                    done_callback(result.result);
+                    done_cb(result.result);
             }
         });
     }
     else
     {
-        if (done_callback !== undefined)
-            done_callback(null);
+        if (done_cb !== undefined)
+            done_cb(null);
     }
 }
 
 //
 // LEADERBOARDS
 //
-LibXtralife.prototype.LeaderboardGetPaged = function(board_name, page_number, count, done_callback)
+LibXtralife.prototype.LeaderboardGetPaged = function(board_name, page_number, count, done_cb)
 {
     var self = this;
     if (this.gamerData)
@@ -316,8 +316,8 @@ LibXtralife.prototype.LeaderboardGetPaged = function(board_name, page_number, co
             if (error !== null)
             {
                 LibXtralife.LogError("Leaderboard Get Paged error: " + error);
-                if (done_callback !== undefined)
-                    done_callback(null);
+                if (done_cb !== undefined)
+                    done_cb(null);
             }
             else
             {
@@ -334,19 +334,19 @@ LibXtralife.prototype.LeaderboardGetPaged = function(board_name, page_number, co
                             entries.push(new GameService.LbdEntry(lentry.gamer_id, board.rankOfFirst + index, lentry.profile.displayName, lentry.score.score, lentry.score.info, lentry.profile.avatar, lentry.score.timestamp));
                     }
                 }
-                if (done_callback !== undefined)
-                    done_callback(entries);
+                if (done_cb !== undefined)
+                    done_cb(entries);
             }
         });
     }
     else
     {
-        if (done_callback !== undefined)
-            done_callback(null);
+        if (done_cb !== undefined)
+            done_cb(null);
     }
 }
 
-LibXtralife.prototype.LeaderboardGetFriendsPaged = function(board_name, page_number, count, done_callback)
+LibXtralife.prototype.LeaderboardGetFriendsPaged = function(board_name, page_number, count, done_cb)
 {
     var self = this;
     if (this.gamerData)
@@ -356,8 +356,8 @@ LibXtralife.prototype.LeaderboardGetFriendsPaged = function(board_name, page_num
             if (error !== null)
             {
                 LibXtralife.LogError("Leaderboard Get Friends Paged error: " + error);
-                if (done_callback !== undefined)
-                    done_callback(null);
+                if (done_cb !== undefined)
+                    done_cb(null);
             }
             else
             {
@@ -373,26 +373,26 @@ LibXtralife.prototype.LeaderboardGetFriendsPaged = function(board_name, page_num
                             entries.push(new GameService.LbdEntry(lentry.gamer_id, lentry.rank, lentry.profile.displayName, lentry.score.score, lentry.score.info, lentry.profile.avatar, lentry.score.timestamp));
                     }
                 }
-                if (done_callback !== undefined)
-                    done_callback(entries);
+                if (done_cb !== undefined)
+                    done_cb(entries);
             }
         });
     }
     else
     {
-        if (done_callback !== undefined)
-            done_callback(null);
+        if (done_cb !== undefined)
+            done_cb(null);
     }
 }
 
-LibXtralife.prototype.LeaderboardGetRank = function(board_name, done_callback)
+LibXtralife.prototype.LeaderboardGetRank = function(board_name, done_cb)
 {
     var self = this;
     if (this.gamerData)
     {
         this.clan.withGamer(this.gamerData).leaderboards(this.clan.privateDomain).getCenteredHighscores(board_name, 1, function(error, result)
         {
-            var success = null;
+            var entry = null;
             LibXtralife.Log(self.gamerData);
             if (error !== null)
             {
@@ -407,22 +407,22 @@ LibXtralife.prototype.LeaderboardGetRank = function(board_name, done_callback)
                     if (score !== undefined)
                     {
                         LibXtralife.Log("LeaderboardGetRank: " + JSON.stringify(result));
-                        success = new GameService.LbdEntry(score.gamer_id, board.rankOfFirst, score.profile.displayName, score.score.score, score.score.info, score.profile.avatar, score.score.timestamp);
+                        entry = new GameService.LbdEntry(score.gamer_id, board.rankOfFirst, score.profile.displayName, score.score.score, score.score.info, score.profile.avatar, score.score.timestamp);
                     }
                 }
             }
-            if (done_callback !== undefined)
-                done_callback(success);
+            if (done_cb !== undefined)
+                done_cb(entry);
         });
     }
     else
     {
-        if (done_callback !== undefined)
-            done_callback(null);
+        if (done_cb !== undefined)
+            done_cb(null);
     }
 }
 
-LibXtralife.prototype.LeaderboardSetScore = function(board_name, sort_order, score, extra, done_callback)
+LibXtralife.prototype.LeaderboardSetScore = function(board_name, sort_order, score, extra, done_cb)
 {
     var self = this;
     if (this.gamerData)
@@ -433,25 +433,25 @@ LibXtralife.prototype.LeaderboardSetScore = function(board_name, sort_order, sco
             if (error !== null)
             {
                 LibXtralife.LogError("Leaderboard Set score error: " + error);
-                if (done_callback !== undefined)
-                    done_callback(false);
+                if (done_cb !== undefined)
+                    done_cb(false);
             }
             else
             {
                 LibXtralife.Log("LeaderboardSetScore: " + JSON.stringify(result));
-                if (done_callback !== undefined)
-                    done_callback(true);
+                if (done_cb !== undefined)
+                    done_cb(true);
             }
         });
     }
     else
     {
-        if (done_callback !== undefined)
-            done_callback(false);
+        if (done_cb !== undefined)
+            done_cb(false);
     }
 }
 
-LibXtralife.prototype.SetUserData = function(key, value, done_callback)
+LibXtralife.prototype.SetUserData = function(key, value, done_cb)
 {
     if (this.gamerData)
     {
@@ -460,25 +460,25 @@ LibXtralife.prototype.SetUserData = function(key, value, done_callback)
             if (error !== null)
             {
                 LibXtralife.LogError("Set user data error: " + JSON.stringify(error));
-                if (done_callback !== undefined)
-                    done_callback(false);
+                if (done_cb !== undefined)
+                    done_cb(false);
             }
             else
             {
                 LibXtralife.LogError("User data set: " + result.result);
-                if (done_callback !== undefined)
-                    done_callback(true);
+                if (done_cb !== undefined)
+                    done_cb(true);
             }
         });
     }
     else
     {
-        if (done_callback !== undefined)
-            done_callback(false);
+        if (done_cb !== undefined)
+            done_cb(false);
     }
 }
 
-LibXtralife.prototype.GetUserData = function(key, done_callback)
+LibXtralife.prototype.GetUserData = function(key, done_cb)
 {
     if (this.gamerData)
     {
@@ -487,28 +487,28 @@ LibXtralife.prototype.GetUserData = function(key, done_callback)
             if (error !== null)
             {
                 LibXtralife.LogError("Get user data error: " + JSON.stringify(error));
-                if (done_callback !== undefined)
-                    done_callback(null);
+                if (done_cb !== undefined)
+                    done_cb(null);
             }
             else
             {
                 LibXtralife.Log("User data get: " + JSON.stringify(result));
-                if (done_callback !== undefined)
-                    done_callback(result.result[key]);
+                if (done_cb !== undefined)
+                    done_cb(result.result[key]);
             }
         });
     }
     else
     {
-        if (done_callback !== undefined)
-            done_callback(null);
+        if (done_cb !== undefined)
+            done_cb(null);
     }
 }
 
 //
 // FRIENDS
 //
-LibXtralife.prototype.GetFriends = function(done_callback)
+LibXtralife.prototype.GetFriends = function(done_cb)
 {
     if (this.gamerData)
     {
@@ -517,8 +517,8 @@ LibXtralife.prototype.GetFriends = function(done_callback)
             if (error !== null)
             {
                 LibXtralife.LogError("Get friends error: " + JSON.stringify(error));
-                if (done_callback !== undefined)
-                    done_callback(null);
+                if (done_cb !== undefined)
+                    done_cb(null);
             }
             else
             {
@@ -536,19 +536,19 @@ LibXtralife.prototype.GetFriends = function(done_callback)
                     }
                 }
 
-                if (done_callback !== undefined)
-                    done_callback(players);
+                if (done_cb !== undefined)
+                    done_cb(players);
             }
         });
     }
     else
     {
-        if (done_callback !== undefined)
-            done_callback(null);
+        if (done_cb !== undefined)
+            done_cb(null);
     }
 }
 
-LibXtralife.prototype.AddFriend = function(gamer_id, done_callback)
+LibXtralife.prototype.AddFriend = function(gamer_id, done_cb)
 {
     if (this.gamerData)
     {
@@ -557,25 +557,25 @@ LibXtralife.prototype.AddFriend = function(gamer_id, done_callback)
             if (error !== null)
             {
                 LibXtralife.LogError("AddFriend error: " + JSON.stringify(error));
-                if (done_callback !== undefined)
-                    done_callback(false);
+                if (done_cb !== undefined)
+                    done_cb(false);
             }
             else
             {
                 LibXtralife.Log("AddFriend: " + JSON.stringify(result));
-                if (done_callback !== undefined)
-                    done_callback(true);
+                if (done_cb !== undefined)
+                    done_cb(true);
             }
         });
     }
     else
     {
-        if (done_callback !== undefined)
-            done_callback(false);
+        if (done_cb !== undefined)
+            done_cb(false);
     }
 }
 
-LibXtralife.prototype.RemoveFriend = function(gamer_id, done_callback)
+LibXtralife.prototype.RemoveFriend = function(gamer_id, done_cb)
 {
     if (this.gamerData)
     {
@@ -584,28 +584,28 @@ LibXtralife.prototype.RemoveFriend = function(gamer_id, done_callback)
             if (error !== null)
             {
                 LibXtralife.LogError("RemoveFriend error: " + JSON.stringify(error));
-                if (done_callback !== undefined)
-                    done_callback(false);
+                if (done_cb !== undefined)
+                    done_cb(false);
             }
             else
             {
                 LibXtralife.Log("RemoveFriend: " + JSON.stringify(result));
-                if (done_callback !== undefined)
-                    done_callback(true);
+                if (done_cb !== undefined)
+                    done_cb(true);
             }
         });
     }
     else
     {
-        if (done_callback !== undefined)
-            done_callback(false);
+        if (done_cb !== undefined)
+            done_cb(false);
     }
 }
 
 //
 // Events
 //
-LibXtralife.prototype.SendEvent = function(to_id, event_obj, done_callback)
+LibXtralife.prototype.SendEvent = function(to_id, event_obj, done_cb)
 {
     if (this.gamerData !== undefined)
     {
@@ -614,25 +614,25 @@ LibXtralife.prototype.SendEvent = function(to_id, event_obj, done_callback)
             if (error !== null)
             {
                 LibXtralife.LogError("SendEvent error: " + JSON.stringify(error));
-                if (done_callback !== undefined)
-                    done_callback(error, result);
+                if (done_cb !== undefined)
+                    done_cb(error, result);
             }
             else
             {
                 LibXtralife.Log("SendEvent: " + JSON.stringify(result));
-                if (done_callback !== undefined)
-                    done_callback(error, result);
+                if (done_cb !== undefined)
+                    done_cb(error, result);
             }
         });
     }
     else
     {
-        if (done_callback !== undefined)
-            done_callback(null);
+        if (done_cb !== undefined)
+            done_cb("noinit");
     }
 }
 
-LibXtralife.prototype.ListenForEvent = function(done_callback)
+LibXtralife.prototype.ListenForEvent = function(done_cb)
 {
     if (this.gamerData !== undefined)
     {
@@ -641,30 +641,30 @@ LibXtralife.prototype.ListenForEvent = function(done_callback)
             if (error !== null)
             {
                 LibXtralife.LogError("ListenForEvent error: " + JSON.stringify(error));
-                if (done_callback !== undefined)
-                    done_callback(error, result);
+                if (done_cb !== undefined)
+                    done_cb(error, result);
             }
             else
             {
                 LibXtralife.Log("ListenForEvent: " + JSON.stringify(result));
-                if (done_callback !== undefined)
-                    done_callback(error, result);
+                if (done_cb !== undefined)
+                    done_cb(error, result);
             }
         });
     }
     else
     {
-        if (done_callback !== undefined)
-            done_callback(null);
+        if (done_cb !== undefined)
+            done_cb("noinit");
     }
 }
 
-LibXtralife.prototype.GetAllEvents = function(done_callback)
+LibXtralife.prototype.GetAllEvents = function(done_cb)
 {
     if (this.gamerData === undefined)
     {
-        if (done_callback !== undefined)
-            done_callback(null);
+        if (done_cb !== undefined)
+            done_cb(null);
         return;
     }
     var events = [];
@@ -680,8 +680,8 @@ LibXtralife.prototype.GetAllEvents = function(done_callback)
             }
             else
             {
-                if (done_callback !== undefined)
-                    done_callback(events);
+                if (done_cb !== undefined)
+                    done_cb(events);
                         
             }
         });
@@ -689,7 +689,7 @@ LibXtralife.prototype.GetAllEvents = function(done_callback)
     get_events();
 }
 
-LibXtralife.prototype.GetReferralCode = function(done_callback)
+LibXtralife.prototype.GetReferralCode = function(done_cb)
 {
     if (this.gamerData !== undefined)
     {
@@ -697,24 +697,24 @@ LibXtralife.prototype.GetReferralCode = function(done_callback)
         {
             if (result !== null)
             {
-                if (done_callback !== undefined)
-                    done_callback(result.godfathercode);
+                if (done_cb !== undefined)
+                    done_cb(result.godfathercode);
             }
             else
             {
-                if (done_callback !== undefined)
-                    done_callback(null);
+                if (done_cb !== undefined)
+                    done_cb(null);
             }
         });
     }
     else
     {
-        if (done_callback !== undefined)
-            done_callback(null);
+        if (done_cb !== undefined)
+            done_cb(null);
     }
 }
 
-LibXtralife.prototype.UseReferralCode = function(code, done_callback)
+LibXtralife.prototype.UseReferralCode = function(code, done_cb)
 {
     if (this.gamerData !== undefined)
     {
@@ -722,19 +722,19 @@ LibXtralife.prototype.UseReferralCode = function(code, done_callback)
         {
             if (error === null)
             {
-                if (done_callback !== undefined)
-                    done_callback(true);
+                if (done_cb !== undefined)
+                    done_cb(true);
             }
             else
             {
-                if (done_callback !== undefined)
-                    done_callback(false);
+                if (done_cb !== undefined)
+                    done_cb(false);
             }
         });
     }
     else
     {
-        if (done_callback !== undefined)
-            done_callback(false);
+        if (done_cb !== undefined)
+            done_cb(false);
     }
 }
