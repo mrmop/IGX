@@ -1,4 +1,9 @@
 //
+// Copyright (C) Mat Hopwood www.drmop.com
+// For details of license see license.txt
+//
+
+//
 // None standard extensions (Check FBInstant.ext is not undefined before using)
 //
 FBInstant.ext = {

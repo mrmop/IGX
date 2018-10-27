@@ -1,3 +1,8 @@
+//
+// Copyright (C) Mat Hopwood www.drmop.com
+// For details of license see license.txt
+//
+
 function LibXtralife()
 {
 }

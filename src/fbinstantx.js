@@ -1,3 +1,8 @@
+//
+// Copyright (C) Mat Hopwood www.drmop.com
+// For details of license see license.txt
+//
+
 var FBInstant = {
     options: {
         AllowAnonymous: true,   // When set to true new users will be auto logged in with an anonymous account
