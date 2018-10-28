@@ -3,7 +3,7 @@
 <h2>What is IGX?</h2>
 IGX stands for Instant Games Extension, it is basically a replacement object for the Facebook Instant Games FBInstant object which enables developers to:
 <ul>
-<li>Deploy games created that use the Facebook Instants API to the web and beyond with little to no code changes</li>
+<li>Deploy games created that use the <a href="https://developers.facebook.com/docs/games/instant-games">Facebook Instant Games API</a> to the web and beyond with little to no code changes</li>
 <li>Build instant game features into existing games before deploying to the Instant Games platform, saving valuable time and money</li>
 <li>Bolster the existing Instant Games platform with new features via FBInstant.ext, such as real time user to user communication</li>
 </ul>
@@ -15,7 +15,7 @@ IGX was created to enable developers to maximise their development time and mone
 The following features are available:
 <ul>
 <li>Initialilsation including entry point data via the url</li>
-<li>User login / management (anonymous, credentials, Faceook and shortcode logins)</li>
+<li>User login / management (anonymous, credentials, Facebook and shortcode logins)</li>
 <li>User data persistence on server</li>
 <li>Facebook sharing</li>
 <li>Leaderboards</li>
@@ -160,8 +160,11 @@ Over time many portals and ad providers will be added to the IGX SDK. At the tim
 <li>Crazy Games</li>
 </ul>
 
-<h2>Important Notice!</h2>
-Before releasing your game ensure that you switch from sandbox to production, users are not shared between the two.
+<h2>Important Notices!</h2>
+<ul>
+<li>Before releasing your game ensure that you switch from sandbox to production, users are not shared between the two.</li>
+<li>This SDK is very heavily under development so things can change quite quickly.</li>
+</ul>
 
 <h2>Integrating Crazy Games</h2>
 To integrate Crazy Games, sign up and create a developer account at https://developer.crazygames.com

@@ -4,9 +4,11 @@ var compressor = require('node-minify');
 var sources = [
 	'../src/lib_socials.js',
 	'../src/lib_gameservice.js',
-	'../src/lib_xtralife.js',
-	'../src/lib_crazygames.js',
+	'../src/lib_xtralife.js',			// Exclude if not needed
+	'../src/lib_crazygames.js',			// Exclude if not needed
+	'../src/lib_gamedistribution.js',	// Exclude if not needed
 	'../src/lib_ads.js',
+	'../src/lib_payments.js',
 	'../src/fbinstantx.js',
 	'../src/fbinstantx_ext.js',
 ];

@@ -23,7 +23,7 @@ var LibSocial = {
                     appId            : app_id,
                     autoLogAppEvents : true,
                     xfbml            : true,
-                    version          : 'v3.1'
+                    version          : "v3.1"
                 });
 
                 FB.getLoginStatus(function(response)
@@ -39,7 +39,7 @@ var LibSocial = {
                 js = d.createElement(s); js.id = id;
                 js.src = "https://connect.facebook.net/en_US/sdk.js";
                 fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
+            }(document, "script", "facebook-jssdk"));
         },
         Login: function(done_cb)
         {
@@ -51,7 +51,7 @@ var LibSocial = {
         },
         GetProfile: function(done_cb)
         {
-            FB.api('/me', function(response) {
+            FB.api("/me", function(response) {
                 if (done_cb !== undefined)
                     done_cb(response);
             });

@@ -28,7 +28,7 @@ LibCrazyGames.LogError = function(message)
 // options
 // - startedCallback - Can be tapped into to mute audio during video playback
 // - finishedCallback - Can be tapped into to unmute audio after video playback
-LibCrazyGames.prototype.Init = function(options)
+LibCrazyGames.prototype.InitAds = function(options)
 {
     LibCrazyGames.Log(">>>> CrazyGames: Init");
     var self = this;
@@ -65,7 +65,7 @@ LibCrazyGames.prototype.Init = function(options)
     });
 }
 
-LibCrazyGames.prototype.IsSupported = function(type)
+LibCrazyGames.prototype.IsAdsSupported = function(type)
 {
     return true;
 }

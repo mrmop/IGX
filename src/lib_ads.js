@@ -7,8 +7,22 @@ function AdsService(name)
 {
     this.service = null;
     this.name = name;
-    if (name === "crazygames")
-        this.service = new LibCrazyGames();
+    // Some vendors support multiple services
+    if (GameService.instance !== undefined && GameService.instance.name === name)
+    {
+        this.service = GameService.instance.service;
+    }
+    else if (PaymentsService.instance !== undefined && PaymentsService.instance.name === name)
+    {
+        this.service = PaymentsService.instance.service;
+    }
+    else
+    {
+        if (name === "crazygames")
+            this.service = new LibCrazyGames();
+        else if (name === "gamedistribution")
+            this.service = new LibGameDistribution();
+    }
     AdsService.instance = this;
     if (this.service !== undefined)
     {
@@ -22,18 +36,18 @@ function AdsService(name)
 //
 // INIT
 //
-AdsService.prototype.Init = function(options)
+AdsService.prototype.InitAds = function(options)
 {
     if (this.service === null)
         return false;
-    return this.service.Init(options);
+    return this.service.InitAds(options);
 }
 
-AdsService.prototype.IsSupported = function(id, type)
+AdsService.prototype.IsAdsSupported = function(id, type)
 {
     if (this.service === null)
         return false;
-    return this.service.IsSupported(id, type);
+    return this.service.IsAdsSupported(id, type);
 }
 
 //

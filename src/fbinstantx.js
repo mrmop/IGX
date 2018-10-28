@@ -13,6 +13,7 @@ var FBInstant = {
         ShareDlgWidth: 600,     // shareAsync dialog width
         ShareDlgHeight: 400,    // shareAsync dialog height
         AdsOptions: { },        // Ads options
+        PaymentsOptions: { },   // Payments options
     },
     supportedAPIs: [
         "player.getDataAsync",
@@ -71,7 +72,8 @@ var FBInstant = {
         "ext.shareTwitterAsync",
     ],
     __state: {
-        initialized: false
+        initialized: false,
+        purchasingReadyCallback: null
     },
     Log: function(message)
     {
@@ -202,30 +204,47 @@ var FBInstant = {
 
     payments: {
         getCatalogAsync: function() {
-            // TODO:
-            return new Promise(function(resolve, reject) {
-                reject();
-            });
+            PaymentsService.instance.GetProducts(function(error, products) {
+                return new Promise(function(resolve, reject) {
+                    if (error === null)
+                        resolve(products);
+                    else
+                        reject(error);
+                });
+            })
         },
-        purchaseAsync: function(product) {
-            // TODO:
-            return new Promise(function(resolve, reject) {
-                reject();
-            });
+        purchaseAsync: function(options) {
+            PaymentsService.instance.PurchaseProduct(options, function(error, purchase) {
+                return new Promise(function(resolve, reject) {
+                    if (error === null)
+                        resolve(purchase);
+                    else
+                        reject(error);
+                });
+            })
         },
         getPurchasesAsync: function() {
-            // TODO:
-            return new Promise(function(resolve, reject) {
-                reject();
-            });
+            PaymentsService.instance.GetPurchases(function(error, purchases) {
+                return new Promise(function(resolve, reject) {
+                    if (error === null)
+                        resolve(purchases);
+                    else
+                        reject(error);
+                });
+            })
         },
         consumePurchaseAsync: function(purchaseToken) {
-            // TODO:
-            return new Promise(function(resolve, reject) {
-                reject();
-            });
+            PaymentsService.instance.ConsumeProduct(purchaseToken, function(error) {
+                return new Promise(function(resolve, reject) {
+                    if (error === null)
+                        resolve();
+                    else
+                        reject(error);
+                });
+            })
         },
         onReady: function(callback) {
+            FBInstant.__state.purchasingReadyCallback = callback;
         }
     },
 
@@ -247,7 +266,14 @@ var FBInstant = {
             var options = FBInstant.options;
             GameService.instance.Init(options.ApiKey, options.ApiSecret, options.DevMode);
             if (AdsService.instance !== undefined)
-                AdsService.instance.Init(options.AdsOptions);
+                AdsService.instance.InitAds(options.AdsOptions);
+            if (PaymentsService.instance !== undefined)
+            {
+                PaymentsService.instance.InitPayments(options.PaymentsOptions, function(error) {
+                    if (error === null && FBInstant.__state.purchasingReadyCallback !== null)
+                        FBInstant.__state.purchasingReadyCallback();
+                });
+            }
             resolve();
         });
     },
@@ -383,7 +409,7 @@ var FBInstant = {
     getInterstitialAdAsync: function(id)
     {
         return new Promise(function(resolve, reject) {
-            if (AdsService.instance.IsSupported(id, "inter"))
+            if (AdsService.instance.IsAdsSupported(id, "inter"))
                 resolve(new FBInstant.AdInstance(id, "inter"));
             else
                 reject({code: "CLIENT_UNSUPPORTED_OPERATION", message: "CLIENT_UNSUPPORTED_OPERATION"});
@@ -393,7 +419,7 @@ var FBInstant = {
     getRewardedVideoAsync: function(id)
     {
         return new Promise(function(resolve, reject) {
-            if (AdsService.instance.IsSupported(id, "video"))
+            if (AdsService.instance.IsAdsSupported(id, "video"))
                 resolve(new FBInstant.AdInstance(id, "video"));
             else
                 reject({code: "CLIENT_UNSUPPORTED_OPERATION", message: "CLIENT_UNSUPPORTED_OPERATION"});
