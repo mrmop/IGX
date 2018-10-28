@@ -20,6 +20,7 @@ The following features are available:
 <li>Facebook sharing</li>
 <li>Leaderboards</li>
 <li>Interstitial and Rewarded adverts</li>
+<li>Analytics</li>
 </ul>
 
 <h2>What other features are available?</h2>
@@ -154,6 +155,12 @@ Note that many web portals do not support PHP index files so you will need to ad
 ```
 You do lose the custom title and description but at least you can still have a meaningful share preview image.
 
+<h2>Analytics</h2>
+IGX supports collection of user data for game analytics purposes. The following analytics providers are currrently supported:
+<ul>
+<li>Google Analytics</li>
+</ul>
+
 <h2>Ads Services and Portals</h2>
 Over time many portals and ad providers will be added to the IGX SDK. At the time of writing the following ad providers / portals have been added:
 <ul>
@@ -183,5 +190,36 @@ Create a game in the Crazy Games dashboard and upload your game files.
 
 Note that preloading ads is not possible using the Crazy Games SDK so calls to loadAsync() will return successfully. Finally, ensure that you read the Crazy Games guidelines at https://developer.crazygames.com/sdk#Guidelines
 
+<h2>Integrating Google Analytics</h2>
+To integrate Google Analytics, sign up and create an account at https://analytics.google.com then go to the Admin section of Google Analytics and create a property for your game. You will be given a trackingId.
+
+In code, after you create the Game Service, create the analytics service like this:
+
+```
+	FBInstant.options.AnalyticsOptions.trackingId = "PUT YOUR GOOGLE ANALYTICS TRACKING ID HERE";
+	new AnalyticsService("google");	// Use Google Analytics
+```
+
+You can view the events sent from your game in the Events section in Google Analytics.
+
 <h2>Issues</h2>
 When switching from a sandbox to production environment, be aware that data from the sandbox session will still be stored in the browser, so when you try to log into the production environment old stale data from ths sandbox environment will be used. If this occurs you will see errors relating to 401 (Unauthorized) and possibly also No 'Access-Control-Allow-Origin' header is present on the requested resource. To fix this, clear the storage for your domain. For example, to do this in Chrome go to developer tools->Application->Clear storage then click the Clear Site Data button.
+
+<h2>Future Integrations</h2>
+Below is a list of planned integrations with the IGX SDK:
+<ul>
+<li>Game Analytics</li>
+<li>PayPal</li>
+<li>Kongregate</li>
+<li>Miniclip</li>
+<li>Newgrounds.io</li>
+<li>Poki</li>
+<li>Y8</li>
+</ul>
+
+Other possible integrations with the IGX SDK:
+<ul>
+<li>Armor Games</li>
+<li>Spil Games</li>
+<li>Kizi</li>
+</ul>

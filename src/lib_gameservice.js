@@ -5,10 +5,13 @@
 
 function GameService(name)
 {
-    this.service = null;
+    this.service = LibUtils.ResolveService(name);
+    if (this.service === undefined)
+    {
+        if (name === "xtralife")
+            this.service = new LibXtralife();
+    }
     this.name = name;
-    if (name === "xtralife")
-        this.service = new LibXtralife();
     GameService.instance = this;
 }
 

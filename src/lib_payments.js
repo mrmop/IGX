@@ -25,22 +25,13 @@ PaymentsService.Purchase = function(payload, payment_id, product_id, purchase_ti
 
 function PaymentsService(name)
 {
-    this.service = null;
-    this.name = name;
-    // Some vendors support multiple services
-    if (GameService.instance !== undefined && GameService.instance.name === name)
-    {
-        this.service = GameService.instance.service;
-    }
-    else if (AdsService.instance !== undefined && AdsService.instance.name === name)
-    {
-        this.service = AdsService.instance.service;
-    }
-    else
+    this.service = LibUtils.ResolveService(name);
+    if (this.service === undefined)
     {
 //        if (name === "paypal")
 //            this.service = new LibPayPal();
     }
+    this.name = name;
     PaymentsService.instance = this;
     if (this.service !== undefined)
     {

@@ -5,24 +5,15 @@
 
 function AdsService(name)
 {
-    this.service = null;
-    this.name = name;
-    // Some vendors support multiple services
-    if (GameService.instance !== undefined && GameService.instance.name === name)
-    {
-        this.service = GameService.instance.service;
-    }
-    else if (PaymentsService.instance !== undefined && PaymentsService.instance.name === name)
-    {
-        this.service = PaymentsService.instance.service;
-    }
-    else
+    this.service = LibUtils.ResolveService(name);
+    if (this.service === undefined)
     {
         if (name === "crazygames")
             this.service = new LibCrazyGames();
         else if (name === "gamedistribution")
             this.service = new LibGameDistribution();
     }
+    this.name = name;
     AdsService.instance = this;
     if (this.service !== undefined)
     {

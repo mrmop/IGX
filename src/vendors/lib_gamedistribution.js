@@ -30,9 +30,9 @@ LibGameDistribution.LogError = function(message)
 // - appId - App ID provided by Game Distribution
 // - startedCallback - Can be tapped into to mute audio during video playback
 // - finishedCallback - Can be tapped into to unmute audio after video playback
-LibGameDistribution.prototype.Init = function(options)
+LibGameDistribution.prototype.InitAds = function(options)
 {
-    LibGameDistribution.Log(">>>> GameDistribution: Init");
+    LibGameDistribution.Log(">>>> GameDistribution: InitAds");
     var self = this;
     this.startedCallback = options.startedCallback;
     this.finishedCallback = options.finishedCallback;

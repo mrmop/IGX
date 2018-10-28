@@ -14,6 +14,7 @@ var FBInstant = {
         ShareDlgHeight: 400,    // shareAsync dialog height
         AdsOptions: { },        // Ads options
         PaymentsOptions: { },   // Payments options
+        AnalyticsOptions: { },  // Analytics options
     },
     supportedAPIs: [
         "player.getDataAsync",
@@ -265,6 +266,8 @@ var FBInstant = {
             FBInstant.Log(">>>> initializeAsync");
             var options = FBInstant.options;
             GameService.instance.Init(options.ApiKey, options.ApiSecret, options.DevMode);
+            if (AnalyticsService.instance !== undefined)
+                AnalyticsService.instance.InitAnalytics(options.AnalyticsOptions);
             if (AdsService.instance !== undefined)
                 AdsService.instance.InitAds(options.AdsOptions);
             if (PaymentsService.instance !== undefined)
@@ -373,8 +376,7 @@ var FBInstant = {
     },
 
     logEvent: function(eventName, value, parameters) {
-        // TODO:
-        return null;
+        return AnalyticsService.instance.LogEvent(eventName, value, parameters);
     },
 
     onPause: function(callback) {

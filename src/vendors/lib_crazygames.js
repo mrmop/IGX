@@ -30,7 +30,7 @@ LibCrazyGames.LogError = function(message)
 // - finishedCallback - Can be tapped into to unmute audio after video playback
 LibCrazyGames.prototype.InitAds = function(options)
 {
-    LibCrazyGames.Log(">>>> CrazyGames: Init");
+    LibCrazyGames.Log(">>>> CrazyGames: InitAds");
     var self = this;
     this.crazysdk  = window.CrazyGames.CrazySDK.getInstance();
     
