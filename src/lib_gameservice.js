@@ -117,7 +117,7 @@ GameService.prototype.LoginAnonymously = function(allow_anonymous, done_cb)
     if (this.service === null)
     {
         if (done_cb !== undefined)
-            done_cb("none", null);
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "}, null);
     }
     else return this.service.LoginAnonymously(allow_anonymous, done_cb);
 }
@@ -127,7 +127,7 @@ GameService.prototype.ResumeSession = function(gamer_id, gamer_secret, done_cb)
     if (this.service === null)
     {
         if (done_cb !== undefined)
-            done_cb("none", null);
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "}, null);
     }
     else return this.service.ResumeSession(gamer_id, gamer_secret, done_cb);
 };
@@ -137,7 +137,7 @@ GameService.prototype.LoginWithCredentials = function(email, password, options, 
     if (this.service === null)
     {
         if (done_cb !== undefined)
-            done_cb("none", null);
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "}, null);
     }
     else return this.service.LoginWithCredentials(email, password, options, done_cb);
 };
@@ -147,7 +147,7 @@ GameService.prototype.LoginWithShortCode = function(short_code, done_cb)
     if (this.service === null)
     {
         if (done_cb !== undefined)
-            done_cb("none", null);
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "}, null);
     }
     else return this.service.LoginWithShortCode(short_code, done_cb);
 };
@@ -157,7 +157,7 @@ GameService.prototype.LoginWithFacebook = function(facebook_access_token, done_c
     if (this.service === null)
     {
         if (done_cb !== undefined)
-            done_cb("none", null);
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "}, null);
     }
     else return this.service.LoginWithFacebook (facebook_access_token, done_cb);
 };
@@ -167,7 +167,7 @@ GameService.prototype.Logout = function(done_cb)
     if (this.service === null)
     {
         if (done_cb !== undefined)
-            done_cb("none");
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
     }
     else return this.service.Logout(done_cb);
 };
@@ -177,7 +177,7 @@ GameService.prototype.ConvertAccount = function(network, username_or_id, passwor
     if (this.service === null)
     {
         if (done_cb !== undefined)
-            done_cb("none");
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
     }
     else return this.service.ConvertAccount(network, username_or_id, password_or_secret, done_cb)
 };
@@ -187,7 +187,7 @@ GameService.prototype.LinkAccount = function(network, id, secret, done_cb)
     if (this.service === null)
     {
         if (done_cb !== undefined)
-            done_cb("none");
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
     }
     else return this.service.LinkAccount(network, id, secret, done_cb);
 };
@@ -197,7 +197,7 @@ GameService.prototype.ResetPassword = function(to_email, from_email, title, body
     if (this.service === null)
     {
         if (done_cb !== undefined)
-            done_cb("none");
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
     }
     else return this.service.ResetPassword(to_email, from_email, title, body, done_cb);
 };
@@ -207,7 +207,7 @@ GameService.prototype.ChangePassword = function(new_password, done_cb)
     if (this.service === null)
     {
         if (done_cb !== undefined)
-            done_cb("none");
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
     }
     else return this.service.ChangePassword(new_password, done_cb);
 };
@@ -234,7 +234,7 @@ GameService.prototype.GetProfile = function(done_cb)
     if (this.service === null)
     {
         if (done_cb !== undefined)
-            done_cb("none");
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
     }
     else return this.service.GetProfile(done_cb);
 }
@@ -244,7 +244,7 @@ GameService.prototype.SetProfile = function(profile_obj, done_cb)
     if (this.service === null)
     {
         if (done_cb !== undefined)
-            done_cb("none");
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
     }
     else return this.service.SetProfile(profile_obj, done_cb);
 }
@@ -373,7 +373,7 @@ GameService.prototype.SendEvent = function(to_id, event_obj, done_cb)
     if (this.service === null)
     {
         if (done_cb !== undefined)
-            done_cb("none");
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
     }
     else return this.service.SendEvent(to_id, event_obj, done_cb);
 }
@@ -383,7 +383,7 @@ GameService.prototype.ListenForEvent = function(done_cb)
     if (this.service === null)
     {
         if (done_cb !== undefined)
-            done_cb("none");
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
     }
     else return this.service.ListenForEvent(done_cb);
 }

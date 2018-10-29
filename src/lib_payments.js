@@ -28,8 +28,8 @@ function PaymentsService(name)
     this.service = LibUtils.ResolveService(name);
     if (this.service === undefined)
     {
-//        if (name === "paypal")
-//            this.service = new LibPayPal();
+        if (name === "paypal")
+            this.service = new LibPayPal();
     }
     this.name = name;
     PaymentsService.instance = this;

@@ -5,16 +5,16 @@
 
 var FBInstant = {
     options: {
-        AllowAnonymous: true,   // When set to true new users will be auto logged in with an anonymous account
-        ApiKey: "",             // Game service back-end API key
-        ApiSecret: "",          // Game service back-end API secret
-        DevMode: "sandbox",     // sandbox or prod
-        ShareURI: "http://yourdomain.com/index.php", // URI used by shareAsync dialog
-        ShareDlgWidth: 600,     // shareAsync dialog width
-        ShareDlgHeight: 400,    // shareAsync dialog height
-        AdsOptions: { },        // Ads options
-        PaymentsOptions: { },   // Payments options
-        AnalyticsOptions: { },  // Analytics options
+        allowAnonymous: true,   // When set to true new users will be auto logged in with an anonymous account
+        apiKey: "",             // Game service back-end API key
+        apiSecret: "",          // Game service back-end API secret
+        devMode: "sandbox",     // sandbox or prod
+        shareURI: "http://yourdomain.com/index.php", // URI used by shareAsync dialog
+        shareDlgWidth: 600,     // shareAsync dialog width
+        shareDlgHeight: 400,    // shareAsync dialog height
+        adsOptions: { },        // Ads options
+        paymentsOptions: { },   // Payments options
+        analyticsOptions: { },  // Analytics options
     },
     supportedAPIs: [
         "player.getDataAsync",
@@ -205,44 +205,44 @@ var FBInstant = {
 
     payments: {
         getCatalogAsync: function() {
-            PaymentsService.instance.GetProducts(function(error, products) {
-                return new Promise(function(resolve, reject) {
+            return new Promise(function(resolve, reject) {
+                PaymentsService.instance.GetProducts(function(error, products) {
                     if (error === null)
                         resolve(products);
                     else
                         reject(error);
-                });
-            })
+                })
+            });
         },
         purchaseAsync: function(options) {
-            PaymentsService.instance.PurchaseProduct(options, function(error, purchase) {
-                return new Promise(function(resolve, reject) {
+            return new Promise(function(resolve, reject) {
+                PaymentsService.instance.PurchaseProduct(options, function(error, purchase) {
                     if (error === null)
                         resolve(purchase);
                     else
                         reject(error);
-                });
-            })
+                })
+            });
         },
         getPurchasesAsync: function() {
-            PaymentsService.instance.GetPurchases(function(error, purchases) {
-                return new Promise(function(resolve, reject) {
+            return new Promise(function(resolve, reject) {
+                PaymentsService.instance.GetPurchases(function(error, purchases) {
                     if (error === null)
                         resolve(purchases);
                     else
                         reject(error);
-                });
-            })
+                })
+            });
         },
         consumePurchaseAsync: function(purchaseToken) {
-            PaymentsService.instance.ConsumeProduct(purchaseToken, function(error) {
-                return new Promise(function(resolve, reject) {
+            return new Promise(function(resolve, reject) {
+                PaymentsService.instance.ConsumeProduct(purchaseToken, function(error) {
                     if (error === null)
                         resolve();
                     else
                         reject(error);
-                });
-            })
+                })
+            });
         },
         onReady: function(callback) {
             FBInstant.__state.purchasingReadyCallback = callback;
@@ -263,16 +263,17 @@ var FBInstant = {
 
     initializeAsync: function() {
         return new Promise(function(resolve, reject){
+            var opts = FBInstant.options;
             FBInstant.Log(">>>> initializeAsync");
             var options = FBInstant.options;
-            GameService.instance.Init(options.ApiKey, options.ApiSecret, options.DevMode);
+            GameService.instance.Init(opts.apiKey, opts.apiSecret, opts.devMode);
             if (AnalyticsService.instance !== undefined)
-                AnalyticsService.instance.InitAnalytics(options.AnalyticsOptions);
+                AnalyticsService.instance.InitAnalytics(opts.analyticsOptions);
             if (AdsService.instance !== undefined)
-                AdsService.instance.InitAds(options.AdsOptions);
+                AdsService.instance.InitAds(opts.adsOptions);
             if (PaymentsService.instance !== undefined)
             {
-                PaymentsService.instance.InitPayments(options.PaymentsOptions, function(error) {
+                PaymentsService.instance.InitPayments(opts.paymentsOptions, function(error) {
                     if (error === null && FBInstant.__state.purchasingReadyCallback !== null)
                         FBInstant.__state.purchasingReadyCallback();
                 });
@@ -290,7 +291,7 @@ var FBInstant = {
     startGameAsync: function() {
         return new Promise(function(resolve, reject){
             FBInstant.Log(">>>> startGameAsync");
-            GameService.instance.LoginAnonymously(FBInstant.options.AllowAnonymous, function(error, data) {
+            GameService.instance.LoginAnonymously(FBInstant.options.allowAnonymous, function(error, data) {
                 if (error === null)
                 {
                     FBInstant.__state.initialized = true;
@@ -361,12 +362,13 @@ var FBInstant = {
 
     shareAsync: function(options) {
         return new Promise(function(resolve, reject) {
+            var opts = FBInstant.options;
             var title = (options.title !== undefined) ? options.title : "";
             var message = options.text;
-            var url = encodeURIComponent(FBInstant.options.ShareURI + "?t=" + title + "&d=" + message);
+            var url = encodeURIComponent(opts.shareURI + "?t=" + title + "&d=" + message);
             if (options.data !== undefined)
                 url += "&data=" + JSON.stringify(options.data);
-            window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, 'pop', 'width=' + FBInstant.options.ShareDlgWidth + ', height=' + FBInstant.options.ShareDlgHeight + ', scrollbars=no');
+            window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, 'pop', 'width=' + opts.shareDlgWidth + ', height=' + ops.shareDlgHeight + ', scrollbars=no');
             resolve();
         });        
     },

@@ -73,12 +73,12 @@ LibCrazyGames.prototype.IsAdsSupported = function(type)
 //
 // Ad requests
 //
-LibCrazyGames.prototype.PreloadAd = function(id, type, done_callback)
+LibCrazyGames.prototype.PreloadAd = function(id, type, done_cb)
 {
-    done_callback(null);
+    done_cb(null);
 };
 
-LibCrazyGames.prototype.ShowAd = function(id, type, done_callback)
+LibCrazyGames.prototype.ShowAd = function(id, type, done_cb)
 {
     if (this.adRequested)
     {
@@ -90,18 +90,18 @@ LibCrazyGames.prototype.ShowAd = function(id, type, done_callback)
     this.adRequested = true;
     if (type === "video")
     {
-        this.watchedCallback = done_callback;
+        this.watchedCallback = done_cb;
         this.crazysdk.requestAd("rewarded");
     }
     else
     if (type === "inter")
     {
         this.crazysdk.requestAd("midgame");
-        done_callback(null);
+        done_cb(null);
     }
     else
     {
-        done_callback(null);
+        done_cb(null);
     }
 };
 

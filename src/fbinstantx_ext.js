@@ -52,7 +52,7 @@ FBInstant.ext = {
      */
     loginAnonymouslyAsync: function() {
         return new Promise(function(resolve, reject){
-            GameService.instance.LoginAnonymously(FBInstant.options.AllowAnonymous, function(error, data) {
+            GameService.instance.LoginAnonymously(FBInstant.options.allowAnonymous, function(error, data) {
                 if (error === null)
                 {
                     FBInstant.Log(">> Login success");
@@ -278,9 +278,10 @@ FBInstant.ext = {
      */
     shareTwitterAsync: function(options) {
         return new Promise(function(resolve, reject) {
+            var opts = FBInstant.options;
             var message = options.text;
             var url = encodeURIComponent(message);
-            window.open('https://twitter.com/intent/tweet?text=' + url, 'pop', 'width=' + FBInstant.options.ShareDlgWidth + ', height=' + FBInstant.options.ShareDlgHeight + ', scrollbars=no');
+            window.open('https://twitter.com/intent/tweet?text=' + url, 'pop', 'width=' + opts.ShareDlgWidth + ', height=' + opts.ShareDlgHeight + ', scrollbars=no');
             resolve();
         });        
     },

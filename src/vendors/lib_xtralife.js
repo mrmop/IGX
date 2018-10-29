@@ -158,7 +158,7 @@ LibXtralife.prototype.ConvertAccount = function(network, username_or_id, passwor
     else
     {
         if (done_cb !== undefined)
-            done_cb("noinit");
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
     }
 };
 
@@ -178,7 +178,7 @@ LibXtralife.prototype.LinkAccount = function(network, id, secret, done_cb)
     else
     {
         if (done_cb !== undefined)
-            done_cb("noinit");
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
     }
 };
 
@@ -204,7 +204,7 @@ LibXtralife.prototype.ChangePassword = function(new_password, done_cb)
     else
     {
         if (done_cb !== undefined)
-            done_cb("noinit");
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
     }
 };
 
@@ -238,7 +238,7 @@ LibXtralife.prototype.GetProfile = function(done_cb)
     else
     {
         if (done_cb !== undefined)
-            done_cb("noinit");
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
     }
 }
 
@@ -262,7 +262,7 @@ LibXtralife.prototype.SetProfile = function(profile_obj, done_cb)
     else
     {
         if (done_cb !== undefined)
-            done_cb("noinit");
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
     }
 }
 
@@ -633,7 +633,7 @@ LibXtralife.prototype.SendEvent = function(to_id, event_obj, done_cb)
     else
     {
         if (done_cb !== undefined)
-            done_cb("noinit");
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
     }
 }
 
@@ -660,7 +660,7 @@ LibXtralife.prototype.ListenForEvent = function(done_cb)
     else
     {
         if (done_cb !== undefined)
-            done_cb("noinit");
+            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
     }
 }
 

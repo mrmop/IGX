@@ -21,6 +21,7 @@ The following features are available:
 <li>Leaderboards</li>
 <li>Interstitial and Rewarded adverts</li>
 <li>Analytics</li>
+<li>Payments</li>
 </ul>
 
 <h2>What other features are available?</h2>
@@ -39,7 +40,6 @@ The layer also includes additional functionality that is available outside of th
 
 <h2>What features will be coming?</h2>
 <ul>
-<li>Payments</li>
 <li>Contexts</li>
 <li>Portal specific services</li>
 </ul>
@@ -53,9 +53,9 @@ Once you have an account and have added a game to the system you will be given a
 To set this up in code use:
 
 ```
-FBInstant.options.ApiKey = "Your games Xtralife key";
-FBInstant.options.ApiSecret = "Your games Xtralife secret";
-FBInstant.options.DevMode = "sandbox";
+FBInstant.options.apiKey = "Your games Xtralife key";
+FBInstant.options.apiSecret = "Your games Xtralife secret";
+FBInstant.options.devMode = "sandbox";
 new GameService("xtralife");	// Use Xtralife back-end
 ```
 
@@ -65,18 +65,26 @@ The IGX SDK consists of the following files:
 <ul>
 <li>fbinstantx.js - Contains the replacement FBInstant data and functions</li>
 <li>fbinstantx_ext.js - Contains extra features that are not found in the Facebook Instant Games API</li>
-<li>lib_ads.js - Ads interface</li>
+<li>lib_ads.js - Ads services interface</li>
+<li>lib_analytics.js - Analytics services interface</li>
 <li>lib_gameservice.js - Game service interface which wraps game services</li>
+<li>lib_payments.js - Payment services interface</li>
 <li>lib_socials - Wrappers for various social API's, Facebook is currently the only one implemented (provides login etc)</li>
-<li>lib_xtralife - Xtralife implementation of game service</li>
-<li>lib_crazygames - CrazyGames implementation of ads service</li>
+<li>lib_utils.js - General utility code</li>
+</ul>
+Vendor specific files:
+<ul>
+<li>lib_crazygames.js - CrazyGames implementation of ads service</li>
+<li>lib_googleanalytics.js - Google Analytics implementation of analytics service</li>
+<li>lib_paypal.js - PayPal implementation of payments service using PayPal Checkout</li>
+<li>lib_xtralife.js - Xtralife implementation of game service</li>
 </ul>
 
 <h2>Extensions</h2>
 A lot of extra functionality has been added to the IGX SDK which is not available in the FBInstant API. These are provided via the FBInstant.ext object. For example, to log in the user via Facebook you would call FBInstant.ext.loginWithFacebookAccessTokenAsync().
 
 <h2>Logging the user in</h2>
-The user is by default logged in anonymously. This creates an account for them with Xtralife which allows their game data to be stored and retrieved. It also allows them to submit leaderboard scores and retrieve leaderboards. You can disable anonymous login by setting FBInstant.options.AllowAnonymous to false. Lets take a look at an example that shows how to log the user in via Facebook:
+The user is by default logged in anonymously. This creates an account for them with Xtralife which allows their game data to be stored and retrieved. It also allows them to submit leaderboard scores and retrieve leaderboards. You can disable anonymous login by setting FBInstant.options.allowAnonymous to false. Lets take a look at an example that shows how to log the user in via Facebook:
 
 ```
 	if (FBInstant.ext !== undefined)
@@ -104,7 +112,7 @@ Note that if the user is already logged in anonymously then you can log in via t
 Entry point data is passed via the URL in the data parameter. The data object passed must be url encoded. Note that when you make a call to shareAsync the data object passed in options.data will be sent with the URL. When a user clicks the link the data will be available via getEntryPointData().
 
 <h2>Sharing</h2>
-In order for Facebook sharing to work via shareAsync, you must assign the URL which takes care of the sharing to FBInstant.options.ShareURI. Special parameters will be passed to this URL which enables Facebook to pull a proper preview of what is being shared. The destination URL will need to be a script that can handle the passed parameters. An example script is shown below:
+In order for Facebook sharing to work via shareAsync, you must assign the URL which takes care of the sharing to FBInstant.options.shareURI. Special parameters will be passed to this URL which enables Facebook to pull a proper preview of what is being shared. The destination URL will need to be a script that can handle the passed parameters. An example script is shown below:
 
 ```
 <!DOCTYPE html> 
@@ -167,6 +175,12 @@ Over time many portals and ad providers will be added to the IGX SDK. At the tim
 <li>Crazy Games</li>
 </ul>
 
+<h2>Payment Services</h2>
+Over time a variety of payment processing services will be added to the IGX SDK. At the time of writing the following payment services have been added:
+<ul>
+<li>PayPal Checkout</li>
+</ul>
+
 <h2>Important Notices!</h2>
 <ul>
 <li>Before releasing your game ensure that you switch from sandbox to production, users are not shared between the two.</li>
@@ -196,11 +210,38 @@ To integrate Google Analytics, sign up and create an account at https://analytic
 In code, after you create the Game Service, create the analytics service like this:
 
 ```
-	FBInstant.options.AnalyticsOptions.trackingId = "PUT YOUR GOOGLE ANALYTICS TRACKING ID HERE";
+	FBInstant.options.analyticsOptions.trackingId = "PUT YOUR GOOGLE ANALYTICS TRACKING ID HERE";
 	new AnalyticsService("google");	// Use Google Analytics
 ```
 
 You can view the events sent from your game in the Events section in Google Analytics.
+
+<h2>Integrating PayPal Checkout Payments</h2>
+To integrate PayPal Checkout you will need to begin by creating an app on PayPal at https://developer.paypal.com/developer/applications/. Once yuou have an app you will be given a client ID for sandbox and a client ID for production. Whilst testing use the sandbox client ID as this enables you to use sandbox test users for trying out the implementation. Once you have these details you will need to set some information in FBInstant.options.paymentsOptions section, e.g.:
+
+```
+FBInstant.options.paymentsOptions.devMode = "sandbox";	// Set sandbox mode
+FBInstant.options.paymentsOptions.sandboxId = "YOUR PAYPAL SANDBOX ID";			// You sandbox client ID
+FBInstant.options.paymentsOptions.productionId = "YOUR PRODUCTION CLIENT ID";	// Not needed until you deploy to a production environment
+FBInstant.options.paymentsOptions.products["product1"] = new PaymentsService.Product("Product1", "product1", "My first product", "", 10, "USD");	// Add a product called product1 that the user can purchase
+```
+
+In code, after you create the Game Service, create the analytics service like this:
+```
+	new PaymentsService("paypal");
+```
+
+Add the PayPal Checkout sdk to your index.html:
+```
+	<script src='https://www.paypalobjects.com/api/checkout.js' data-version-4></script>
+```
+
+Finally you need to add a div after the canvas in your index.html which can host the PayPal button that will be used to make the purchase. By default this div is called 
+
+```
+	<div id="paypal-button"></div>
+```
+For more PayPal options see lib_paypal.js
 
 <h2>Issues</h2>
 When switching from a sandbox to production environment, be aware that data from the sandbox session will still be stored in the browser, so when you try to log into the production environment old stale data from ths sandbox environment will be used. If this occurs you will see errors relating to 401 (Unauthorized) and possibly also No 'Access-Control-Allow-Origin' header is present on the requested resource. To fix this, clear the storage for your domain. For example, to do this in Chrome go to developer tools->Application->Clear storage then click the Clear Site Data button.
@@ -209,7 +250,6 @@ When switching from a sandbox to production environment, be aware that data from
 Below is a list of planned integrations with the IGX SDK:
 <ul>
 <li>Game Analytics</li>
-<li>PayPal</li>
 <li>Kongregate</li>
 <li>Miniclip</li>
 <li>Newgrounds.io</li>

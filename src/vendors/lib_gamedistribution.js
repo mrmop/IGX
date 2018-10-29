@@ -97,12 +97,12 @@ LibGameDistribution.prototype.IsPaymentsSupported = function(type)
 //
 // Ad requests
 //
-LibGameDistribution.prototype.PreloadAd = function(id, type, done_callback)
+LibGameDistribution.prototype.PreloadAd = function(id, type, done_cb)
 {
-    done_callback(null);
+    done_cb(null);
 }
 
-LibGameDistribution.prototype.ShowAd = function(id, type, done_callback)
+LibGameDistribution.prototype.ShowAd = function(id, type, done_cb)
 {
     LibGameDistribution.Log("GameDistribution: Requesting ad");
     console.log(gdsdk);
@@ -110,22 +110,22 @@ LibGameDistribution.prototype.ShowAd = function(id, type, done_callback)
     
     if (typeof gdsdk !== "undefined" && gdsdk.showBanner !== "undefined")
     {
-        done_callback(null);
+        done_cb(null);
     }
     if (type === "video")
     {
-        this.watchedCallback = done_callback;
+        this.watchedCallback = done_cb;
         gdsdk.showBanner();
     }
     else
     if (type === "inter")
     {
         gdsdk.showBanner();
-        done_callback(null);
+        done_cb(null);
     }
     else
     {
-        done_callback(null);
+        done_cb(null);
     }
 };
 
