@@ -24,14 +24,14 @@ function AnalyticsService(name)
 //
 AnalyticsService.prototype.InitAnalytics = function(options)
 {
-    if (this.service === null)
+    if (this.service === undefined)
         return false;
     return this.service.InitAnalytics(options);
 }
 
 AnalyticsService.prototype.IsAnalyticsSupported = function()
 {
-    if (this.service === null)
+    if (this.service === undefined)
         return false;
     return this.service.IsAnalyticsSupported();
 }
@@ -41,7 +41,7 @@ AnalyticsService.prototype.IsAnalyticsSupported = function()
 //
 AnalyticsService.prototype.LogEvent = function(event_name, value, params)
 {
-    if (this.service === null)
+    if (this.service === undefined)
         return null;
     return this.service.LogEvent(event_name, value, params);
 }

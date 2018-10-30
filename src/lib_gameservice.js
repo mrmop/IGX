@@ -104,7 +104,7 @@ GameService.Game = function(id, name, login, icon, location)
 //
 GameService.prototype.Init = function(key, secret, env)
 {
-    if (this.service === null)
+    if (this.service === undefined)
         return;
     return this.service.Init(key, secret, env);
 }
@@ -114,7 +114,7 @@ GameService.prototype.Init = function(key, secret, env)
 //
 GameService.prototype.LoginAnonymously = function(allow_anonymous, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "}, null);
@@ -124,7 +124,7 @@ GameService.prototype.LoginAnonymously = function(allow_anonymous, done_cb)
 
 GameService.prototype.ResumeSession = function(gamer_id, gamer_secret, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "}, null);
@@ -134,7 +134,7 @@ GameService.prototype.ResumeSession = function(gamer_id, gamer_secret, done_cb)
 
 GameService.prototype.LoginWithCredentials = function(email, password, options, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "}, null);
@@ -144,7 +144,7 @@ GameService.prototype.LoginWithCredentials = function(email, password, options, 
 
 GameService.prototype.LoginWithShortCode = function(short_code, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "}, null);
@@ -154,7 +154,7 @@ GameService.prototype.LoginWithShortCode = function(short_code, done_cb)
 
 GameService.prototype.LoginWithFacebook = function(facebook_access_token, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "}, null);
@@ -164,7 +164,7 @@ GameService.prototype.LoginWithFacebook = function(facebook_access_token, done_c
 
 GameService.prototype.Logout = function(done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
@@ -174,7 +174,7 @@ GameService.prototype.Logout = function(done_cb)
 
 GameService.prototype.ConvertAccount = function(network, username_or_id, password_or_secret, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
@@ -184,7 +184,7 @@ GameService.prototype.ConvertAccount = function(network, username_or_id, passwor
 
 GameService.prototype.LinkAccount = function(network, id, secret, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
@@ -194,7 +194,7 @@ GameService.prototype.LinkAccount = function(network, id, secret, done_cb)
 
 GameService.prototype.ResetPassword = function(to_email, from_email, title, body, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
@@ -204,7 +204,7 @@ GameService.prototype.ResetPassword = function(to_email, from_email, title, body
 
 GameService.prototype.ChangePassword = function(new_password, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
@@ -217,21 +217,21 @@ GameService.prototype.ChangePassword = function(new_password, done_cb)
 //
 GameService.prototype.GetGamerData = function()
 {
-    if (this.service === null)
+    if (this.service === undefined)
         return null;
     else return this.service.GetGamerData();
 }
 
 GameService.prototype.GetProfileData = function(done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
         return null;
     else return this.service.GetProfileData(done_cb);
 }
 
 GameService.prototype.GetProfile = function(done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
@@ -241,7 +241,7 @@ GameService.prototype.GetProfile = function(done_cb)
 
 GameService.prototype.SetProfile = function(profile_obj, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
@@ -251,7 +251,7 @@ GameService.prototype.SetProfile = function(profile_obj, done_cb)
 
 GameService.prototype.GetGames = function()
 {
-    if (this.service === null)
+    if (this.service === undefined)
         return null;
     else return this.service.GetGames();
 }
@@ -261,7 +261,7 @@ GameService.prototype.GetGames = function()
 //
 GameService.prototype.ListUsers = function(match_pattern, start, limit, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb(null);
@@ -274,7 +274,7 @@ GameService.prototype.ListUsers = function(match_pattern, start, limit, done_cb)
 //
 GameService.prototype.LeaderboardGetPaged = function(board_name, page_number, count, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb(null);
@@ -284,7 +284,7 @@ GameService.prototype.LeaderboardGetPaged = function(board_name, page_number, co
 
 GameService.prototype.LeaderboardGetFriendsPaged = function(board_name, page_number, count, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb(null);
@@ -294,7 +294,7 @@ GameService.prototype.LeaderboardGetFriendsPaged = function(board_name, page_num
 
 GameService.prototype.LeaderboardGetRank = function(board_name, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb(null);
@@ -304,7 +304,7 @@ GameService.prototype.LeaderboardGetRank = function(board_name, done_cb)
 
 GameService.prototype.LeaderboardSetScore = function(board_name, sort_order, score, extra, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb(false);
@@ -314,7 +314,7 @@ GameService.prototype.LeaderboardSetScore = function(board_name, sort_order, sco
 
 GameService.prototype.SetUserData = function(key, value, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb(false);
@@ -324,7 +324,7 @@ GameService.prototype.SetUserData = function(key, value, done_cb)
 
 GameService.prototype.GetUserData = function(key, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb(null);
@@ -337,7 +337,7 @@ GameService.prototype.GetUserData = function(key, done_cb)
 //
 GameService.prototype.GetFriends = function(done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb(null);
@@ -347,7 +347,7 @@ GameService.prototype.GetFriends = function(done_cb)
 
 GameService.prototype.AddFriend = function(gamer_id, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb(false);
@@ -357,7 +357,7 @@ GameService.prototype.AddFriend = function(gamer_id, done_cb)
 
 GameService.prototype.RemoveFriend = function(gamer_id, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb(false);
@@ -370,7 +370,7 @@ GameService.prototype.RemoveFriend = function(gamer_id, done_cb)
 //
 GameService.prototype.SendEvent = function(to_id, event_obj, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
@@ -380,7 +380,7 @@ GameService.prototype.SendEvent = function(to_id, event_obj, done_cb)
 
 GameService.prototype.ListenForEvent = function(done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
@@ -390,7 +390,7 @@ GameService.prototype.ListenForEvent = function(done_cb)
 
 GameService.prototype.GetAllEvents = function(done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb(null);
@@ -400,7 +400,7 @@ GameService.prototype.GetAllEvents = function(done_cb)
 
 GameService.prototype.GetReferralCode = function(done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb(null);
@@ -410,7 +410,7 @@ GameService.prototype.GetReferralCode = function(done_cb)
 
 GameService.prototype.UseReferralCode = function(code, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb(false);

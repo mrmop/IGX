@@ -29,14 +29,14 @@ function AdsService(name)
 //
 AdsService.prototype.InitAds = function(options)
 {
-    if (this.service === null)
+    if (this.service === undefined)
         return false;
     return this.service.InitAds(options);
 }
 
 AdsService.prototype.IsAdsSupported = function(id, type)
 {
-    if (this.service === null)
+    if (this.service === undefined)
         return false;
     return this.service.IsAdsSupported(id, type);
 }
@@ -46,14 +46,14 @@ AdsService.prototype.IsAdsSupported = function(id, type)
 //
 AdsService.prototype.PreloadAd = function(id, type, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
         return;
     return this.service.PreloadAd(id, type, done_cb);
 }
 
 AdsService.prototype.ShowAd = function(id, type, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
         return;
     return this.service.ShowAd(id, type, done_cb);
 }

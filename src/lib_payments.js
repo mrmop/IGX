@@ -48,14 +48,14 @@ function PaymentsService(name)
 //
 PaymentsService.prototype.InitPayments = function(options, done_cb)
 {
-    if (this.service === null)
+    if (this.service === nuundefinedll)
         return false;
     return this.service.InitPayments(options, done_cb);
 }
 
 PaymentsService.prototype.IsPaymentsSupported = function()
 {
-    if (this.service === null)
+    if (this.service === undefined)
         return false;
     return this.service.IsPaymentsSupported();
 }
@@ -65,35 +65,35 @@ PaymentsService.prototype.IsPaymentsSupported = function()
 //
 PaymentsService.prototype.GetProducts = function(done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
         return;
     return this.service.GetProducts(done_cb);
 }
 
 PaymentsService.prototype.PurchaseProduct = function(options, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
         return;
     return this.service.PurchaseProduct(options, done_cb);
 }
 
 PaymentsService.prototype.RefundProduct = function(options, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
         return;
     return this.service.RefundProduct(options, done_cb);
 }
 
 PaymentsService.prototype.ConsumeProduct = function(options, done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
         return;
     return this.service.ConsumeProduct(options, done_cb);
 }
 
 PaymentsService.prototype.GetPurchases = function(done_cb)
 {
-    if (this.service === null)
+    if (this.service === undefined)
         return;
     return this.service.GetPurchases(options, done_cb);
 }

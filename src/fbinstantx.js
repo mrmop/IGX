@@ -368,7 +368,7 @@ var FBInstant = {
             var url = encodeURIComponent(opts.shareURI + "?t=" + title + "&d=" + message);
             if (options.data !== undefined)
                 url += "&data=" + JSON.stringify(options.data);
-            window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, 'pop', 'width=' + opts.shareDlgWidth + ', height=' + ops.shareDlgHeight + ', scrollbars=no');
+            window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, 'pop', 'width=' + opts.shareDlgWidth + ', height=' + opts.shareDlgHeight + ', scrollbars=no');
             resolve();
         });        
     },
@@ -378,6 +378,8 @@ var FBInstant = {
     },
 
     logEvent: function(eventName, value, parameters) {
+        if (AnalyticsService.instance === undefined)
+            return {code: "CLIENT_UNSUPPORTED_OPERATION", message: "CLIENT_UNSUPPORTED_OPERATION"};
         return AnalyticsService.instance.LogEvent(eventName, value, parameters);
     },
 

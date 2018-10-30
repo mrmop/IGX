@@ -14,7 +14,7 @@ IGX was created to enable developers to maximise their development time and mone
 <h2>What features are available?</h2>
 The following features are available:
 <ul>
-<li>Initialilsation including entry point data via the url</li>
+<li>Initialisation including entry point data via the url</li>
 <li>User login / management (anonymous, credentials, Facebook and shortcode logins)</li>
 <li>User data persistence on server</li>
 <li>Facebook sharing</li>
