@@ -75,6 +75,7 @@ The IGX SDK consists of the following files:
 Vendor specific files:
 <ul>
 <li>lib_crazygames.js - CrazyGames implementation of ads service</li>
+<li>lib_gamedistribution.js - Game Distribution implementation of ads service</li>
 <li>lib_googleanalytics.js - Google Analytics implementation of analytics service</li>
 <li>lib_paypal.js - PayPal implementation of payments service using PayPal Checkout</li>
 <li>lib_xtralife.js - Xtralife implementation of game service</li>
@@ -173,6 +174,7 @@ IGX supports collection of user data for game analytics purposes. The following 
 Over time many portals and ad providers will be added to the IGX SDK. At the time of writing the following ad providers / portals have been added:
 <ul>
 <li>Crazy Games</li>
+<li>Game Distribution</li>
 </ul>
 
 <h2>Payment Services</h2>
@@ -194,15 +196,32 @@ Add the following script to your index.html:
 ```
 	<script src="https://sdk.crazygames.com/crazygames-sdk-v1.js"></script>
 ```
-In code, after you create the Game Service, create the ad service like this:
+Add the following code to set up the ad provider and create it:
 
 ```
-	new AdsService("crazygames");	// Use CrazyGames portal ads
+FBInstant.options.adsOptions.startedCallback = PauseAudio;		// Function that will be called to pause audio during ad playback
+FBInstant.options.adsOptions.finishedCallback = ResumeAudio;	// Function that will be called to resume audio post ad playback
+new AdsService("crazygames");	// Use CrazyGames portal ads
 ```
 
 Create a game in the Crazy Games dashboard and upload your game files.
 
 Note that preloading ads is not possible using the Crazy Games SDK so calls to loadAsync() will return successfully. Finally, ensure that you read the Crazy Games guidelines at https://developer.crazygames.com/sdk#Guidelines
+
+<h2>Integrating Game Distribution</h2>
+To integrate Game Distribution, sign up and create a developer account at https://developer.gamedistribution.com
+
+Create a game in the Game Distribution dashboard and copy the Game ID in the Upload section.
+
+Add the following code to set up the ad provider and create it:
+
+```
+FBInstant.options.adsOptions.appId = "ENTER YOUR GAME ID HERE";
+FBInstant.options.adsOptions.startedCallback = PauseAudio;		// Function that will be called to pause audio during ad playback
+FBInstant.options.adsOptions.finishedCallback = ResumeAudio;	// Function that will be called to resume audio post ad playback
+new AdsService("gamedistribution");	// Use Game Distribution ads
+```
+Note that preloading ads is not possible using the Game Distribution SDK so calls to loadAsync() will return successfully. 
 
 <h2>Integrating Google Analytics</h2>
 To integrate Google Analytics, sign up and create an account at https://analytics.google.com then go to the Admin section of Google Analytics and create a property for your game. You will be given a trackingId.
