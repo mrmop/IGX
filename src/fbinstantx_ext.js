@@ -12,14 +12,14 @@ FBInstant.ext = {
      * @return true if logged in
      */
     isLoggedIn: function() {
-        return GameService.instance.GetProfileData() !== undefined;
+        return UserService.instance.GetProfileData() !== undefined;
     },
     /**
      * Gets the login type, e.g. anonymous, email, facebook etc..
      * @return Login network type
      */
     getLoginType: function() {
-        var data = GameService.instance.GetProfileData();
+        var data = UserService.instance.GetProfileData();
         if (data === undefined)
             return "none";
         return data.network;
@@ -29,7 +29,7 @@ FBInstant.ext = {
      * @return List of games
      */
     getRegistrationDate: function() {
-        var data = GameService.instance.GetProfileData();
+        var data = UserService.instance.GetProfileData();
         if (data === undefined)
             return null;
         return data.registerTime;
@@ -41,7 +41,7 @@ FBInstant.ext = {
      */
     loginWithShortCodeAsync: function(shortcode) {
         return new Promise(function(resolve, reject){
-            GameService.instance.LoginWithShortCode(shortcode, function(error, gamer) {
+            UserService.instance.LoginWithShortCode(shortcode, function(error, gamer) {
                 resolve(error, gamer);
             })
         });
@@ -52,7 +52,7 @@ FBInstant.ext = {
      */
     loginAnonymouslyAsync: function() {
         return new Promise(function(resolve, reject){
-            GameService.instance.LoginAnonymously(FBInstant.options.allowAnonymous, function(error, data) {
+            UserService.instance.LoginAnonymously(FBInstant.options.userOptions.allowAnonymous, function(error, data) {
                 if (error === null)
                 {
                     FBInstant.Log(">> Login success");
@@ -75,7 +75,7 @@ FBInstant.ext = {
      */
     loginWithEmailAsync: function(email, password, options) {
         return new Promise(function(resolve, reject){
-            GameService.instance.LoginWithCredentials(email, password, options, function(error, data) {
+            UserService.instance.LoginWithCredentials(email, password, options, function(error, data) {
                 if (error === null)
                 {
                     FBInstant.Log(">> Login with email success");
@@ -96,7 +96,7 @@ FBInstant.ext = {
      */
     loginWithFacebookAccessTokenAsync: function(facebook_access_token) {
         return new Promise(function(resolve, reject){
-            GameService.instance.LoginWithFacebook(facebook_access_token, function(error, gamer) {
+            UserService.instance.LoginWithFacebook(facebook_access_token, function(error, gamer) {
                 resolve(error, gamer);
             })
         });
@@ -107,7 +107,7 @@ FBInstant.ext = {
      */
     logoutAsync: function() {
         return new Promise(function(resolve, reject){
-            GameService.instance.Logout(function(error) {
+            UserService.instance.Logout(function(error) {
                 resolve(error);
             })
         });
@@ -121,7 +121,7 @@ FBInstant.ext = {
      */
     convertAccountAsync: function(network, username_or_id, password_or_secret) {
         return new Promise(function(resolve, reject){
-            GameService.instance.ConvertAccount(network, username_or_id, password_or_secret, function(error) {
+            UserService.instance.ConvertAccount(network, username_or_id, password_or_secret, function(error) {
                 resolve(error);
             })
         });
@@ -135,7 +135,7 @@ FBInstant.ext = {
      */
     linkAccountAsync: function(network, id, secret) {
         return new Promise(function(resolve, reject){
-            GameService.instance.LinkAccount(network, id, secret, function(error) {
+            UserService.instance.LinkAccount(network, id, secret, function(error) {
                 resolve(error);
             })
         });
@@ -150,7 +150,7 @@ FBInstant.ext = {
      */
     resetPasswordAsync: function(to_email, from_email, title, body) {
         return new Promise(function(resolve, reject){
-            GameService.instance.ResetPassword(network, id, secret, function(error) {
+            UserService.instance.ResetPassword(network, id, secret, function(error) {
                 resolve(error);
             })
         });
@@ -162,7 +162,7 @@ FBInstant.ext = {
      */
     changePasswordAsync: function(new_password) {
         return new Promise(function(resolve, reject){
-            GameService.instance.ChangePassword(new_password, function(error) {
+            UserService.instance.ChangePassword(new_password, function(error) {
                 resolve(error);
             })
         });
@@ -172,7 +172,7 @@ FBInstant.ext = {
      * @return List of games
      */
     getGames: function() {
-        return GameService.instance.GetGames();
+        return UserService.instance.GetGames();
     },
     /**
      * Sets the players profile data
@@ -181,7 +181,7 @@ FBInstant.ext = {
      */
     setProfileAsync: function(profile) {
         return new Promise(function(resolve, reject){
-            GameService.instance.SetProfile(profile, function(error) {
+            UserService.instance.SetProfile(profile, function(error) {
                 resolve(error);
             })
         });
@@ -193,7 +193,7 @@ FBInstant.ext = {
      */
     addFriendAsync: function(id) {
         return new Promise(function(resolve, reject){
-            GameService.instance.AddFriend(id, function(success) {
+            UserService.instance.AddFriend(id, function(success) {
                 console.log(">>>>> addFriendAsync " + success)
                 resolve(success);
             })
@@ -206,7 +206,7 @@ FBInstant.ext = {
      */
     removeFriendAsync: function(id) {
         return new Promise(function(resolve, reject){
-            GameService.instance.RemoveFriend(id, function(success) {
+            UserService.instance.RemoveFriend(id, function(success) {
                 resolve(success);
             })
         });
@@ -220,7 +220,7 @@ FBInstant.ext = {
      */
     listUsersAsync: function(match_pattern, start, limit) {
         return new Promise(function(resolve, reject){
-            GameService.instance.ListUsers(match_pattern, start, limit, function(users) {
+            UserService.instance.ListUsers(match_pattern, start, limit, function(users) {
                 resolve(users);
             })
         });
@@ -233,7 +233,7 @@ FBInstant.ext = {
      */
     sendEventAsync: function(id, evt) {
         return new Promise(function(resolve, reject){
-            GameService.instance.SendEvent(id, evt, function(error, data) {
+            MessagingService.instance.SendEvent(id, evt, function(error, data) {
                 resolve(error === null);
             });
         });
@@ -244,7 +244,7 @@ FBInstant.ext = {
      */
     getEventsAsync: function() {
         return new Promise(function(resolve, reject){
-            GameService.instance.GetAllEvents(function(events) {
+            MessagingService.instance.GetAllEvents(function(events) {
                 resolve(events);
             });
         });
@@ -255,33 +255,29 @@ FBInstant.ext = {
      */
     getReferralCodeAsync: function() {
         return new Promise(function(resolve, reject){
-            GameService.instance.GetReferralCode(function(code) {
+            ReferralService.instance.GetReferralCode(function(code) {
                 resolve(code);
             });
         });
     },
     /**
-     * Get a generated referral code
-     * @return a referral code or null if failed
+     * Consume a referral code
+     * @return true if success
      */
     useReferralCodeAsync: function(code) {
         return new Promise(function(resolve, reject){
-            GameService.instance.UseReferralCode(code, function(success) {
+            ReferralService.instance.UseReferralCode(code, function(success) {
                 resolve(success);
             });
         });
     },
     /**
-     * Consume a referral code
+     * Share on Twitter
      * @param options {object} message options, only text is supported at this time
-     * @return true if success
      */
     shareTwitterAsync: function(options) {
         return new Promise(function(resolve, reject) {
-            var opts = FBInstant.options;
-            var message = options.text;
-            var url = encodeURIComponent(message);
-            window.open('https://twitter.com/intent/tweet?text=' + url, 'pop', 'width=' + opts.ShareDlgWidth + ', height=' + opts.ShareDlgHeight + ', scrollbars=no');
+            ShareService.instance.ShareService(options);
             resolve();
         });        
     },

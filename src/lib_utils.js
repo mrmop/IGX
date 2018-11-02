@@ -13,11 +13,31 @@ var LibUtils = {
     {
         console.log(message);
     },
-    ResolveService: function()
+    ResolveService: function(name)
     {
         if (GameService.instance !== undefined && GameService.instance.name === name)
         {
             return GameService.instance.service;
+        }
+        else if (UserService.instance !== undefined && UserService.instance.name === name)
+        {
+            return UserService.instance.service;
+        }
+        else if (LeaderboardsService.instance !== undefined && LeaderboardsService.instance.name === name)
+        {
+            return LeaderboardsService.instance.service;
+        }
+        else if (MessagingService.instance !== undefined && MessagingService.instance.name === name)
+        {
+            return MessagingService.instance.service;
+        }
+        else if (ReferralService.instance !== undefined && ReferralService.instance.name === name)
+        {
+            return ReferralService.instance.service;
+        }
+        else if (StorageService.instance !== undefined && StorageService.instance.name === name)
+        {
+            return StorageService.instance.service;
         }
         else if (AnalyticsService.instance !== undefined && AnalyticsService.instance.name === name)
         {

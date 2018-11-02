@@ -56,10 +56,10 @@ To set this up in code use:
 FBInstant.options.apiKey = "Your games Xtralife key";
 FBInstant.options.apiSecret = "Your games Xtralife secret";
 FBInstant.options.devMode = "sandbox";
-new GameService("xtralife");	// Use Xtralife back-end
+FBInstant.createDefaultServices();	// Use Xtralife back-end by default
 ```
 
-The IGX SDK is designed so that back-ends can be swapped, so if you are not happy with a specific API then you can replace it. If you do not want to take advantage of any of the features then pass "none" in place of "xtralife".
+The IGX SDK is designed so that different parts of the back-end can be replaced, so if you are not happy with a specific API then you can replace it. 
 
 The IGX SDK consists of the following files:
 <ul>
@@ -67,15 +67,22 @@ The IGX SDK consists of the following files:
 <li>fbinstantx_ext.js - Contains extra features that are not found in the Facebook Instant Games API</li>
 <li>lib_ads.js - Ads services interface</li>
 <li>lib_analytics.js - Analytics services interface</li>
-<li>lib_gameservice.js - Game service interface which wraps game services</li>
+<li>lib_gameservice.js - Game service interface</li>
+<li>lib_leaderboardservice.js - Leaderboards service interface</li>
+<li>lib_messagingservice.js - User to user messaging service interface</li>
 <li>lib_payments.js - Payment services interface</li>
+<li>lib_referralservice.js - User referral services interface</li>
+<li>lib_shareservice.js - Sharing services interface</li>
 <li>lib_socials - Wrappers for various social API's, Facebook is currently the only one implemented (provides login etc)</li>
+<li>lib_storageservice.js - Server side storage services interface</li>
+<li>lib_userservice.js - User services interface</li>
 <li>lib_utils.js - General utility code</li>
 </ul>
 Vendor specific files:
 <ul>
 <li>lib_crazygames.js - CrazyGames implementation of ads service</li>
 <li>lib_gamedistribution.js - Game Distribution implementation of ads service</li>
+<li>lib_generic.js - Generic service</li>
 <li>lib_googleanalytics.js - Google Analytics implementation of analytics service</li>
 <li>lib_paypal.js - PayPal implementation of payments service using PayPal Checkout</li>
 <li>lib_xtralife.js - Xtralife implementation of game service</li>
@@ -84,8 +91,38 @@ Vendor specific files:
 <h2>Extensions</h2>
 A lot of extra functionality has been added to the IGX SDK which is not available in the FBInstant API. These are provided via the FBInstant.ext object. For example, to log in the user via Facebook you would call FBInstant.ext.loginWithFacebookAccessTokenAsync().
 
+<h2>Modules and Vendors</h2>
+IGX uses a system of modules that can work together or independently to provide various features. For each module you would like to use you need to instantiate it using the following format:
+
+```
+new ModuleName("vendor_name");
+```
+Where module name is the name of the module you would like to create, for example GameService would create the game service moduke. vendor_name is the name of the vendor that you would like to provide the implementation of the module, for example xtralife. An example set up may look like this:
+
+```
+new GameService("xtralife");
+new StorageService("xtralife");
+new UserService("xtralife");
+new LeaderboardsService("xtralife");
+new MessagingService("xtralife");
+new ReferralService("xtralife");
+new ShareService("generic");
+
+new AnalyticsService("google");
+new AdsService("crazygames");
+new PaymentsService("paypal");
+```
+
+This looks a bit long winded so a utility function is provided to add the first 7 modules allowing the above 7 lines of code to be replaced with:
+
+```
+FBInstant.createDefaultServices();
+```
+
+This sets up xtralife as the default back-end for all game related services.
+
 <h2>Logging the user in</h2>
-The user is by default logged in anonymously. This creates an account for them with Xtralife which allows their game data to be stored and retrieved. It also allows them to submit leaderboard scores and retrieve leaderboards. You can disable anonymous login by setting FBInstant.options.allowAnonymous to false. Lets take a look at an example that shows how to log the user in via Facebook:
+The user is by default logged in anonymously. This creates an account for them with Xtralife which allows their game data to be stored and retrieved. It also allows them to submit leaderboard scores and retrieve leaderboards. You can disable anonymous login by setting FBInstant.options.usersOptions.allowAnonymous to false. Lets take a look at an example that shows how to log the user in via Facebook:
 
 ```
 	if (FBInstant.ext !== undefined)

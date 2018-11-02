@@ -20,12 +20,36 @@ LibXtralife.LogError = function(message)
 //
 // INIT
 //
-LibXtralife.prototype.Init = function(key, secret, env)
+LibXtralife.prototype.Init = function(options)
 {
-    this.clan = Clan(key, secret, env);
+    this.clan = Clan(options.apiKey, options.apiSecret, options.devMode);
     var data = localStorage.getItem("gamer");
     if (data !== null)
         this.gamerData = JSON.parse(data);
+}
+
+LibXtralife.prototype.InitLeaderboards = function(options)
+{
+}
+
+LibXtralife.prototype.InitMessaging = function(options)
+{
+}
+
+LibXtralife.prototype.InitReferrals = function(options)
+{
+}
+
+LibXtralife.prototype.InitShare = function(options)
+{
+}
+
+LibXtralife.prototype.InitStorage = function(options)
+{
+}
+
+LibXtralife.prototype.InitUser = function(options)
+{
 }
 
 //
@@ -221,7 +245,7 @@ LibXtralife.prototype.GetProfileData = function()
     if (this.gamerData)
     {
         var prof = this.gamerData.profile;
-        return new GameService.Player(this.gamerData.gamer_id, prof.displayName, prof.avatar, prof.email, prof.lang);
+        return new UserService.Player(this.gamerData.gamer_id, prof.displayName, prof.avatar, prof.email, prof.lang);
     }
     return null;
 }
@@ -273,7 +297,7 @@ LibXtralife.prototype.GetGames = function()
         var xgames = this.gamerData.games;
         var games = [];
         for (var t = 0; t < xgames.length; t++)
-            games.push(new GameService.Game(xgames[t].appid, xgames[t].appid, xgames[t].lastlogin, null, null));
+            games.push(new UserService.Game(xgames[t].appid, xgames[t].appid, xgames[t].lastlogin, null, null));
         return games;
     }
     return null;
@@ -336,7 +360,7 @@ LibXtralife.prototype.LeaderboardGetPaged = function(board_name, page_number, co
                     {
                         var lentry = board.scores[index];
                         if (lentry !== undefined)
-                            entries.push(new GameService.LbdEntry(lentry.gamer_id, board.rankOfFirst + index, lentry.profile.displayName, lentry.score.score, lentry.score.info, lentry.profile.avatar, lentry.score.timestamp));
+                            entries.push(new LeaderboardsService.LbdEntry(lentry.gamer_id, board.rankOfFirst + index, lentry.profile.displayName, lentry.score.score, lentry.score.info, lentry.profile.avatar, lentry.score.timestamp));
                     }
                 }
                 if (done_cb !== undefined)
@@ -375,7 +399,7 @@ LibXtralife.prototype.LeaderboardGetFriendsPaged = function(board_name, page_num
                     {
                         var lentry = board[index];
                         if (lentry !== undefined)
-                            entries.push(new GameService.LbdEntry(lentry.gamer_id, lentry.rank, lentry.profile.displayName, lentry.score.score, lentry.score.info, lentry.profile.avatar, lentry.score.timestamp));
+                            entries.push(new LeaderboardsService.LbdEntry(lentry.gamer_id, lentry.rank, lentry.profile.displayName, lentry.score.score, lentry.score.info, lentry.profile.avatar, lentry.score.timestamp));
                     }
                 }
                 if (done_cb !== undefined)
@@ -412,7 +436,7 @@ LibXtralife.prototype.LeaderboardGetRank = function(board_name, done_cb)
                     if (score !== undefined)
                     {
                         LibXtralife.Log("LeaderboardGetRank: " + JSON.stringify(result));
-                        entry = new GameService.LbdEntry(score.gamer_id, board.rankOfFirst, score.profile.displayName, score.score.score, score.score.info, score.profile.avatar, score.score.timestamp);
+                        entry = new LeaderboardsService.LbdEntry(score.gamer_id, board.rankOfFirst, score.profile.displayName, score.score.score, score.score.info, score.profile.avatar, score.score.timestamp);
                     }
                 }
             }
@@ -537,7 +561,7 @@ LibXtralife.prototype.GetFriends = function(done_cb)
                     {
                         var fentry = friends[index];
                         if (fentry !== undefined)
-                            players.push(new GameService.Player(fentry.gamer_id, fentry.profile.displayName, fentry.profile.avatar, fentry.profile.email));
+                            players.push(new UserService.Player(fentry.gamer_id, fentry.profile.displayName, fentry.profile.avatar, fentry.profile.email));
                     }
                 }
 

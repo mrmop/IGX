@@ -5,32 +5,30 @@
 
 var FBInstant = {
     options: {
-        allowAnonymous: true,   // When set to true new users will be auto logged in with an anonymous account
-        apiKey: "",             // Game service back-end API key
-        apiSecret: "",          // Game service back-end API secret
-        devMode: "sandbox",     // sandbox or prod
-        shareURI: "http://yourdomain.com/index.php", // URI used by shareAsync dialog
-        shareDlgWidth: 600,     // shareAsync dialog width
-        shareDlgHeight: 400,    // shareAsync dialog height
-        adsOptions: { },        // Ads options
-        paymentsOptions: { },   // Payments options
-        analyticsOptions: { },  // Analytics options
+        apiKey: "",                 // Game service back-end API key
+        apiSecret: "",              // Game service back-end API secret
+        devMode: "sandbox",         // sandbox or prod
+        shareOptions: {             // Ads service options
+            shareURI: "http://yourdomain.com/index.php", // URI used by shareAsync dialog
+            dlgWidth: 600,         // shareAsync dialog width
+            dlgHeignht: 400,        // shareAsync dialog height
+        },
+        adsOptions: { },            // Ads service options
+        paymentsOptions: { },       // Payments service options
+        analyticsOptions: { },      // Analytics service options
+        storageOptions: { },        // Storage service options
+        userOptions: {              // User service options
+            allowAnonymous: true,   // When set to true new users will be auto logged in with an anonymous account
+        },
+        messagingOptions: { },      // Messaging service options
+        leaderboardsOptions: { },   // Leaderboard service options
+        referralsOptions: { },      // Referral service options
     },
     supportedAPIs: [
-        "player.getDataAsync",
-        "player.setDataAsync",
-        "player.getConnectedPlayersAsync",
-        "getLocale",
         "initializeAsync",
         "setLoadingProgress",
         "startGameAsync",
         "getEntryPointData",
-        "shareAsync",
-        "Leaderboard.getEntriesAsync",
-        "Leaderboard.getConnectedPlayerEntriesAsync",
-        "Leaderboard.getPlayerEntryAsync",
-        "Leaderboard.setScoreAsync",
-        "getLeaderboardAsync",
         //"updateAsync",
         //"getEntryPointAsync",
         //"switchGameAsync",
@@ -44,33 +42,6 @@ var FBInstant = {
         //"context.switchAsync",
         //"context.createAsync",
         //"context.getPlayersAsync",
-        //"payments.getCatalogAsync",
-        //"payments.purchaseAsync",
-        //"payments.getPurchasesAsync",
-        //"payments.consumePurchaseAsync",
-        //"payments.purchaseAsync",
-        "ext.isLoggedIn",
-        "ext.getLoginType",
-        "ext.getRegistrationDate",
-        "ext.loginWithShortCodeAsync",
-        "ext.loginAnonymouslyAsync",
-        "ext.loginWithEmailAsync",
-        "ext.loginWithFacebookAccessTokenAsync",
-        "ext.logoutAsync",
-        "ext.convertAccountAsync",
-        "ext.linkAccountAsync",
-        "ext.resetPasswordAsync",
-        "ext.changePasswordAsync",
-        "ext.getGames",
-        "ext.setProfileAsync",
-        "ext.addFriendAsync",
-        "ext.removeFriendAsync",
-        "ext.listUsersAsync",
-        "ext.sendEventAsync",
-        "ext.getEventsAsync",
-        "ext.getReferralCodeAsync",
-        "ext.useReferralCodeAsync",
-        "ext.shareTwitterAsync",
     ],
     __state: {
         initialized: false,
@@ -82,13 +53,13 @@ var FBInstant = {
     },
     player : {
         getName: function() {
-            var data = GameService.instance.GetProfileData();
+            var data = UserService.instance.GetProfileData();
             if (data === null)
                 return null;
             return data.name;
         },
         getPhoto: function() {
-            var data = GameService.instance.GetProfileData();
+            var data = UserService.instance.GetProfileData();
             if (data === null)
                 return null;
             var photo = data.photo;
@@ -96,14 +67,14 @@ var FBInstant = {
             return (photo !== undefined) ? photo : null;
         },
         getID: function() {
-            var data = GameService.instance.GetGamerData();
-            if (data === null)
+            var data = UserService.instance.GetGamerData();
+            if (data === null || data === undefined)
                 return null;
             return data.gamer_id;
         },
         getDataAsync: function(keys) {
             return new Promise(function(resolve, reject){
-                GameService.instance.GetUserData("userData", function(data) {
+                StorageService.instance.GetUserData("userData", function(data) {
                     var response = {};
                     if (data === null) {
                         data = localStorage.getItem("userData");
@@ -133,7 +104,7 @@ var FBInstant = {
                 for (var attr in data_object)
                     obj[attr] = data_object[attr];
                 localStorage.setItem("userData", JSON.stringify(obj));
-                GameService.instance.SetUserData("userData", JSON.stringify(obj), function(success) {
+                StorageService.instance.SetUserData("userData", JSON.stringify(obj), function(success) {
                     resolve();
                 });
             });
@@ -152,7 +123,7 @@ var FBInstant = {
         },
         getConnectedPlayersAsync: function() {
             return new Promise(function(resolve, reject) {
-                GameService.instance.GetFriends(function(friends) {
+                UserService.instance.GetFriends(function(friends) {
                     resolve(friends);
                 })
             });
@@ -255,7 +226,7 @@ var FBInstant = {
     },
 
     getLocale: function() {
-        var data = GameService.instance.GetProfileData();
+        var data = UserService.instance.GetProfileData();
         if (data === null)
             return "en_US";
         return data.lang + "_";
@@ -265,12 +236,23 @@ var FBInstant = {
         return new Promise(function(resolve, reject){
             var opts = FBInstant.options;
             FBInstant.Log(">>>> initializeAsync");
-            var options = FBInstant.options;
-            GameService.instance.Init(opts.apiKey, opts.apiSecret, opts.devMode);
+            GameService.instance.Init(opts);
+            if (StorageService.instance !== undefined)
+                StorageService.instance.InitStorage(opts.storageOptions);
+            if (UserService.instance !== undefined)
+                UserService.instance.InitUser(opts.usersOptions);
             if (AnalyticsService.instance !== undefined)
                 AnalyticsService.instance.InitAnalytics(opts.analyticsOptions);
+            if (MessagingService.instance !== undefined)
+                MessagingService.instance.InitMessaging(opts.messagingOptions);
+            if (ShareService.instance !== undefined)
+                ShareService.instance.InitShare(opts.shareOptions);
+            if (LeaderboardsService.instance !== undefined)
+                LeaderboardsService.instance.InitLeaderboards(opts.leaderboardsOptions);
             if (AdsService.instance !== undefined)
                 AdsService.instance.InitAds(opts.adsOptions);
+            if (ReferralService.instance !== undefined)
+                ReferralService.instance.InitReferrals(opts.referralsOptions);
             if (PaymentsService.instance !== undefined)
             {
                 PaymentsService.instance.InitPayments(opts.paymentsOptions, function(error) {
@@ -291,7 +273,7 @@ var FBInstant = {
     startGameAsync: function() {
         return new Promise(function(resolve, reject){
             FBInstant.Log(">>>> startGameAsync");
-            GameService.instance.LoginAnonymously(FBInstant.options.allowAnonymous, function(error, data) {
+            UserService.instance.LoginAnonymously(FBInstant.options.userOptions.allowAnonymous, function(error, data) {
                 if (error === null)
                 {
                     FBInstant.__state.initialized = true;
@@ -362,14 +344,13 @@ var FBInstant = {
 
     shareAsync: function(options) {
         return new Promise(function(resolve, reject) {
-            var opts = FBInstant.options;
-            var title = (options.title !== undefined) ? options.title : "";
-            var message = options.text;
-            var url = encodeURIComponent(opts.shareURI + "?t=" + title + "&d=" + message);
-            if (options.data !== undefined)
-                url += "&data=" + JSON.stringify(options.data);
-            window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, 'pop', 'width=' + opts.shareDlgWidth + ', height=' + opts.shareDlgHeight + ', scrollbars=no');
-            resolve();
+            if (ShareService.instance === undefined)
+                reject({code: "CLIENT_UNSUPPORTED_OPERATION", message: "CLIENT_UNSUPPORTED_OPERATION"});
+            else
+            {
+                ShareService.instance.SharePrimary(options);
+                resolve();
+            }
         });        
     },
 
@@ -431,6 +412,17 @@ var FBInstant = {
                 reject({code: "CLIENT_UNSUPPORTED_OPERATION", message: "CLIENT_UNSUPPORTED_OPERATION"});
         });
     },
+
+    createDefaultServices: function()
+    {
+        new GameService("xtralife");
+        new StorageService("xtralife");
+        new UserService("xtralife");
+        new LeaderboardsService("xtralife");
+        new MessagingService("xtralife");
+        new ReferralService("xtralife");
+        new ShareService("generic");
+    }
 };
 
 FBInstant.AdInstance.prototype.getPlacementID = function()
@@ -468,7 +460,7 @@ FBInstant.Leaderboard.prototype.getEntriesAsync = function(count, start)
 {
     var self = this;
     return new Promise(function(resolve, reject) {
-        GameService.instance.LeaderboardGetPaged(self.name, ((start / count) | 0) + 1, count, function(entries) {
+        LeaderboardsService.instance.LeaderboardGetPaged(self.name, ((start / count) | 0) + 1, count, function(entries) {
             resolve(entries);
         });
     })
@@ -478,7 +470,7 @@ FBInstant.Leaderboard.prototype.getConnectedPlayerEntriesAsync = function(count,
 {
     var self = this;
     return new Promise(function(resolve, reject) {
-        GameService.instance.LeaderboardGetFriendsPaged(self.name, ((start / count) | 0) + 1, count, function(entries) {
+        LeaderboardsService.instance.LeaderboardGetFriendsPaged(self.name, ((start / count) | 0) + 1, count, function(entries) {
             resolve(entries);
         });
     })
@@ -488,7 +480,7 @@ FBInstant.Leaderboard.prototype.getPlayerEntryAsync = function()
 {
     var self = this;
     return new Promise(function(resolve, reject) {
-        GameService.instance.LeaderboardGetRank(self.name, function(entry) {
+        LeaderboardsService.instance.LeaderboardGetRank(self.name, function(entry) {
             resolve(entry);
         });
     })
@@ -498,7 +490,7 @@ FBInstant.Leaderboard.prototype.setScoreAsync = function(score, meta)
 {
     var self = this;
     return new Promise(function(resolve, reject) {
-        GameService.instance.LeaderboardSetScore(self.name, "hightolow", score, meta, function(entry) {
+        LeaderboardsService.instance.LeaderboardSetScore(self.name, "hightolow", score, meta, function(entry) {
             resolve(entry);
         });
     })
