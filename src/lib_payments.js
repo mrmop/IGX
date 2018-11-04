@@ -33,7 +33,7 @@ function PaymentsService(name)
     }
     this.name = name;
     PaymentsService.instance = this;
-    if (this.service !== undefined)
+    if (FBInstant.ext !== undefined && this.service !== undefined)
     {
         FBInstant.supportedAPIs.push("payments.getCatalogAsync");
         FBInstant.supportedAPIs.push("payments.purchaseAsync");

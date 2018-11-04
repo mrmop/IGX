@@ -13,7 +13,7 @@ function LeaderboardsService(name)
     }
     this.name = name;
     LeaderboardsService.instance = this;
-    if (this.service !== undefined)
+    if (FBInstant.ext !== undefined && this.service !== undefined)
     {
         FBInstant.supportedAPIs.push("Leaderboard.getEntriesAsync");
         FBInstant.supportedAPIs.push("Leaderboard.getConnectedPlayerEntriesAsync");

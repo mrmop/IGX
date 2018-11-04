@@ -9,8 +9,8 @@ var FBInstant = {
         apiSecret: "",              // Game service back-end API secret
         devMode: "sandbox",         // sandbox or prod
         shareOptions: {             // Ads service options
-            shareURI: "http://yourdomain.com/index.php", // URI used by shareAsync dialog
-            dlgWidth: 600,         // shareAsync dialog width
+            shareURI: "",           // URI used by shareAsync dialog
+            dlgWidth: 600,          // shareAsync dialog width
             dlgHeignht: 400,        // shareAsync dialog height
         },
         adsOptions: { },            // Ads service options
@@ -23,6 +23,9 @@ var FBInstant = {
         messagingOptions: { },      // Messaging service options
         leaderboardsOptions: { },   // Leaderboard service options
         referralsOptions: { },      // Referral service options
+        leaderboardOptions: {       // Leaderboard options
+            sortOrder: "hightolow"  // Sort order
+        }
     },
     supportedAPIs: [
         "initializeAsync",
@@ -413,14 +416,14 @@ var FBInstant = {
         });
     },
 
-    createDefaultServices: function()
+    createDefaultServices: function(name)
     {
-        new GameService("xtralife");
-        new StorageService("xtralife");
-        new UserService("xtralife");
-        new LeaderboardsService("xtralife");
-        new MessagingService("xtralife");
-        new ReferralService("xtralife");
+        new GameService(name);
+        new StorageService(name);
+        new UserService(name);
+        new LeaderboardsService(name);
+        new MessagingService(name);
+        new ReferralService(name);
         new ShareService("generic");
     }
 };
@@ -490,7 +493,7 @@ FBInstant.Leaderboard.prototype.setScoreAsync = function(score, meta)
 {
     var self = this;
     return new Promise(function(resolve, reject) {
-        LeaderboardsService.instance.LeaderboardSetScore(self.name, "hightolow", score, meta, function(entry) {
+        LeaderboardsService.instance.LeaderboardSetScore(self.name, FBInstant.options.leaderboardOptions.sortOrder, score, meta, function(entry) {
             resolve(entry);
         });
     })

@@ -13,7 +13,7 @@ function UserService(name)
     }
     this.name = name;
     UserService.instance = this;
-    if (this.service !== undefined)
+    if (FBInstant.ext !== undefined && this.service !== undefined)
     {
         FBInstant.supportedAPIs.push("getLocale");
         FBInstant.supportedAPIs.push("player.getConnectedPlayersAsync");

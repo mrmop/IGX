@@ -15,7 +15,7 @@ function AdsService(name)
     }
     this.name = name;
     AdsService.instance = this;
-    if (this.service !== undefined)
+    if (FBInstant.ext !== undefined && this.service !== undefined)
     {
         FBInstant.supportedAPIs.push("getInterstitialAdAsync");
         FBInstant.supportedAPIs.push("getRewardedVideoAsync");

@@ -13,7 +13,7 @@ function ShareService(name)
     }
     this.name = name;
     ShareService.instance = this;
-    if (this.service !== undefined)
+    if (FBInstant.ext !== undefined && this.service !== undefined)
     {
         FBInstant.supportedAPIs.push("shareAsync");
         FBInstant.supportedAPIs.push("ext.shareTwitterAsync");

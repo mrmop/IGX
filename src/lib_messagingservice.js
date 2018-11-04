@@ -13,7 +13,7 @@ function MessagingService(name)
     }
     this.name = name;
     MessagingService.instance = this;
-    if (this.service !== undefined)
+    if (FBInstant.ext !== undefined && this.service !== undefined)
     {
         FBInstant.supportedAPIs.push("ext.sendEventAsync");
         FBInstant.supportedAPIs.push("ext.getEventsAsync");

@@ -13,7 +13,7 @@ function AnalyticsService(name)
     }
     this.name = name;
     AnalyticsService.instance = this;
-    if (this.service !== undefined)
+    if (FBInstant.ext !== undefined && this.service !== undefined)
     {
         FBInstant.supportedAPIs.push("logEvent");
     }

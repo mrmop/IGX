@@ -13,7 +13,7 @@ function StorageService(name)
     }
     this.name = name;
     StorageService.instance = this;
-    if (this.service !== undefined)
+    if (FBInstant.ext !== undefined && this.service !== undefined)
     {
         FBInstant.supportedAPIs.push("player.getDataAsync");
         FBInstant.supportedAPIs.push("player.setDataAsync");

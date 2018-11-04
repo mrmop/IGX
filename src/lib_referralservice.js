@@ -13,7 +13,7 @@ function ReferralService(name)
     }
     this.name = name;
     ReferralService.instance = this;
-    if (this.service !== undefined)
+    if (FBInstant.ext !== undefined && this.service !== undefined)
     {
         FBInstant.supportedAPIs.push("ext.getReferralCodeAsync");
         FBInstant.supportedAPIs.push("ext.useReferralCodeAsync");

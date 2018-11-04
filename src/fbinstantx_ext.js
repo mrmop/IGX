@@ -150,7 +150,7 @@ FBInstant.ext = {
      */
     resetPasswordAsync: function(to_email, from_email, title, body) {
         return new Promise(function(resolve, reject){
-            UserService.instance.ResetPassword(network, id, secret, function(error) {
+            UserService.instance.ResetPassword(to_email, from_email, title, body, function(error) {
                 resolve(error);
             })
         });
