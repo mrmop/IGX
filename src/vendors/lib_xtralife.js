@@ -52,10 +52,64 @@ LibXtralife.prototype.InitUser = function(options)
 {
 }
 
+LibXtralife.prototype.addSupportedAPI = function(type)
+{
+    if (type === "leaderboards")
+    {
+        FBInstant.supportedAPIs.push("Leaderboard.getEntriesAsync");
+        FBInstant.supportedAPIs.push("Leaderboard.getConnectedPlayerEntriesAsync");
+        FBInstant.supportedAPIs.push("Leaderboard.getPlayerEntryAsync");
+        FBInstant.supportedAPIs.push("Leaderboard.setScoreAsync");
+        FBInstant.supportedAPIs.push("getLeaderboardAsync");
+    }
+    else
+    if (type === "messaging")
+    {
+        FBInstant.supportedAPIs.push("ext.sendEventAsync");
+        FBInstant.supportedAPIs.push("ext.getEventsAsync");
+    }
+    else
+    if (type === "referrals")
+    {
+        FBInstant.supportedAPIs.push("ext.getReferralCodeAsync");
+        FBInstant.supportedAPIs.push("ext.useReferralCodeAsync");
+    }
+    else
+    if (type === "storage")
+    {
+        FBInstant.supportedAPIs.push("player.getDataAsync");
+        FBInstant.supportedAPIs.push("player.setDataAsync");
+    }
+    else
+    if (type === "user")
+    {
+        FBInstant.supportedAPIs.push("getLocale");
+        FBInstant.supportedAPIs.push("player.getConnectedPlayersAsync");
+        FBInstant.supportedAPIs.push("ext.isLoggedIn");
+        FBInstant.supportedAPIs.push("ext.getLoginType");
+        FBInstant.supportedAPIs.push("ext.getRegistrationDate");
+        FBInstant.supportedAPIs.push("ext.loginWithShortCodeAsync");
+        FBInstant.supportedAPIs.push("ext.loginAsync");
+        FBInstant.supportedAPIs.push("ext.loginWithEmailAsync");
+        FBInstant.supportedAPIs.push("ext.loginWithFacebookAccessTokenAsync");
+        FBInstant.supportedAPIs.push("ext.logoutAsync");
+        FBInstant.supportedAPIs.push("ext.convertAccountAsync");
+        FBInstant.supportedAPIs.push("ext.linkAccountAsync");
+        FBInstant.supportedAPIs.push("ext.resetPasswordAsync");
+        FBInstant.supportedAPIs.push("ext.changePasswordAsync");
+        FBInstant.supportedAPIs.push("ext.getGames");
+        FBInstant.supportedAPIs.push("ext.setProfileAsync");
+        FBInstant.supportedAPIs.push("ext.addFriendAsync");
+        FBInstant.supportedAPIs.push("ext.removeFriendAsync");
+        FBInstant.supportedAPIs.push("ext.listUsersAsync");
+    }
+}
+
+
 //
 // LOGIN AND ACCOUNTS
 //
-LibXtralife.prototype.LoginAnonymously = function(allow_anonymous, done_cb)
+LibXtralife.prototype.Login = function(allow_anonymous, done_cb)
 {
     if (this.gamerData)
     {

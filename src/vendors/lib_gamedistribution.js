@@ -79,19 +79,20 @@ LibGameDistribution.prototype.InitAds = function(options)
     script.id = "gamedistribution-jssdk";
     script.src = "https://html5.api.gamedistribution.com/main.min.js";
     script.onload = function () {
-        console.log(">>>>>>>> main.min.js loaded")
+        LibGameDistribution.Log(">>>> GameDistribution: Loaded");
     };
     document.head.appendChild(script)
 }
 
-LibGameDistribution.prototype.IsAdsSupported = function(type)
+LibGameDistribution.prototype.addSupportedAPI = function(type)
 {
-    return true;
-}
-
-LibGameDistribution.prototype.IsPaymentsSupported = function(type)
-{
-    return false;
+    if (type === "ads")
+    {
+        FBInstant.supportedAPIs.push("getInterstitialAdAsync");
+        FBInstant.supportedAPIs.push("getRewardedVideoAsync");
+        FBInstant.supportedAPIs.push("AdInstance.loadAsync");
+        FBInstant.supportedAPIs.push("AdInstance.showAsync");
+    }
 }
 
 //
@@ -105,12 +106,11 @@ LibGameDistribution.prototype.PreloadAd = function(id, type, done_cb)
 LibGameDistribution.prototype.ShowAd = function(id, type, done_cb)
 {
     LibGameDistribution.Log("GameDistribution: Requesting ad");
-    console.log(gdsdk);
-    console.log(window.gdsdk);
     
-    if (typeof gdsdk !== "undefined" && gdsdk.showBanner !== "undefined")
+    if (gdsdk === undefined)
     {
-        done_cb(null);
+        done_cb({code: "ADS_NOT_LOADED", message: "ADS_NOT_LOADED"});
+        return;
     }
     if (type === "video")
     {
@@ -125,7 +125,7 @@ LibGameDistribution.prototype.ShowAd = function(id, type, done_cb)
     }
     else
     {
-        done_cb(null);
+        done_cb({code: "ADS_NOT_LOADED", message: "ADS_NOT_LOADED"});
     }
 };
 

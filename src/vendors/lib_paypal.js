@@ -51,9 +51,16 @@ LibPayPal.prototype.InitPayments = function(options, done_cb)
     done_cb(null);
 }
 
-LibPayPal.prototype.IsPaymentsSupported = function(type)
+LibPayPal.prototype.addSupportedAPI = function(type)
 {
-    return true;
+    if (type === "payments")
+    {
+        FBInstant.supportedAPIs.push("payments.getCatalogAsync");
+        FBInstant.supportedAPIs.push("payments.purchaseAsync");
+        FBInstant.supportedAPIs.push("payments.getPurchasesAsync");
+        FBInstant.supportedAPIs.push("payments.consumePurchaseAsync");
+        FBInstant.supportedAPIs.push("payments.purchaseAsync");
+    }
 }
 
 LibPayPal.prototype.GetProducts = function(done_cb)

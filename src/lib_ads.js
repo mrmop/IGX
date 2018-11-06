@@ -12,15 +12,14 @@ function AdsService(name)
             this.service = new LibCrazyGames();
         else if (name === "gamedistribution")
             this.service = new LibGameDistribution();
+        else if (name === "adinplay")
+            this.service = new LibAdInPlay();
     }
     this.name = name;
     AdsService.instance = this;
     if (FBInstant.ext !== undefined && this.service !== undefined)
     {
-        FBInstant.supportedAPIs.push("getInterstitialAdAsync");
-        FBInstant.supportedAPIs.push("getRewardedVideoAsync");
-        FBInstant.supportedAPIs.push("AdInstance.loadAsync");
-        FBInstant.supportedAPIs.push("AdInstance.showAsync");
+        this.service.addSupportedAPI("ads");
     }
 }
 
@@ -34,11 +33,9 @@ AdsService.prototype.InitAds = function(options)
     return this.service.InitAds(options);
 }
 
-AdsService.prototype.IsAdsSupported = function(id, type)
+AdsService.prototype.IsSupported = function()
 {
-    if (this.service === undefined)
-        return false;
-    return this.service.IsAdsSupported(id, type);
+    return this.service !== undefined;
 }
 
 //

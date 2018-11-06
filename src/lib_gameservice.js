@@ -10,6 +10,8 @@ function GameService(name)
     {
         if (name === "xtralife")
             this.service = new LibXtralife();
+        else if (name === "kongregate")
+            this.service = new LibKongregate();
     }
     this.name = name;
     GameService.instance = this;

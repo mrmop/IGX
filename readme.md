@@ -15,7 +15,7 @@ IGX was created to enable developers to maximise their development time and mone
 The following features are available:
 <ul>
 <li><a href="https://github.com/mrmop/IGX/wiki/Getting-Started">Initialisation</a> including <a href="https://github.com/mrmop/IGX/wiki/Social-Sharing">entry point data</a> via the url</li>
-<li><a href="https://github.com/mrmop/IGX/wiki/User-Authentication-and-Management">User login / management (anonymous, credentials, Facebook and shortcode logins)</a></li>
+<li><a href="https://github.com/mrmop/IGX/wiki/User-Login-and-Management">User login / management (anonymous, credentials, Facebook and shortcode logins)</a></li>
 <li><a href="https://github.com/mrmop/IGX/wiki/Data-Persistence">User data persistence on server</a></li>
 <li><a href="https://github.com/mrmop/IGX/wiki/Social-Sharing">Facebook sharing</a></li>
 <li><a href="https://github.com/mrmop/IGX/wiki/Leaderboards">Leaderboards</a></li>
@@ -45,7 +45,7 @@ The layer also includes additional functionality that is available outside of th
 </ul>
 
 ## How to get started
-Instead of linking to the Facebook Instants JS file, add igx_min.js and xtralife-3.2.1.min.js to your index page.
+Instead of linking to the Facebook Instants JS file, add igx_min.js and xtralife-3.2.3.min.js to your index page.
 Note that the back-end used by IGX to provide server side features is called Xtralife (http://xtralife.cloud/), you will need to create a free account and add a game to obtain an API key and secret to use the API.
 
 Once you have an account and have added a game to the system you will be given an API key and secret which you can use to access back-end features.
@@ -80,6 +80,7 @@ The IGX SDK consists of the following files:
 </ul>
 Vendor specific files:
 <ul>
+<li>lib_adinplay.js - AdInPlay implementation of ads service</li>
 <li>lib_crazygames.js - CrazyGames implementation of ads service</li>
 <li>lib_gamedistribution.js - Game Distribution implementation of ads service</li>
 <li>lib_generic.js - Generic service</li>
@@ -165,6 +166,7 @@ IGX supports collection of user data for game analytics purposes. The following 
 ## Ads Services and Portals
 Over time many portals and ad providers will be added to the IGX SDK. At the time of writing the following ad providers / portals have been added:
 <ul>
+<li>AdInPlay</li>
 <li>Crazy Games</li>
 <li>Game Distribution</li>
 </ul>

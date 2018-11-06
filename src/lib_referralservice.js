@@ -15,8 +15,7 @@ function ReferralService(name)
     ReferralService.instance = this;
     if (FBInstant.ext !== undefined && this.service !== undefined)
     {
-        FBInstant.supportedAPIs.push("ext.getReferralCodeAsync");
-        FBInstant.supportedAPIs.push("ext.useReferralCodeAsync");
+        this.service.addSupportedAPI("referrals");
     }
 }
 
@@ -28,6 +27,11 @@ ReferralService.prototype.InitReferrals = function(options)
     if (this.service === undefined)
         return;
     return this.service.InitReferrals(options);
+}
+
+ReferralService.prototype.IsSupported = function()
+{
+    return this.service !== undefined;
 }
 
 ReferralService.prototype.GetReferralCode = function(done_cb)

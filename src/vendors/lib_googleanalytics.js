@@ -38,9 +38,12 @@ LibGoogleAnalytics.prototype.InitAnalytics = function(options)
     ga("create", options.trackingId, "auto");
 }
 
-LibGoogleAnalytics.prototype.IsAnalyticsSupported = function(type)
+LibGoogleAnalytics.prototype.addSupportedAPI = function(type)
 {
-    return true;
+    if (type === "analytics")
+    {
+        FBInstant.supportedAPIs.push("logEvent");
+    }
 }
 
 LibGoogleAnalytics.prototype.LogEvent = function(event_name, value, params)

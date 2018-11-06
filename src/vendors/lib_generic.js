@@ -27,6 +27,15 @@ LibGeneric.prototype.InitShare = function(options)
 
 }
 
+LibGeneric.prototype.addSupportedAPI = function(type)
+{
+    if (type === "share")
+    {
+        FBInstant.supportedAPIs.push("shareAsync");
+        FBInstant.supportedAPIs.push("ext.shareTwitterAsync");
+    }
+}
+
 LibGeneric.prototype.SharePrimary = function(options)
 {
     ShareService.instance.ShareFacebook(options);

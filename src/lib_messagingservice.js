@@ -15,8 +15,7 @@ function MessagingService(name)
     MessagingService.instance = this;
     if (FBInstant.ext !== undefined && this.service !== undefined)
     {
-        FBInstant.supportedAPIs.push("ext.sendEventAsync");
-        FBInstant.supportedAPIs.push("ext.getEventsAsync");
+        this.service.addSupportedAPI("messaging");
     }
 }
 
@@ -28,6 +27,11 @@ MessagingService.prototype.InitMessaging = function(options)
     if (this.service === undefined)
         return;
     return this.service.InitMessaging(options);
+}
+
+MessagingService.prototype.IsSupported = function()
+{
+    return this.service !== undefined;
 }
 
 MessagingService.prototype.SendEvent = function(to_id, event_obj, done_cb)

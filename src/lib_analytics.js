@@ -10,12 +10,14 @@ function AnalyticsService(name)
     {
         if (name === "google")
             this.service = new LibGoogleAnalytics();
+        else if (name === "kongregate")
+            this.service = new LibKongregate();
     }
     this.name = name;
     AnalyticsService.instance = this;
     if (FBInstant.ext !== undefined && this.service !== undefined)
     {
-        FBInstant.supportedAPIs.push("logEvent");
+        this.service.addSupportedAPI("analytics");
     }
 }
 
@@ -29,11 +31,9 @@ AnalyticsService.prototype.InitAnalytics = function(options)
     return this.service.InitAnalytics(options);
 }
 
-AnalyticsService.prototype.IsAnalyticsSupported = function()
+AnalyticsService.prototype.IsSupported = function()
 {
-    if (this.service === undefined)
-        return false;
-    return this.service.IsAnalyticsSupported();
+    return this.service !== undefined;
 }
 
 //

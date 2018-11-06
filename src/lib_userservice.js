@@ -10,30 +10,14 @@ function UserService(name)
     {
         if (name === "xtralife")
             this.service = new LibXtralife();
+        else if (name === "kongregate")
+            this.service = new LibKongregate();
     }
     this.name = name;
     UserService.instance = this;
     if (FBInstant.ext !== undefined && this.service !== undefined)
     {
-        FBInstant.supportedAPIs.push("getLocale");
-        FBInstant.supportedAPIs.push("player.getConnectedPlayersAsync");
-        FBInstant.supportedAPIs.push("ext.isLoggedIn");
-        FBInstant.supportedAPIs.push("ext.getLoginType");
-        FBInstant.supportedAPIs.push("ext.getRegistrationDate");
-        FBInstant.supportedAPIs.push("ext.loginWithShortCodeAsync");
-        FBInstant.supportedAPIs.push("ext.loginAnonymouslyAsync");
-        FBInstant.supportedAPIs.push("ext.loginWithEmailAsync");
-        FBInstant.supportedAPIs.push("ext.loginWithFacebookAccessTokenAsync");
-        FBInstant.supportedAPIs.push("ext.logoutAsync");
-        FBInstant.supportedAPIs.push("ext.convertAccountAsync");
-        FBInstant.supportedAPIs.push("ext.linkAccountAsync");
-        FBInstant.supportedAPIs.push("ext.resetPasswordAsync");
-        FBInstant.supportedAPIs.push("ext.changePasswordAsync");
-        FBInstant.supportedAPIs.push("ext.getGames");
-        FBInstant.supportedAPIs.push("ext.setProfileAsync");
-        FBInstant.supportedAPIs.push("ext.addFriendAsync");
-        FBInstant.supportedAPIs.push("ext.removeFriendAsync");
-        FBInstant.supportedAPIs.push("ext.listUsersAsync");
+        this.service.addSupportedAPI("user");
     }
 }
 
@@ -85,17 +69,22 @@ UserService.prototype.InitUser = function(options)
     return this.service.InitUser(options);
 }
 
+UserService.prototype.IsSupported = function()
+{
+    return this.service !== undefined;
+}
+
 //
 // LOGIN AND ACCOUNTS
 //
-UserService.prototype.LoginAnonymously = function(allow_anonymous, done_cb)
+UserService.prototype.Login = function(allow_anonymous, done_cb)
 {
     if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "}, null);
     }
-    else return this.service.LoginAnonymously(allow_anonymous, done_cb);
+    else return this.service.Login(allow_anonymous, done_cb);
 }
 
 UserService.prototype.ResumeSession = function(gamer_id, gamer_secret, done_cb)

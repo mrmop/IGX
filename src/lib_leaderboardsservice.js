@@ -15,11 +15,7 @@ function LeaderboardsService(name)
     LeaderboardsService.instance = this;
     if (FBInstant.ext !== undefined && this.service !== undefined)
     {
-        FBInstant.supportedAPIs.push("Leaderboard.getEntriesAsync");
-        FBInstant.supportedAPIs.push("Leaderboard.getConnectedPlayerEntriesAsync");
-        FBInstant.supportedAPIs.push("Leaderboard.getPlayerEntryAsync");
-        FBInstant.supportedAPIs.push("Leaderboard.setScoreAsync");
-        FBInstant.supportedAPIs.push("getLeaderboardAsync");
+        this.service.addSupportedAPI("leaderboards");
     }
 }
 
@@ -77,6 +73,11 @@ LeaderboardsService.prototype.InitLeaderboards = function(options)
     if (this.service === undefined)
         return;
     return this.service.InitLeaderboards(options);
+}
+
+LeaderboardsService.prototype.IsSupported = function()
+{
+    return this.service !== undefined;
 }
 
 LeaderboardsService.prototype.LeaderboardGetPaged = function(board_name, page_number, count, done_cb)

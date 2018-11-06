@@ -30,16 +30,14 @@ function PaymentsService(name)
     {
         if (name === "paypal")
             this.service = new LibPayPal();
+        else if (name === "kongregate")
+            this.service = new LibKongregate();
     }
     this.name = name;
     PaymentsService.instance = this;
     if (FBInstant.ext !== undefined && this.service !== undefined)
     {
-        FBInstant.supportedAPIs.push("payments.getCatalogAsync");
-        FBInstant.supportedAPIs.push("payments.purchaseAsync");
-        FBInstant.supportedAPIs.push("payments.getPurchasesAsync");
-        FBInstant.supportedAPIs.push("payments.consumePurchaseAsync");
-        FBInstant.supportedAPIs.push("payments.purchaseAsync");
+        this.service.addSupportedAPI("payments");
     }
 }
 
@@ -48,16 +46,14 @@ function PaymentsService(name)
 //
 PaymentsService.prototype.InitPayments = function(options, done_cb)
 {
-    if (this.service === nuundefinedll)
+    if (this.service === undefined)
         return false;
     return this.service.InitPayments(options, done_cb);
 }
 
-PaymentsService.prototype.IsPaymentsSupported = function()
+PaymentsService.prototype.IsSupported = function()
 {
-    if (this.service === undefined)
-        return false;
-    return this.service.IsPaymentsSupported();
+    return this.service !== undefined;
 }
 
 //

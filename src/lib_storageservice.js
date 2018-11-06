@@ -15,8 +15,7 @@ function StorageService(name)
     StorageService.instance = this;
     if (FBInstant.ext !== undefined && this.service !== undefined)
     {
-        FBInstant.supportedAPIs.push("player.getDataAsync");
-        FBInstant.supportedAPIs.push("player.setDataAsync");
+        this.service.addSupportedAPI("storage");
     }
 }
 
@@ -28,6 +27,11 @@ StorageService.prototype.InitStorage = function(options)
     if (this.service === undefined)
         return;
     return this.service.InitStorage(options);
+}
+
+StorageService.prototype.IsSupported = function()
+{
+    return this.service !== undefined;
 }
 
 StorageService.prototype.SetUserData = function(key, value, done_cb)

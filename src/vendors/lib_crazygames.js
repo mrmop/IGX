@@ -65,9 +65,15 @@ LibCrazyGames.prototype.InitAds = function(options)
     });
 }
 
-LibCrazyGames.prototype.IsAdsSupported = function(type)
+LibCrazyGames.prototype.addSupportedAPI = function(type)
 {
-    return true;
+    if (type === "ads")
+    {
+        FBInstant.supportedAPIs.push("getInterstitialAdAsync");
+        FBInstant.supportedAPIs.push("getRewardedVideoAsync");
+        FBInstant.supportedAPIs.push("AdInstance.loadAsync");
+        FBInstant.supportedAPIs.push("AdInstance.showAsync");
+    }
 }
 
 //
@@ -101,7 +107,7 @@ LibCrazyGames.prototype.ShowAd = function(id, type, done_cb)
     }
     else
     {
-        done_cb(null);
+        done_cb({code: "ADS_NOT_LOADED", message: "ADS_NOT_LOADED"});
     }
 };
 

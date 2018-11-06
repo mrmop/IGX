@@ -65,28 +65,43 @@ var FBInstant = {
             var data = UserService.instance.GetProfileData();
             if (data === null)
                 return null;
-            var photo = data.photo;
-            console.log("photo = " + photo);
-            return (photo !== undefined) ? photo : null;
+            return (data.photo !== undefined) ? data.photo : null;
         },
         getID: function() {
-            var data = UserService.instance.GetGamerData();
+            var data = UserService.instance.GetProfileData();
             if (data === null || data === undefined)
                 return null;
-            return data.gamer_id;
+            return data.id;
         },
         getDataAsync: function(keys) {
             return new Promise(function(resolve, reject){
-                StorageService.instance.GetUserData("userData", function(data) {
+                if (StorageService.instance !== undefined)
+                {
+                    StorageService.instance.GetUserData("userData", function(data) {
+                        var response = {};
+                        if (data === null) {
+                            data = localStorage.getItem("userData");
+                            data = JSON.parse(data);
+                        }
+                        else
+                        {
+                            localStorage.setItem("userData", JSON.stringify(data));
+                        }
+                        if (data !== null) {
+                            keys.forEach(function(key){
+                                if (data[key] !== "undefined") {
+                                    response[key] = data[key];
+                                }
+                            });
+                        }
+                        resolve(response);
+                    });
+                }
+                else
+                {
                     var response = {};
-                    if (data === null) {
-                        data = localStorage.getItem("userData");
-                        data = JSON.parse(data);
-                    }
-                    else
-                    {
-                        localStorage.setItem("userData", JSON.stringify(data));
-                    }
+                    var data = localStorage.getItem("userData");
+                    data = JSON.parse(data);
                     if (data !== null) {
                         keys.forEach(function(key){
                             if (data[key] !== "undefined") {
@@ -95,7 +110,7 @@ var FBInstant = {
                         });
                     }
                     resolve(response);
-                });
+                }
             });
         },
         setDataAsync: function(data_object) {
@@ -107,9 +122,16 @@ var FBInstant = {
                 for (var attr in data_object)
                     obj[attr] = data_object[attr];
                 localStorage.setItem("userData", JSON.stringify(obj));
-                StorageService.instance.SetUserData("userData", JSON.stringify(obj), function(success) {
+                if (StorageService.instance !== undefined)
+                {
+                    StorageService.instance.SetUserData("userData", JSON.stringify(obj), function(success) {
+                        resolve();
+                    });
+                }
+                else
+                {
                     resolve();
-                });
+                }
             });
         },
         getStatsAsync: function(keys) {
@@ -276,7 +298,7 @@ var FBInstant = {
     startGameAsync: function() {
         return new Promise(function(resolve, reject){
             FBInstant.Log(">>>> startGameAsync");
-            UserService.instance.LoginAnonymously(FBInstant.options.userOptions.allowAnonymous, function(error, data) {
+            UserService.instance.Login(FBInstant.options.userOptions.allowAnonymous, function(error, data) {
                 if (error === null)
                 {
                     FBInstant.__state.initialized = true;
@@ -399,7 +421,7 @@ var FBInstant = {
     getInterstitialAdAsync: function(id)
     {
         return new Promise(function(resolve, reject) {
-            if (AdsService.instance.IsAdsSupported(id, "inter"))
+            if (AdsService.instance.IsSupported(id, "inter"))
                 resolve(new FBInstant.AdInstance(id, "inter"));
             else
                 reject({code: "CLIENT_UNSUPPORTED_OPERATION", message: "CLIENT_UNSUPPORTED_OPERATION"});
@@ -409,7 +431,7 @@ var FBInstant = {
     getRewardedVideoAsync: function(id)
     {
         return new Promise(function(resolve, reject) {
-            if (AdsService.instance.IsAdsSupported(id, "video"))
+            if (AdsService.instance.IsSupported(id, "video"))
                 resolve(new FBInstant.AdInstance(id, "video"));
             else
                 reject({code: "CLIENT_UNSUPPORTED_OPERATION", message: "CLIENT_UNSUPPORTED_OPERATION"});
@@ -418,13 +440,30 @@ var FBInstant = {
 
     createDefaultServices: function(name)
     {
-        new GameService(name);
-        new StorageService(name);
-        new UserService(name);
-        new LeaderboardsService(name);
-        new MessagingService(name);
-        new ReferralService(name);
-        new ShareService("generic");
+        if (name === "xtralife")
+        {
+            new GameService(name);
+            new StorageService(name);
+            new UserService(name);
+            new LeaderboardsService(name);
+            new MessagingService(name);
+            new ReferralService(name);
+            new ShareService("generic");
+        }
+        else if (name === "kongregate")
+        {
+            new GameService(name);
+            new UserService(name);
+            new AnalyticsService(name);
+            new PaymentsService(name);
+            new ShareService("generic");
+        }
+        else if (name === "none")
+        {
+            new GameService(name);
+            new UserService(name);
+            new ShareService("generic");
+        }
     }
 };
 

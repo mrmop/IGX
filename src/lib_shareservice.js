@@ -15,8 +15,7 @@ function ShareService(name)
     ShareService.instance = this;
     if (FBInstant.ext !== undefined && this.service !== undefined)
     {
-        FBInstant.supportedAPIs.push("shareAsync");
-        FBInstant.supportedAPIs.push("ext.shareTwitterAsync");
+        this.service.addSupportedAPI("share");
     }
 }
 
@@ -28,6 +27,11 @@ ShareService.prototype.InitShare = function(options)
     if (this.service === undefined)
         return;
     return this.service.InitShare(options);
+}
+
+ShareService.prototype.IsSupported = function()
+{
+    return this.service !== undefined;
 }
 
 ShareService.prototype.SharePrimary = function(options)

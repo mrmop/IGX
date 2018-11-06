@@ -47,12 +47,12 @@ FBInstant.ext = {
         });
     },
     /**
-     * Logs the player in anonymously
+     * Logs the player in using the default login (anonymously usually)
      * @return error or null if no error, gamer contains the gamers data
      */
-    loginAnonymouslyAsync: function() {
+    loginAsync: function() {
         return new Promise(function(resolve, reject){
-            UserService.instance.LoginAnonymously(FBInstant.options.userOptions.allowAnonymous, function(error, data) {
+            UserService.instance.Login(FBInstant.options.userOptions.allowAnonymous, function(error, data) {
                 if (error === null)
                 {
                     FBInstant.Log(">> Login success");
