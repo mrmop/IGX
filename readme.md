@@ -85,8 +85,9 @@ Vendor specific files:
 <li>lib_gamedistribution.js - Game Distribution implementation of ads service</li>
 <li>lib_generic.js - Generic service</li>
 <li>lib_googleanalytics.js - Google Analytics implementation of analytics service</li>
+<li>lib_kongregate.js - Kongregate implementation of game services</li>
 <li>lib_paypal.js - PayPal implementation of payments service using PayPal Checkout</li>
-<li>lib_xtralife.js - Xtralife implementation of game service</li>
+<li>lib_xtralife.js - Xtralife implementation of game services</li>
 </ul>
 
 ## Extensions
@@ -161,6 +162,7 @@ See the <a href="https://github.com/mrmop/IGX/wiki/Social-Sharing">Social Sharin
 IGX supports collection of user data for game analytics purposes. The following analytics providers are currrently supported:
 <ul>
 <li>Google Analytics</li>
+<li>Kongregate</li>
 </ul>
 
 ## Ads Services and Portals
@@ -174,6 +176,7 @@ Over time many portals and ad providers will be added to the IGX SDK. At the tim
 ## Payment Services
 Over time a variety of payment processing services will be added to the IGX SDK. At the time of writing the following payment services have been added:
 <ul>
+<li>Kongregate</li>
 <li>PayPal Checkout</li>
 </ul>
 
@@ -193,7 +196,6 @@ When switching from a sandbox to production environment, be aware that data from
 Below is a list of planned integrations with the IGX SDK:
 <ul>
 <li>Game Analytics</li>
-<li>Kongregate</li>
 <li>Miniclip</li>
 <li>Newgrounds.io</li>
 <li>Poki</li>
