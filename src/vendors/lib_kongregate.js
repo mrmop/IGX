@@ -3,6 +3,13 @@
 // For details of license see license.txt
 //
 
+// Sharing options:
+// type: invite - Invite another user to play { text: "message to share",  }
+// type: feed - Shares messagr to users feed { text: "message to share", image: "url of feed image", params: { params to pass in to game link } }
+// type: shout - Shares a shout out { text: "message to shout out", filter: "see below for detail", params: { params to pass in to game link } }
+//
+// filter types: "played" - people that already play the game, "not_played" - people that have not yet played the game, "list of id's" specific people, "" - everyone
+
 function LibKongregate()
 {
     LibKongregate.Log(">>>> Kongregate: construct");
@@ -61,6 +68,10 @@ LibKongregate.prototype.InitUser = function(options)
 {
 }
 
+LibKongregate.prototype.InitShare = function(options)
+{
+}
+
 LibKongregate.prototype.addSupportedAPI = function(type)
 {
     if (type === "user")
@@ -73,6 +84,10 @@ LibKongregate.prototype.addSupportedAPI = function(type)
     else if (type === "analytics")
     {
         FBInstant.supportedAPIs.push("logEvent");
+    }
+    else if (type === "share")
+    {
+        FBInstant.supportedAPIs.push("shareAsync");
     }
     else if (type === "payments")
     {
@@ -269,3 +284,42 @@ LibKongregate.prototype.ShowPurchaseDialog = function(options)
 
     this.kongregate.mtx.showKredPurchaseDialog(options.type);
 }
+
+//
+// SHARING
+//
+LibKongregate.prototype.SharePrimary = function(options)
+{
+    LibKongregate.Log(">>>> Kongregate: SharePrimary");
+    LibKongregate.Log(options);
+    if (options.type === "feed")
+    {
+        this.kongregate.services.showFeedPostBox({
+            content: options.text,
+            image_url: options.image,
+            kv_params: options.params, function(result) {
+                LibKongregate.Log(">>>> Kongregate: feed Result");
+                console.log(result);
+            }
+        });
+    }
+    else if (options.type === "shout")
+    {
+        this.kongregate.services.showShoutBox(options.text, function(result) {
+            LibKongregate.Log(">>>> Kongregate: shout Result");
+            console.log(result);
+        });
+    }
+    else
+    {
+        this.kongregate.services.showInvitationBox({
+            content: options.text,
+            filter: options.filter,
+            kv_params: options.params, function(result) {
+                LibKongregate.Log(">>>> Kongregate: invite Result");
+                console.log(result);
+            }
+        });
+    }
+}
+

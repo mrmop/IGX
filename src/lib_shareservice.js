@@ -10,6 +10,8 @@ function ShareService(name)
     {
         if (name === "generic")
             this.service = new LibGeneric();
+        else if (name === "kongregate")
+            this.service = new LibKongregate();
     }
     this.name = name;
     ShareService.instance = this;

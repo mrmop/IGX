@@ -456,7 +456,7 @@ var FBInstant = {
             new UserService(name);
             new AnalyticsService(name);
             new PaymentsService(name);
-            new ShareService("generic");
+            new ShareService(name);
         }
         else if (name === "none")
         {
