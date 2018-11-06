@@ -245,8 +245,8 @@ LibKongregate.prototype.GetPurchases = function(done_cb)
             {
                 var purchase = result.data[t];
                 var p = new PaymentsService.Purchase("", purchase.id, purchase.identifier, null, null, null);
-                p.data = prod.data;
-                p.remainingUses = prod.remaining_uses;
+                p.data = purchase.data;
+                p.remainingUses = purchase.remaining_uses;
                 purchases.push(p);
             }
             done_cb(null, purchases);

@@ -91,6 +91,6 @@ PaymentsService.prototype.GetPurchases = function(done_cb)
 {
     if (this.service === undefined)
         return;
-    return this.service.GetPurchases(options, done_cb);
+    return this.service.GetPurchases(done_cb);
 }
 
