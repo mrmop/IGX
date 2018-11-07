@@ -154,7 +154,12 @@ You can read more about user management on the <a href="https://github.com/mrmop
 Entry point data is passed via the URL in the data parameter. The data object passed must be url encoded. Note that when you make a call to shareAsync the data object passed in options.data will be sent with the URL. When a user clicks the link the data will be available via getEntryPointData().
 
 ## Sharing
-In order for Facebook sharing to work via shareAsync, you must assign the URL which takes care of the sharing to FBInstant.options.shareURI. Special parameters will be passed to this URL which enables Facebook to pull a proper preview of what is being shared. The destination URL will need to be a script that can handle the passed parameters. An example script is shown below:
+IGX supports social sharing. The following social sharing providers are currrently supported:
+<ul>
+<li>Facebook</li>
+<li>Twitter</li>
+<li>Kongregate</li>
+</ul>
 
 See the <a href="https://github.com/mrmop/IGX/wiki/Social-Sharing">Social Sharing wiki page</a> for more info.
 
