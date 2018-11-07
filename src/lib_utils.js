@@ -51,6 +51,10 @@ var LibUtils = {
         {
             return PaymentsService.instance.service;
         }
+        else if (ChatService.instance !== undefined && ChatService.instance.name === name)
+        {
+            return ChatService.instance.service;
+        }
     },
 }
 

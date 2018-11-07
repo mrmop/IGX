@@ -25,7 +25,8 @@ var FBInstant = {
         referralsOptions: { },      // Referral service options
         leaderboardOptions: {       // Leaderboard options
             sortOrder: "hightolow"  // Sort order
-        }
+        },
+        chatOptions: { },           // Chat service options
     },
     supportedAPIs: [
         "initializeAsync",
@@ -278,6 +279,8 @@ var FBInstant = {
                 AdsService.instance.InitAds(opts.adsOptions);
             if (ReferralService.instance !== undefined)
                 ReferralService.instance.InitReferrals(opts.referralsOptions);
+            if (ChatService.instance !== undefined)
+                ChatService.instance.InitChat(opts.chatOptions);
             if (PaymentsService.instance !== undefined)
             {
                 PaymentsService.instance.InitPayments(opts.paymentsOptions, function(error) {
@@ -457,6 +460,7 @@ var FBInstant = {
             new AnalyticsService(name);
             new PaymentsService(name);
             new ShareService(name);
+            new ChatService(name);
         }
         else if (name === "none")
         {

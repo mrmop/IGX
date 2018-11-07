@@ -22,6 +22,7 @@ The following features are available:
 <li><a href="https://github.com/mrmop/IGX/wiki/Monetisation">Interstitial and Rewarded adverts</a></li>
 <li><a href="https://github.com/mrmop/IGX/wiki/Analytics">Analytics</a></li>
 <li><a href="https://github.com/mrmop/IGX/wiki/Monetisation">Payments</a></li>
+<li><a href="https://github.com/mrmop/IGX/wiki/Chat">Chat</a></li>
 </ul>
 
 ## What other features are available?
@@ -34,6 +35,7 @@ The layer also includes additional functionality that is available outside of th
 <li>Profile query and modification</li>
 <li>Add / remove / find friends</li>
 <li>Real time user to user messaging</li>
+<li>User chat</li>
 <li>Referral system</li>
 <li>Sharing on Twitter</li>
 </ul>
@@ -65,12 +67,13 @@ The IGX SDK consists of the following files:
 <ul>
 <li>fbinstantx.js - Contains the replacement FBInstant data and functions</li>
 <li>fbinstantx_ext.js - Contains extra features that are not found in the Facebook Instant Games API</li>
-<li>lib_ads.js - Ads services interface</li>
-<li>lib_analytics.js - Analytics services interface</li>
+<li>lib_adsservice.js - Ads services interface</li>
+<li>lib_analyticsservice.js - Analytics services interface</li>
+<li>lib_chatservice.js - Chat services interface</li>
 <li>lib_gameservice.js - Game service interface</li>
 <li>lib_leaderboardservice.js - Leaderboards service interface</li>
 <li>lib_messagingservice.js - User to user messaging service interface</li>
-<li>lib_payments.js - Payment services interface</li>
+<li>lib_paymentsservice.js - Payment services interface</li>
 <li>lib_referralservice.js - User referral services interface</li>
 <li>lib_shareservice.js - Sharing services interface</li>
 <li>lib_socials - Wrappers for various social API's, Facebook is currently the only one implemented (provides login etc)</li>
@@ -183,6 +186,12 @@ Over time a variety of payment processing services will be added to the IGX SDK.
 <ul>
 <li>Kongregate</li>
 <li>PayPal Checkout</li>
+</ul>
+
+## Chat Services
+Over time a variety of user chat services will be added to the IGX SDK. At the time of writing the following chat services have been added:
+<ul>
+<li>Kongregate</li>
 </ul>
 
 ## Important Notices!

@@ -7,8 +7,13 @@
 // type: invite - Invite another user to play { text: "message to share",  }
 // type: feed - Shares messagr to users feed { text: "message to share", image: "url of feed image", params: { params to pass in to game link } }
 // type: shout - Shares a shout out { text: "message to shout out", filter: "see below for detail", params: { params to pass in to game link } }
+// type: private - Sends private mssage from app to user { text: "message to shout out" }
 //
 // filter types: "played" - people that already play the game, "not_played" - people that have not yet played the game, "list of id's" specific people, "" - everyone
+//
+// Chat options
+// messageSentCallback - A callback which is called when a chat message is sent
+// messageReceivedCallback - A callback which is called when a chat message is received
 
 function LibKongregate()
 {
@@ -32,8 +37,26 @@ LibKongregate.LogError = function(message)
 LibKongregate.prototype.Init = function(options)
 {
     LibKongregate.Log(">>>> Kongregate: Init");
-    LibKongregate.Log(kongregateAPI);
+
     var self = this;
+    var post_login = function()
+    {
+        LibKongregate.Log(">>>> Kongregate: Logged in");
+        self.loggedIn = true;
+        if (self.loggedinCallback !== undefined)
+            self.loggedinCallback();
+        self.messageSentCallback = FBInstant.options.chatOptions.messageSentCallback;
+        self.messageReceivedCallback = FBInstant.options.chatOptions.messageReceivedCallback;
+        self.kongregate.chat.addEventListener("message", function(event) {
+            if (self.messageSentCallback !== undefined)
+                self.messageSentCallback(new ChatService.Message(event.data.message, event.data.username, "sent", null));
+        });
+        self.kongregate.chat.addEventListener("room.message", function(event) {
+            if (self.messageReceivedCallback !== undefined)
+                self.messageReceivedCallback(new ChatService.Message(event.data.message, event.data.username, "recv", event.data.room));
+        });
+    }
+
     kongregateAPI.loadAPI(function() {
         LibKongregate.Log(">>>> Kongregate: API Loaded");
         self.kongregate = kongregateAPI.getAPI();
@@ -41,16 +64,13 @@ LibKongregate.prototype.Init = function(options)
         if (!self.kongregate.services.isGuest())
         {
             LibKongregate.Log(">>>> Kongregate: Already logged in");
-            self.loggedIn = true;
+            post_login();
         }
         else
         {
             LibKongregate.Log(">>>> Kongregate: Not logged in");
             self.kongregate.services.addEventListener('login', function() {
-                LibKongregate.Log(">>>> Kongregate: Logged in");
-                self.loggedIn = true;
-                if (self.loggedinCallback !== undefined)
-                    self.loggedinCallback();
+                post_login();
             });
         }
     });
@@ -72,6 +92,10 @@ LibKongregate.prototype.InitShare = function(options)
 {
 }
 
+LibKongregate.prototype.InitChat = function(options)
+{
+}
+
 LibKongregate.prototype.addSupportedAPI = function(type)
 {
     if (type === "user")
@@ -88,6 +112,12 @@ LibKongregate.prototype.addSupportedAPI = function(type)
     else if (type === "share")
     {
         FBInstant.supportedAPIs.push("shareAsync");
+    }
+    else if (type === "chat")
+    {
+        FBInstant.supportedAPIs.push("ext.chatSendAsync");
+        FBInstant.supportedAPIs.push("ext.chatStartAsync");
+        FBInstant.supportedAPIs.push("ext.chatEndAsync");
     }
     else if (type === "payments")
     {
@@ -259,7 +289,7 @@ LibKongregate.prototype.GetPurchases = function(done_cb)
             for (var t = 0; t < result.data.length; t++)
             {
                 var purchase = result.data[t];
-                var p = new PaymentsService.Purchase("", purchase.id, purchase.identifier, null, null, null);
+                var p = new PaymentsService.Purchase("", purchase.id, purchase.identifier, null, purchase.id, null);
                 p.data = purchase.data;
                 p.remainingUses = purchase.remaining_uses;
                 purchases.push(p);
@@ -298,17 +328,17 @@ LibKongregate.prototype.SharePrimary = function(options)
             content: options.text,
             image_url: options.image,
             kv_params: options.data, function(result) {
-                LibKongregate.Log(">>>> Kongregate: feed Result");
-                console.log(result);
             }
         });
     }
     else if (options.type === "shout")
     {
         this.kongregate.services.showShoutBox(options.text, function(result) {
-            LibKongregate.Log(">>>> Kongregate: shout Result");
-            console.log(result);
         });
+    }
+    else if (options.type === "private")
+    {
+        this.kongregate.services.privateMessage(options.text);
     }
     else
     {
@@ -323,3 +353,49 @@ LibKongregate.prototype.SharePrimary = function(options)
     }
 }
 
+//
+// STATS
+//
+LibKongregate.prototype.SendStat = function(options)
+{
+    LibKongregate.Log(">>>> Kongregate: SendStat");
+    if (!this.loggedIn)
+        return false;
+
+    this.kongregate.stats.submit(options.stat, options.value);
+    return true;
+}
+
+//
+// CHAT
+//
+LibKongregate.prototype.StartChat = function(options)
+{
+    LibKongregate.Log(">>>> Kongregate: StartChat");
+    LibKongregate.Log(options);
+    if (!this.loggedIn)
+        return false;
+    
+    this.kongregate.chat.showTab(options.name, options.description, options.options);
+    return true;
+}
+
+LibKongregate.prototype.EndChat = function(options)
+{
+    LibKongregate.Log(">>>> Kongregate: EndChat");
+    if (!this.loggedIn)
+        return false;
+    
+    this.kongregate.chat.closeTab();
+    return true;
+}
+
+LibKongregate.prototype.SendChatMessage = function(options)
+{
+    LibKongregate.Log(">>>> Kongregate: SendChatMessage");
+    if (!this.loggedIn)
+        return false;
+
+    this.kongregate.chat.displayMessage(options.message, options.username);
+    return true;
+}

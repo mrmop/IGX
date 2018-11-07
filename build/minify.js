@@ -13,15 +13,18 @@ var sources = [
 	'../src/lib_messagingservice.js',
 	'../src/lib_referralservice.js',
 	'../src/lib_shareservice.js',
+	'../src/lib_chatservice.js',
 	'../src/vendors/lib_generic.js',
 	'../src/vendors/lib_xtralife.js',			// Exclude if not needed
+	'../src/vendors/lib_kongregate.js',			// Exclude if not needed
 	'../src/vendors/lib_crazygames.js',			// Exclude if not needed
 	'../src/vendors/lib_gamedistribution.js',	// Exclude if not needed
+	'../src/vendors/lib_adinplay.js',			// Exclude if not needed
 	'../src/vendors/lib_googleanalytics.js',	// Exclude if not needed
 	'../src/vendors/lib_paypal.js',				// Exclude if not needed
-	'../src/lib_ads.js',
-	'../src/lib_payments.js',
-	'../src/lib_analytics.js',
+	'../src/lib_adsservice.js',
+	'../src/lib_paymentsservice.js',
+	'../src/lib_analyticsservice.js',
 ];
 
 concat(sources, "../lib/igx_debug.js").then(function()

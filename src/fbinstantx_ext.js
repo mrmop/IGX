@@ -281,6 +281,36 @@ FBInstant.ext = {
             resolve();
         });        
     },
+    /**
+     * Send a chat message
+     * @param options {object} chat options
+     */
+    chatSendAsync: function(options) {
+        return new Promise(function(resolve, reject) {
+            ChatService.instance.SendChatMessage(options);
+            resolve();
+        });        
+    },
+    /**
+     * Start a chat
+     * @param options {object} chat options
+     */
+    chatStartAsync: function(options) {
+        return new Promise(function(resolve, reject) {
+            ChatService.instance.StartChat(options);
+            resolve();
+        });        
+    },
+    /**
+     * End a chat
+     * @param options {object} chat options
+     */
+    chatEndAsync: function(options) {
+        return new Promise(function(resolve, reject) {
+            ChatService.instance.EndChat(options);
+            resolve();
+        });        
+    },
 }
 
 
