@@ -22,7 +22,6 @@ The following features are available:
 <li><a href="https://github.com/mrmop/IGX/wiki/Monetisation">Interstitial and Rewarded adverts</a></li>
 <li><a href="https://github.com/mrmop/IGX/wiki/Analytics">Analytics</a></li>
 <li><a href="https://github.com/mrmop/IGX/wiki/Monetisation">Payments</a></li>
-<li><a href="https://github.com/mrmop/IGX/wiki/Chat">Chat</a></li>
 </ul>
 
 ## What other features are available?
@@ -37,7 +36,7 @@ The layer also includes additional functionality that is available outside of th
 <li>Real time user to user messaging</li>
 <li>User chat</li>
 <li>Referral system</li>
-<li>Sharing on Twitter</li>
+<li>Sharing on Twitter and other networks</li>
 </ul>
 
 ## What features will be coming?
@@ -156,22 +155,47 @@ You can read more about user management on the <a href="https://github.com/mrmop
 ## Entry Point Data
 Entry point data is passed via the URL in the data parameter. The data object passed must be url encoded. Note that when you make a call to shareAsync the data object passed in options.data will be sent with the URL. When a user clicks the link the data will be available via getEntryPointData().
 
+## User Management
+IGX supports user login and mangagement. The following user providers are currently supported:
+<ul>
+<li>Xtralife</li>
+<li>Kongregate</li>
+</ul>
+
+## Server Side Data Persistence
+IGX supports server side data persistence for sharing data across devices. The following storage providers are currently supported:
+<ul>
+<li>Xtralife</li>
+</ul>
+
+See the <a href="https://github.com/mrmop/IGX/wiki/Data-Persistence">Data Persistence wiki page</a> for more info.
+
 ## Sharing
-IGX supports social sharing. The following social sharing providers are currrently supported:
+IGX supports social sharing. The following social sharing providers are currently supported:
 <ul>
 <li>Facebook</li>
 <li>Twitter</li>
 <li>Kongregate</li>
 </ul>
 
-See the <a href="https://github.com/mrmop/IGX/wiki/Social-Sharing">Social Sharing wiki page</a> for more info.
+See the <a href="https://github.com/mrmop/IGX/wiki/Social-Sharing">Leaderboards wiki page</a> for more info.
+
+## Leaderboards
+IGX supports leaderboards. The following leaderboard providers are currently supported:
+<ul>
+<li>Xtralife</li>
+</ul>
+
+See the <a href="https://github.com/mrmop/IGX/wiki/Leaderboards">Social Sharing wiki page</a> for more info.
 
 ## Analytics
-IGX supports collection of user data for game analytics purposes. The following analytics providers are currrently supported:
+IGX supports collection of user data for game analytics purposes. The following analytics providers are currently supported:
 <ul>
 <li>Google Analytics</li>
 <li>Kongregate</li>
 </ul>
+
+See the <a href="https://github.com/mrmop/IGX/wiki/Analytics">Analytics wiki page</a> for more info.
 
 ## Ads Services and Portals
 Over time many portals and ad providers will be added to the IGX SDK. At the time of writing the following ad providers / portals have been added:
@@ -181,6 +205,8 @@ Over time many portals and ad providers will be added to the IGX SDK. At the tim
 <li>Game Distribution</li>
 </ul>
 
+See the <a href="https://github.com/mrmop/IGX/wiki/Monetisation">Monetisation wiki page</a> for more info.
+
 ## Payment Services
 Over time a variety of payment processing services will be added to the IGX SDK. At the time of writing the following payment services have been added:
 <ul>
@@ -188,11 +214,21 @@ Over time a variety of payment processing services will be added to the IGX SDK.
 <li>PayPal Checkout</li>
 </ul>
 
+See the <a href="https://github.com/mrmop/IGX/wiki/Monetisation">Monetisation wiki page</a> for more info.
+
 ## Chat Services
 Over time a variety of user chat services will be added to the IGX SDK. At the time of writing the following chat services have been added:
 <ul>
 <li>Kongregate</li>
 </ul>
+
+## User to User Game Messaging Services
+IGX supports user to user game messaging. The following providers are currently supported:
+<ul>
+<li>Xtralife</li>
+</ul>
+
+See the <a href="https://github.com/mrmop/IGX/wiki/User-to-User-Messaging">User to User Messaging wiki page</a> for more info.
 
 ## Important Notices!
 <ul>
