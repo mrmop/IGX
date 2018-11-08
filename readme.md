@@ -260,7 +260,10 @@ Other possible integrations with the IGX SDK:
 </ul>
 
 ## Examples of games using IGX
-<a href="https://www.crazygames.com/game/merge-babies">Merge Babies on Crazy Games</a>
+<a href="https://www.crazygames.com/game/merge-babies">Merge Babies on Crazy Games</a>.
 
 ## Wiki
 Read more about IGX on the <a href="https://github.com/mrmop/IGX/wiki">IGX wiki</a>.
+
+## Community
+Join the <a href="https://www.facebook.com/IGXSDK/">IGX SDK community on Facebook</a>.
