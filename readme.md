@@ -260,10 +260,12 @@ Other possible integrations with the IGX SDK:
 </ul>
 
 ## Examples of games using IGX
-<a href="http://m.me/725255924476151?game=mergebabies">Merge Babies on Facebook Instant Games</a>.
-<a href="https://www.crazygames.com/game/merge-babies">Merge Babies on Crazy Games</a>.
-<a href="https://gamedistribution.com/games/merge-babies">Merge Babies on Game Distribution</a>.
-<a href="https://www.kongregate.com/games/drmop/merge-babies">Merge Babies on Kongregate (coming soon)</a>.
+<ul>
+<li><a href="http://m.me/725255924476151?game=mergebabies">Merge Babies on Facebook Instant Games</a>.</li>
+<li><a href="https://www.crazygames.com/game/merge-babies">Merge Babies on Crazy Games</a>.</li>
+<li><a href="https://gamedistribution.com/games/merge-babies">Merge Babies on Game Distribution</a>.</li>
+<li><a href="https://www.kongregate.com/games/drmop/merge-babies">Merge Babies on Kongregate (coming soon)</a>.</li>
+</ul>
 
 ## Wiki
 Read more about IGX on the <a href="https://github.com/mrmop/IGX/wiki">IGX wiki</a>.
