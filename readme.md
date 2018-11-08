@@ -272,3 +272,7 @@ Read more about IGX on the <a href="https://github.com/mrmop/IGX/wiki">IGX wiki<
 
 ## Community
 Join the <a href="https://www.facebook.com/IGXSDK/">IGX SDK community on Facebook</a>.
+
+***
+Help keep this project alive by donating
+[![paypal](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HJFSS5LUSNKMG)
