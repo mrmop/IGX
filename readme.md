@@ -264,7 +264,7 @@ Other possible integrations with the IGX SDK:
 <li><a href="http://m.me/725255924476151?game=mergebabies">Merge Babies on Facebook Instant Games</a>.</li>
 <li><a href="https://www.crazygames.com/game/merge-babies">Merge Babies on Crazy Games</a>.</li>
 <li><a href="https://gamedistribution.com/games/merge-babies">Merge Babies on Game Distribution</a>.</li>
-<li><a href="https://www.kongregate.com/games/drmop/merge-babies">Merge Babies on Kongregate (coming soon)</a>.</li>
+<li><a href="https://www.kongregate.com/games/drmop/mergebabies">Merge Babies on Kongregate</a>.</li>
 </ul>
 
 ## Wiki
