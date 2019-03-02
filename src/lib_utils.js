@@ -7,8 +7,7 @@ var LibUtils = {
     Log: function(message)
     {
         console.log(message);
-    },
-    
+    },  
     LogError: function(message)
     {
         console.log(message);

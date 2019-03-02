@@ -82,7 +82,7 @@ UserService.prototype.Login = function(allow_anonymous, done_cb)
     if (this.service === undefined)
     {
         if (done_cb !== undefined)
-            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "}, null);
+            done_cb(null, null);
     }
     else return this.service.Login(allow_anonymous, done_cb);
 }
@@ -132,7 +132,7 @@ UserService.prototype.Logout = function(done_cb)
     if (this.service === undefined)
     {
         if (done_cb !== undefined)
-            done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "});
+            done_cb(null);
     }
     else return this.service.Logout(done_cb);
 };
@@ -187,11 +187,11 @@ UserService.prototype.GetGamerData = function()
     else return this.service.GetGamerData();
 }
 
-UserService.prototype.GetProfileData = function(done_cb)
+UserService.prototype.GetProfileData = function()
 {
     if (this.service === undefined)
         return null;
-    else return this.service.GetProfileData(done_cb);
+    else return this.service.GetProfileData();
 }
 
 UserService.prototype.GetProfile = function(done_cb)

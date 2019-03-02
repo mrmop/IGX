@@ -12,7 +12,7 @@ FBInstant.ext = {
      * @return true if logged in
      */
     isLoggedIn: function() {
-        return UserService.instance.GetProfileData() !== undefined;
+        return UserService.instance.GetProfileData() !== null;
     },
     /**
      * Gets the login type, e.g. anonymous, email, facebook etc..
@@ -20,7 +20,7 @@ FBInstant.ext = {
      */
     getLoginType: function() {
         var data = UserService.instance.GetProfileData();
-        if (data === undefined)
+        if (data === null)
             return "none";
         return data.network;
     },
@@ -30,7 +30,7 @@ FBInstant.ext = {
      */
     getRegistrationDate: function() {
         var data = UserService.instance.GetProfileData();
-        if (data === undefined)
+        if (data === null)
             return null;
         return data.registerTime;
     },
@@ -282,6 +282,21 @@ FBInstant.ext = {
         });        
     },
     /**
+     * Opens an external URL in a new window
+     * @param options {object} contains url
+     */
+    openExternalURL: function(options) {
+        return new Promise(function(resolve, reject) {
+            if (ShareService.instance === undefined)
+                reject({code: "CLIENT_UNSUPPORTED_OPERATION", message: "CLIENT_UNSUPPORTED_OPERATION"});
+            else
+            {
+                ShareService.instance.OpenURL(options);
+                resolve();
+            }
+        });        
+    },
+    /**
      * Send a chat message
      * @param options {object} chat options
      */
@@ -310,6 +325,12 @@ FBInstant.ext = {
             ChatService.instance.EndChat(options);
             resolve();
         });        
+    },
+    /**
+     * Show leaderboard UI
+     */
+    showLeaderboard: function(options) {
+        LeaderboardsService.instance.ShowLeaderboard(options);
     },
 }
 

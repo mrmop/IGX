@@ -61,3 +61,11 @@ ShareService.prototype.ShareTwitter = function(options)
     var url = encodeURIComponent(message);
     window.open('https://twitter.com/intent/tweet?text=' + url, 'pop', 'width=' + opts.dlgWidth + ', height=' + opts.dlgHeight + ', scrollbars=no');
 }
+
+ShareService.prototype.OpenURL = function(options)
+{
+    if (this.service === undefined)
+        return;
+    return this.service.OpenURL(options);
+}
+

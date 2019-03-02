@@ -49,7 +49,8 @@ var FBInstant = {
     ],
     __state: {
         initialized: false,
-        purchasingReadyCallback: null
+        purchasingReadyCallback: null,
+        platform: "WEB"
     },
     Log: function(message)
     {
@@ -155,6 +156,18 @@ var FBInstant = {
             });
         },
         getSignedPlayerInfoAsync: function() {
+            // TODO:
+            return new Promise(function(resolve, reject) {
+                resolve(null);
+            });
+        },
+        canSubscribeBotAsync: function() {
+            // TODO:
+            return new Promise(function(resolve, reject) {
+                resolve(false);
+            });
+        },
+        subscribeBotAsync: function() {
             // TODO:
             return new Promise(function(resolve, reject) {
                 resolve(null);
@@ -363,7 +376,7 @@ var FBInstant = {
     },
 
     getPlatform: function() {
-        return 'WEB';
+        return FBInstant.__state.platform;
     },
 
     getSDKVersion: function() {
@@ -423,6 +436,8 @@ var FBInstant = {
 
     getInterstitialAdAsync: function(id)
     {
+        if (AdsService.instance === undefined)
+            return;
         return new Promise(function(resolve, reject) {
             if (AdsService.instance.IsSupported(id, "inter"))
                 resolve(new FBInstant.AdInstance(id, "inter"));
@@ -433,6 +448,8 @@ var FBInstant = {
 
     getRewardedVideoAsync: function(id)
     {
+        if (AdsService.instance === undefined)
+            return;
         return new Promise(function(resolve, reject) {
             if (AdsService.instance.IsSupported(id, "video"))
                 resolve(new FBInstant.AdInstance(id, "video"));
@@ -478,6 +495,8 @@ FBInstant.AdInstance.prototype.getPlacementID = function()
 
 FBInstant.AdInstance.prototype.loadAsync = function()
 {
+    if (AdsService.instance === undefined)
+        return;
     var self = this;
     return new Promise(function(resolve, reject) {
         AdsService.instance.PreloadAd(self.id, self.type, function(error) {
@@ -491,6 +510,8 @@ FBInstant.AdInstance.prototype.loadAsync = function()
 
 FBInstant.AdInstance.prototype.showAsync = function()
 {
+    if (AdsService.instance === undefined)
+        return;
     var self = this;
     return new Promise(function(resolve, reject) {
         AdsService.instance.ShowAd(self.id, self.type, function(error) {
@@ -504,6 +525,8 @@ FBInstant.AdInstance.prototype.showAsync = function()
 
 FBInstant.Leaderboard.prototype.getEntriesAsync = function(count, start)
 {
+    if (LeaderboardsService.instance === undefined)
+        return;
     var self = this;
     return new Promise(function(resolve, reject) {
         LeaderboardsService.instance.LeaderboardGetPaged(self.name, ((start / count) | 0) + 1, count, function(entries) {
@@ -514,6 +537,8 @@ FBInstant.Leaderboard.prototype.getEntriesAsync = function(count, start)
 
 FBInstant.Leaderboard.prototype.getConnectedPlayerEntriesAsync = function(count, start)
 {
+    if (LeaderboardsService.instance === undefined)
+        return;
     var self = this;
     return new Promise(function(resolve, reject) {
         LeaderboardsService.instance.LeaderboardGetFriendsPaged(self.name, ((start / count) | 0) + 1, count, function(entries) {
@@ -524,6 +549,8 @@ FBInstant.Leaderboard.prototype.getConnectedPlayerEntriesAsync = function(count,
 
 FBInstant.Leaderboard.prototype.getPlayerEntryAsync = function()
 {
+    if (LeaderboardsService.instance === undefined)
+        return;
     var self = this;
     return new Promise(function(resolve, reject) {
         LeaderboardsService.instance.LeaderboardGetRank(self.name, function(entry) {
@@ -534,6 +561,8 @@ FBInstant.Leaderboard.prototype.getPlayerEntryAsync = function()
 
 FBInstant.Leaderboard.prototype.setScoreAsync = function(score, meta)
 {
+    if (LeaderboardsService.instance === undefined)
+        return;
     var self = this;
     return new Promise(function(resolve, reject) {
         LeaderboardsService.instance.LeaderboardSetScore(self.name, FBInstant.options.leaderboardOptions.sortOrder, score, meta, function(entry) {

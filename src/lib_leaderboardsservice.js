@@ -119,3 +119,13 @@ LeaderboardsService.prototype.LeaderboardSetScore = function(board_name, sort_or
     }
     else return this.service.LeaderboardSetScore(board_name, sort_order, score, extra, done_cb)
 }
+
+LeaderboardsService.prototype.ShowLeaderboard = function(options)
+{
+    if (this.service === undefined)
+    {
+        if (done_cb !== undefined)
+            done_cb(false);
+    }
+    else return this.service.ShowLeaderboard(options);
+}
