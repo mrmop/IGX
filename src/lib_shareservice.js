@@ -62,6 +62,15 @@ ShareService.prototype.ShareTwitter = function(options)
     window.open('https://twitter.com/intent/tweet?text=' + url, 'pop', 'width=' + opts.dlgWidth + ', height=' + opts.dlgHeight + ', scrollbars=no');
 }
 
+ShareService.prototype.GetShareURL = function(options)
+{
+    var opts = FBInstant.options.shareOptions;
+    var url = opts.shareURI;
+    if (options.data !== undefined)
+        url += "?data=" + encodeURIComponent(JSON.stringify(options.data));
+    return url;
+}
+
 ShareService.prototype.OpenURL = function(options)
 {
     if (this.service === undefined)

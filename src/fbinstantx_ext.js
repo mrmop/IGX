@@ -282,6 +282,15 @@ FBInstant.ext = {
         });        
     },
     /**
+     * Get a sharable url
+     * @param options {object} message options, only data is supported at this time
+     */
+    getShareURLAsync: function(options) {
+        return new Promise(function(resolve, reject) {
+            resolve(ShareService.instance.GetShareURL(options));
+        });        
+    },
+    /**
      * Opens an external URL in a new window
      * @param options {object} contains url
      */
