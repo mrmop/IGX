@@ -259,6 +259,9 @@ Other possible integrations with the IGX SDK:
 <li>Kizi</li>
 </ul>
 
+## Android and iOS App Stores
+The IGX SDK is currently in the process of being extended to reach Android and iOS mobile platforms, enabling you to deploy your Facebook Instant and Web Games to mobile app stores too with support for in-app pruchases, adverts, social sharing, leaderboards etc.. More details coming soon.
+
 ## Examples of games using IGX
 <ul>
 <li><a href="http://m.me/725255924476151?game=mergebabies">Merge Babies on Facebook Instant Games</a>.</li>
