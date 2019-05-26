@@ -26,7 +26,7 @@ The following features are available:
 <li><a href="https://github.com/mrmop/IGX/wiki/Monetisation">Interstitial and Rewarded adverts</a></li>
 <li><a href="https://github.com/mrmop/IGX/wiki/Analytics">Analytics</a></li>
 <li><a href="https://github.com/mrmop/IGX/wiki/Monetisation">Payments</a></li>
-<li>Deployment to Androiid and iOS</li>
+<li><a href="https://github.com/mrmop/IGX/wiki/Deploying-to-Mobile">Deployment to Android and iOS</a></li>
 </ul>
 
 ## What other features are available?
