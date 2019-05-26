@@ -3,13 +3,17 @@
 ## What is IGX?
 IGX stands for Instant Games Extension, it is basically a replacement object for the Facebook Instant Games FBInstant object which enables developers to:
 <ul>
-<li>Deploy games created that use the <a href="https://developers.facebook.com/docs/games/instant-games">Facebook Instant Games API</a> to the web and beyond with little to no code changes</li>
+<li>Deploy games created that use the <a href="https://developers.facebook.com/docs/games/instant-games">Facebook Instant Games API</a> to the web and mobile with little to no code changes</li>
+<li>Deploy HTML5 web games to mobile</li>
+<li>Provide a common API across web portals</li>
 <li>Build instant game features into existing games before deploying to the Instant Games platform, saving valuable time and money</li>
 <li>Bolster the existing Instant Games platform with new features via FBInstant.ext, such as real time user to user communication</li>
 </ul>
 
 ## Why IGX?
-IGX was created to enable developers to maximise their development time and money. It's difficult and time consuming to port games to Instant Games taking into consideration platform features, but its also more difficult to port games from Instant Games to web because so many features are lost without considerable back-end work to replace them. IGX attempts to replace some features that the IG platform provides to enable the developer to retain as much functionality as possible.
+IGX was created to enable HTML5 and Facebook Instant Game developers to maximise their development time and money. It's difficult and time consuming to port games to Instant Games taking into consideration platform features, but its also more difficult to port games from Instant Games to web and mobile because so many features are lost without considerable back-end work to replace them. IGX attempts to replace some features that the IG platform provides to enable the developer to retain as much functionality as possible.
+
+With the aid of Unity, IGX has evolved into an easy to use solution that enables web developers to put their web games and apps onto mobile platforms such as Android and iOS.
 
 ## What features are available?
 The following features are available:
@@ -22,6 +26,7 @@ The following features are available:
 <li><a href="https://github.com/mrmop/IGX/wiki/Monetisation">Interstitial and Rewarded adverts</a></li>
 <li><a href="https://github.com/mrmop/IGX/wiki/Analytics">Analytics</a></li>
 <li><a href="https://github.com/mrmop/IGX/wiki/Monetisation">Payments</a></li>
+<li>Deployment to Androiid and iOS</li>
 </ul>
 
 ## What other features are available?
@@ -37,6 +42,7 @@ The layer also includes additional functionality that is available outside of th
 <li>User chat</li>
 <li>Referral system</li>
 <li>Sharing on Twitter and other networks</li>
+<li>File upload</li>
 </ul>
 
 ## What features will be coming?
@@ -89,7 +95,12 @@ Vendor specific files:
 <li>lib_googleanalytics.js - Google Analytics implementation of analytics service</li>
 <li>lib_kongregate.js - Kongregate implementation of game services</li>
 <li>lib_paypal.js - PayPal implementation of payments service using PayPal Checkout</li>
+<li>lib_unity.js - Unity implementation of IGX</li>
 <li>lib_xtralife.js - Xtralife implementation of game services</li>
+</ul>
+Unity files:
+<ul>
+<li>igx.unitypackage - IGX for Unity package</li>
 </ul>
 
 ## Extensions
@@ -160,6 +171,7 @@ IGX supports user login and mangagement. The following user providers are curren
 <ul>
 <li>Xtralife</li>
 <li>Kongregate</li>
+<li>Unity (Google Play Games and Game Centre)</li>
 </ul>
 
 ## Server Side Data Persistence
@@ -176,6 +188,7 @@ IGX supports social sharing. The following social sharing providers are currentl
 <li>Facebook</li>
 <li>Twitter</li>
 <li>Kongregate</li>
+<li>Unity</li>
 </ul>
 
 See the <a href="https://github.com/mrmop/IGX/wiki/Social-Sharing">Leaderboards wiki page</a> for more info.
@@ -184,6 +197,7 @@ See the <a href="https://github.com/mrmop/IGX/wiki/Social-Sharing">Leaderboards 
 IGX supports leaderboards. The following leaderboard providers are currently supported:
 <ul>
 <li>Xtralife</li>
+<li>Unity (Google Play Games and Game Centre)</li>
 </ul>
 
 See the <a href="https://github.com/mrmop/IGX/wiki/Leaderboards">Social Sharing wiki page</a> for more info.
@@ -193,6 +207,7 @@ IGX supports collection of user data for game analytics purposes. The following 
 <ul>
 <li>Google Analytics</li>
 <li>Kongregate</li>
+<li>Unity</li>
 </ul>
 
 See the <a href="https://github.com/mrmop/IGX/wiki/Analytics">Analytics wiki page</a> for more info.
@@ -203,6 +218,7 @@ Over time many portals and ad providers will be added to the IGX SDK. At the tim
 <li>AdInPlay</li>
 <li>Crazy Games</li>
 <li>Game Distribution</li>
+<li>Unity</li>
 </ul>
 
 See the <a href="https://github.com/mrmop/IGX/wiki/Monetisation">Monetisation wiki page</a> for more info.
@@ -220,6 +236,7 @@ See the <a href="https://github.com/mrmop/IGX/wiki/Monetisation">Monetisation wi
 Over time a variety of user chat services will be added to the IGX SDK. At the time of writing the following chat services have been added:
 <ul>
 <li>Kongregate</li>
+<li>Unity</li>
 </ul>
 
 ## User to User Game Messaging Services
@@ -260,7 +277,7 @@ Other possible integrations with the IGX SDK:
 </ul>
 
 ## Android and iOS App Stores
-The IGX SDK is currently in the process of being extended to reach Android and iOS mobile platforms, enabling you to deploy your Facebook Instant and Web Games to mobile app stores too with support for in-app pruchases, adverts, social sharing, leaderboards etc.. More details coming soon.
+You can nnow deploy your games and apps  to mobile app stores using the IGX SDK using IGX for Unity.
 
 ## Examples of games using IGX
 <ul>
@@ -268,6 +285,8 @@ The IGX SDK is currently in the process of being extended to reach Android and i
 <li><a href="https://www.crazygames.com/game/merge-babies">Merge Babies on Crazy Games</a>.</li>
 <li><a href="https://gamedistribution.com/games/merge-babies">Merge Babies on Game Distribution</a>.</li>
 <li><a href="https://www.kongregate.com/games/drmop/mergebabies">Merge Babies on Kongregate</a>.</li>
+<li><a href="https://itunes.apple.com/us/app/merge-babies/id1444521624">Merge Babies on the App Store</a>.</li>
+<li><a href="https://play.google.com/store/apps/details?id=com.drmop.mergebabies">Merge Babies on Google Play</a>.</li>
 </ul>
 
 ## Wiki
