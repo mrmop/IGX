@@ -228,6 +228,7 @@ Over time a variety of payment processing services will be added to the IGX SDK.
 <ul>
 <li>Kongregate</li>
 <li>PayPal Checkout</li>
+<li>App stores via Unity</li>
 </ul>
 
 See the <a href="https://github.com/mrmop/IGX/wiki/Monetisation">Monetisation wiki page</a> for more info.
