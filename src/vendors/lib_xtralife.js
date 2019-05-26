@@ -2,6 +2,8 @@
 // Copyright (C) Mat Hopwood www.drmop.com
 // For details of license see license.txt
 //
+// getLeaderboardAsync() accepts a second property called options which supplies the following options:
+//   sortOrder: "hightolow", // Sort order
 
 function LibXtralife()
 {
@@ -388,7 +390,7 @@ LibXtralife.prototype.ListUsers = function(match_pattern, start, limit, done_cb)
 //
 // LEADERBOARDS
 //
-LibXtralife.prototype.LeaderboardGetPaged = function(board_name, page_number, count, done_cb)
+LibXtralife.prototype.LeaderboardGetPaged = function(lbd, board_name, page_number, count, done_cb)
 {
     var self = this;
     if (this.gamerData)
@@ -429,7 +431,7 @@ LibXtralife.prototype.LeaderboardGetPaged = function(board_name, page_number, co
     }
 }
 
-LibXtralife.prototype.LeaderboardGetFriendsPaged = function(board_name, page_number, count, done_cb)
+LibXtralife.prototype.LeaderboardGetFriendsPaged = function(lbd, board_name, page_number, count, done_cb)
 {
     var self = this;
     if (this.gamerData)
@@ -468,7 +470,7 @@ LibXtralife.prototype.LeaderboardGetFriendsPaged = function(board_name, page_num
     }
 }
 
-LibXtralife.prototype.LeaderboardGetRank = function(board_name, done_cb)
+LibXtralife.prototype.LeaderboardGetRank = function(lbd, board_name, done_cb)
 {
     var self = this;
     if (this.gamerData)
@@ -505,13 +507,13 @@ LibXtralife.prototype.LeaderboardGetRank = function(board_name, done_cb)
     }
 }
 
-LibXtralife.prototype.LeaderboardSetScore = function(board_name, sort_order, score, extra, done_cb)
+LibXtralife.prototype.LeaderboardSetScore = function(lbd, board_name, score, extra, done_cb)
 {
     var self = this;
     if (this.gamerData)
     {
         var scoreObject = {"score": Number(score), "info": extra};
-        this.clan.withGamer(this.gamerData).leaderboards(this.clan.privateDomain).set(board_name, sort_order, scoreObject, function(error, result)
+        this.clan.withGamer(this.gamerData).leaderboards(this.clan.privateDomain).set(board_name, lbd.options.sortOrder, scoreObject, function(error, result)
         {
             if (error !== null)
             {

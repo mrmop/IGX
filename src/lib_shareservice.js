@@ -12,6 +12,8 @@ function ShareService(name)
             this.service = new LibGeneric();
         else if (name === "kongregate")
             this.service = new LibKongregate();
+        else if (name === "unity")
+            this.service = new LibUnity();
     }
     this.name = name;
     ShareService.instance = this;

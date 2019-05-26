@@ -14,6 +14,8 @@ function AdsService(name)
             this.service = new LibGameDistribution();
         else if (name === "adinplay")
             this.service = new LibAdInPlay();
+        else if (name === "unity")
+            this.service = new LibUnity();
     }
     this.name = name;
     AdsService.instance = this;

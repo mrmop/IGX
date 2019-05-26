@@ -12,6 +12,8 @@ function UserService(name)
             this.service = new LibXtralife();
         else if (name === "kongregate")
             this.service = new LibKongregate();
+        else if (name === "unity")
+            this.service = new LibUnity();
     }
     this.name = name;
     UserService.instance = this;

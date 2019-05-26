@@ -32,6 +32,8 @@ function PaymentsService(name)
             this.service = new LibPayPal();
         else if (name === "kongregate")
             this.service = new LibKongregate();
+        else if (name === "unity")
+            this.service = new LibUnity();
     }
     this.name = name;
     PaymentsService.instance = this;

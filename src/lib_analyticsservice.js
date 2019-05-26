@@ -12,6 +12,8 @@ function AnalyticsService(name)
             this.service = new LibGoogleAnalytics();
         else if (name === "kongregate")
             this.service = new LibKongregate();
+        else if (name === "unity")
+            this.service = new LibUnity();
     }
     this.name = name;
     AnalyticsService.instance = this;

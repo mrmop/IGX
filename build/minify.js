@@ -22,6 +22,7 @@ var sources = [
 	'../src/vendors/lib_adinplay.js',			// Exclude if not needed
 	'../src/vendors/lib_googleanalytics.js',	// Exclude if not needed
 	'../src/vendors/lib_paypal.js',				// Exclude if not needed
+	'../src/vendors/lib_unity.js',				// Exclude if not needed
 	'../src/lib_adsservice.js',
 	'../src/lib_paymentsservice.js',
 	'../src/lib_analyticsservice.js',

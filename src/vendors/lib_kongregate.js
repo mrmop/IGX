@@ -80,8 +80,9 @@ LibKongregate.prototype.InitAnalytics = function(options)
 {
 }
 
-LibKongregate.prototype.InitPayments = function(options)
+LibKongregate.prototype.InitPayments = function(options, done_cb)
 {
+    done_cb(null);
 }
 
 LibKongregate.prototype.InitUser = function(options)
@@ -150,7 +151,7 @@ LibKongregate.prototype.Login = function(allow_anonymous, done_cb)
     }
     else
     {
-        LibKongregate.Log(">>>> Kongregate: Anonymouse login");
+        LibKongregate.Log(">>>> Kongregate: Anonymous login");
         if (done_cb !== undefined)
             done_cb(null, null);
     }
@@ -327,9 +328,9 @@ LibKongregate.prototype.SharePrimary = function(options)
         this.kongregate.services.showFeedPostBox({
             content: options.text,
             image_url: options.image,
-            kv_params: options.data, function(result) {
-            }
-        });
+			kv_params: options.data
+		}, function(result) {
+		});
     }
     else if (options.type === "shout")
     {
@@ -345,12 +346,17 @@ LibKongregate.prototype.SharePrimary = function(options)
         this.kongregate.services.showInvitationBox({
             content: options.text,
             filter: options.filter,
-            kv_params: options.data, function(result) {
-                LibKongregate.Log(">>>> Kongregate: invite Result");
-                console.log(result);
-            }
+            kv_params: options.data
+        }, function(result) {
+            LibKongregate.Log(">>>> Kongregate: invite Result");
+            console.log(result);
         });
     }
+}
+
+LibKongregate.prototype.OpenURL = function(options)
+{
+    window.open(options.url, "_blank");
 }
 
 //

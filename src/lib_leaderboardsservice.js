@@ -10,6 +10,8 @@ function LeaderboardsService(name)
     {
         if (name === "xtralife")
             this.service = new LibXtralife();
+        else if (name === "unity")
+            this.service = new LibUnity();
     }
     this.name = name;
     LeaderboardsService.instance = this;
@@ -80,44 +82,44 @@ LeaderboardsService.prototype.IsSupported = function()
     return this.service !== undefined;
 }
 
-LeaderboardsService.prototype.LeaderboardGetPaged = function(board_name, page_number, count, done_cb)
+LeaderboardsService.prototype.LeaderboardGetPaged = function(lbd, board_name, page_number, count, done_cb)
 {
     if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb(null);
     }
-    else return this.service.LeaderboardGetPaged(board_name, page_number, count, done_cb);
+    else return this.service.LeaderboardGetPaged(lbd, board_name, page_number, count, done_cb);
 }
 
-LeaderboardsService.prototype.LeaderboardGetFriendsPaged = function(board_name, page_number, count, done_cb)
+LeaderboardsService.prototype.LeaderboardGetFriendsPaged = function(lbd, board_name, page_number, count, done_cb)
 {
     if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb(null);
     }
-    else return this.service.LeaderboardGetFriendsPaged(board_name, page_number, count, done_cb);
+    else return this.service.LeaderboardGetFriendsPaged(lbd, board_name, page_number, count, done_cb);
 }
 
-LeaderboardsService.prototype.LeaderboardGetRank = function(board_name, done_cb)
+LeaderboardsService.prototype.LeaderboardGetRank = function(lbd, board_name, done_cb)
 {
     if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb(null);
     }
-    else return this.service.LeaderboardGetRank(board_name, done_cb);
+    else return this.service.LeaderboardGetRank(lbd, board_name, done_cb);
 }
 
-LeaderboardsService.prototype.LeaderboardSetScore = function(board_name, sort_order, score, extra, done_cb)
+LeaderboardsService.prototype.LeaderboardSetScore = function(lbd, board_name, score, extra, done_cb)
 {
     if (this.service === undefined)
     {
         if (done_cb !== undefined)
             done_cb(false);
     }
-    else return this.service.LeaderboardSetScore(board_name, sort_order, score, extra, done_cb)
+    else return this.service.LeaderboardSetScore(lbd, board_name, score, extra, done_cb)
 }
 
 LeaderboardsService.prototype.ShowLeaderboard = function(options)

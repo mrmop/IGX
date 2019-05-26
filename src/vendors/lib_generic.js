@@ -33,6 +33,7 @@ LibGeneric.prototype.addSupportedAPI = function(type)
     {
         FBInstant.supportedAPIs.push("shareAsync");
         FBInstant.supportedAPIs.push("ext.shareTwitterAsync");
+        FBInstant.supportedAPIs.push("ext.GetShareURL");
     }
 }
 
@@ -41,3 +42,7 @@ LibGeneric.prototype.SharePrimary = function(options)
     ShareService.instance.ShareFacebook(options);
 }
 
+LibGeneric.prototype.OpenURL = function(options)
+{
+    window.open(options.url, "_blank");
+}

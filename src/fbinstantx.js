@@ -8,6 +8,7 @@ var FBInstant = {
         apiKey: "",                 // Game service back-end API key
         apiSecret: "",              // Game service back-end API secret
         devMode: "sandbox",         // sandbox or prod
+        container: null,            // Container element
         shareOptions: {             // Ads service options
             shareURI: "",           // URI used by shareAsync dialog
             dlgWidth: 600,          // shareAsync dialog width
@@ -23,9 +24,6 @@ var FBInstant = {
         messagingOptions: { },      // Messaging service options
         leaderboardsOptions: { },   // Leaderboard service options
         referralsOptions: { },      // Referral service options
-        leaderboardOptions: {       // Leaderboard options
-            sortOrder: "hightolow"  // Sort order
-        },
         chatOptions: { },           // Chat service options
     },
     supportedAPIs: [
@@ -383,6 +381,10 @@ var FBInstant = {
         return '6.2';
     },
 
+    postSessionScore: function() {
+        // TODO: Will be part of lib_leaderboardservice
+    },
+
     shareAsync: function(options) {
         return new Promise(function(resolve, reject) {
             if (ShareService.instance === undefined)
@@ -421,10 +423,14 @@ var FBInstant = {
         this.name = name;
     },
 
-    getLeaderboardAsync: function(name)
+    getLeaderboardAsync: function(name, options)
     {
         return new Promise(function(resolve, reject) {
-            resolve(new FBInstant.Leaderboard(name));
+            var lbd = new FBInstant.Leaderboard(name);
+            if (options === undefined)
+                options = {};
+            lbd.options = options;
+            resolve(lbd);
         });
     },
 
@@ -470,6 +476,15 @@ var FBInstant = {
             new ReferralService(name);
             new ShareService("generic");
         }
+        else if (name === "unity")
+        {
+            new GameService(name);
+            new UserService(name);
+            new LeaderboardsService(name);
+            new PaymentsService(name);
+            new AdsService(name);
+            new ShareService(name);
+        }
         else if (name === "kongregate")
         {
             new GameService(name);
@@ -485,6 +500,22 @@ var FBInstant = {
             new UserService(name);
             new ShareService("generic");
         }
+    },
+
+    matchPlayerAsync: function(matchTag, switchContextWhenMatched, offlineMatch)
+    {
+        // TODO: Will be part of lib_matchmakingservice
+        return new Promise(function(resolve, reject) {
+            reject({code: "CLIENT_UNSUPPORTED_OPERATION", message: "CLIENT_UNSUPPORTED_OPERATION"});
+        });
+    },
+
+    checkCanPlayerMatchAsync : function()
+    {
+        // TODO: Will be part of lib_matchmakingservice
+        return new Promise(function(resolve, reject) {
+            reject({code: "CLIENT_UNSUPPORTED_OPERATION", message: "CLIENT_UNSUPPORTED_OPERATION"});
+        });
     }
 };
 
@@ -529,7 +560,7 @@ FBInstant.Leaderboard.prototype.getEntriesAsync = function(count, start)
         return;
     var self = this;
     return new Promise(function(resolve, reject) {
-        LeaderboardsService.instance.LeaderboardGetPaged(self.name, ((start / count) | 0) + 1, count, function(entries) {
+        LeaderboardsService.instance.LeaderboardGetPaged(self, self.name, ((start / count) | 0) + 1, count, function(entries) {
             resolve(entries);
         });
     })
@@ -541,7 +572,7 @@ FBInstant.Leaderboard.prototype.getConnectedPlayerEntriesAsync = function(count,
         return;
     var self = this;
     return new Promise(function(resolve, reject) {
-        LeaderboardsService.instance.LeaderboardGetFriendsPaged(self.name, ((start / count) | 0) + 1, count, function(entries) {
+        LeaderboardsService.instance.LeaderboardGetFriendsPaged(self, self.name, ((start / count) | 0) + 1, count, function(entries) {
             resolve(entries);
         });
     })
@@ -553,7 +584,7 @@ FBInstant.Leaderboard.prototype.getPlayerEntryAsync = function()
         return;
     var self = this;
     return new Promise(function(resolve, reject) {
-        LeaderboardsService.instance.LeaderboardGetRank(self.name, function(entry) {
+        LeaderboardsService.instance.LeaderboardGetRank(self, self.name, function(entry) {
             resolve(entry);
         });
     })
@@ -565,7 +596,7 @@ FBInstant.Leaderboard.prototype.setScoreAsync = function(score, meta)
         return;
     var self = this;
     return new Promise(function(resolve, reject) {
-        LeaderboardsService.instance.LeaderboardSetScore(self.name, FBInstant.options.leaderboardOptions.sortOrder, score, meta, function(entry) {
+        LeaderboardsService.instance.LeaderboardSetScore(self, self.name, score, meta, function(entry) {
             resolve(entry);
         });
     })
