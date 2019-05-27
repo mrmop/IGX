@@ -1,4 +1,4 @@
-<h1>IGX - The Facebook Instant Games Wrapper for Web and Facebook Instant Game Developers</h1>
+<h1>IGX - Cross portral and cross platform SDK for web game and instant game developers</h1>
 
 ## What is IGX?
 IGX stands for Instant Games Extension, it is basically a replacement object for the Facebook Instant Games FBInstant object which enables developers to:
