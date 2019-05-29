@@ -229,6 +229,7 @@ Over time a variety of payment processing services will be added to the IGX SDK.
 <li>Kongregate</li>
 <li>PayPal Checkout</li>
 <li>App stores via Unity</li>
+<li>Unity</li>
 </ul>
 
 See the <a href="https://github.com/mrmop/IGX/wiki/Monetisation">Monetisation wiki page</a> for more info.
@@ -237,7 +238,6 @@ See the <a href="https://github.com/mrmop/IGX/wiki/Monetisation">Monetisation wi
 Over time a variety of user chat services will be added to the IGX SDK. At the time of writing the following chat services have been added:
 <ul>
 <li>Kongregate</li>
-<li>Unity</li>
 </ul>
 
 ## User to User Game Messaging Services
