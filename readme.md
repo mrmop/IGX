@@ -1,4 +1,4 @@
-<h1>IGX - The Facebook Instant Games Wrapper for Web and Facebook Instant Game Developers</h1>
+<h1>IGX - Cross portral and cross platform SDK for web game and instant game developers</h1>
 
 ## What is IGX?
 IGX stands for Instant Games Extension, it is basically a replacement object for the Facebook Instant Games FBInstant object which enables developers to:
@@ -26,7 +26,7 @@ The following features are available:
 <li><a href="https://github.com/mrmop/IGX/wiki/Monetisation">Interstitial and Rewarded adverts</a></li>
 <li><a href="https://github.com/mrmop/IGX/wiki/Analytics">Analytics</a></li>
 <li><a href="https://github.com/mrmop/IGX/wiki/Monetisation">Payments</a></li>
-<li>Deployment to Androiid and iOS</li>
+<li><a href="https://github.com/mrmop/IGX/wiki/Deploying-to-Mobile">Deployment to Android and iOS</a></li>
 </ul>
 
 ## What other features are available?
@@ -229,6 +229,7 @@ Over time a variety of payment processing services will be added to the IGX SDK.
 <li>Kongregate</li>
 <li>PayPal Checkout</li>
 <li>App stores via Unity</li>
+<li>Unity</li>
 </ul>
 
 See the <a href="https://github.com/mrmop/IGX/wiki/Monetisation">Monetisation wiki page</a> for more info.
@@ -237,7 +238,6 @@ See the <a href="https://github.com/mrmop/IGX/wiki/Monetisation">Monetisation wi
 Over time a variety of user chat services will be added to the IGX SDK. At the time of writing the following chat services have been added:
 <ul>
 <li>Kongregate</li>
-<li>Unity</li>
 </ul>
 
 ## User to User Game Messaging Services
