@@ -480,6 +480,7 @@ var FBInstant = {
         {
             new GameService(name);
             new UserService(name);
+            new AnalyticsService(name);
             new LeaderboardsService(name);
             new PaymentsService(name);
             new AdsService(name);
