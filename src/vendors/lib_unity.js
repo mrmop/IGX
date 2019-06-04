@@ -406,7 +406,7 @@ LibUnity.prototype.LogEvent = function(event_name, value, params)
     var data = "logEvent" + event_name;
     for (var p in params)
     {
-        data += "," + p + "," + params[t];
+        data += "," + p + "," + params[p];
     }
     LibUnity.SendMessageToUnity(data);
     return null;
