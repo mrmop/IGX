@@ -27,6 +27,7 @@ The following features are available:
 <li><a href="https://github.com/mrmop/IGX/wiki/Analytics">Analytics</a></li>
 <li><a href="https://github.com/mrmop/IGX/wiki/Monetisation">Payments</a></li>
 <li><a href="https://github.com/mrmop/IGX/wiki/Deploying-to-Mobile">Deployment to Android and iOS</a></li>
+<li><a href="https://github.com/mrmop/IGX/wiki/On-Device-Debug-Console-Logging">On device debug console logging</a></li>
 </ul>
 
 ## What other features are available?
@@ -43,6 +44,7 @@ The layer also includes additional functionality that is available outside of th
 <li>Referral system</li>
 <li>Sharing on Twitter and other networks</li>
 <li>File upload</li>
+<li>On device debug console logging</li>
 </ul>
 
 ## What features will be coming?
@@ -75,6 +77,7 @@ The IGX SDK consists of the following files:
 <li>lib_adsservice.js - Ads services interface</li>
 <li>lib_analyticsservice.js - Analytics services interface</li>
 <li>lib_chatservice.js - Chat services interface</li>
+<li>lib_debugservice.js - On device debug console</li>
 <li>lib_gameservice.js - Game service interface</li>
 <li>lib_leaderboardservice.js - Leaderboards service interface</li>
 <li>lib_messagingservice.js - User to user messaging service interface</li>
@@ -172,6 +175,12 @@ IGX supports user login and mangagement. The following user providers are curren
 <li>Xtralife</li>
 <li>Kongregate</li>
 <li>Unity (Google Play Games and Game Centre)</li>
+</ul>
+
+## On Device Debug Console Logging
+IGX supports a bdeug console logging window that you can send strings to and view at any time. The following providers are currently supported:
+<ul>
+<li>Unity</li>
 </ul>
 
 ## Server Side Data Persistence
