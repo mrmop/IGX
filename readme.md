@@ -44,7 +44,7 @@ The layer also includes additional functionality that is available outside of th
 <li>Referral system</li>
 <li>Sharing on Twitter and other networks</li>
 <li>File upload</li>
-<li>On device debug console ogging</li>
+<li>On device debug console logging</li>
 </ul>
 
 ## What features will be coming?
