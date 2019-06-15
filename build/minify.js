@@ -14,6 +14,7 @@ var sources = [
 	'../src/lib_referralservice.js',
 	'../src/lib_shareservice.js',
 	'../src/lib_chatservice.js',
+	'../src/lib_debugservice.js',
 	'../src/vendors/lib_generic.js',
 	'../src/vendors/lib_xtralife.js',			// Exclude if not needed
 	'../src/vendors/lib_kongregate.js',			// Exclude if not needed

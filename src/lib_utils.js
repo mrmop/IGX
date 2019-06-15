@@ -54,6 +54,10 @@ var LibUtils = {
         {
             return ChatService.instance.service;
         }
+        else if (DebugService.instance !== undefined && DebugService.instance.name === name)
+        {
+            return DebugService.instance.service;
+        }
     },
 }
 

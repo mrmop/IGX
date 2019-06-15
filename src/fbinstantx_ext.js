@@ -341,6 +341,29 @@ FBInstant.ext = {
     showLeaderboard: function(options) {
         LeaderboardsService.instance.ShowLeaderboard(options);
     },
+
+    debug: {
+        /*
+        * Show debug window
+        */
+        show: function(options) {
+            DebugService.instance.Show(options);
+        },
+
+        /*
+        * Clear debug window
+        */
+        clear: function() {
+            DebugService.instance.Clear();
+        },
+
+        /*
+        * Log text to the debug window
+        */
+        log: function(string) {
+            DebugService.instance.Log(string);
+        }
+    }
 }
 
 

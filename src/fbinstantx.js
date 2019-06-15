@@ -485,6 +485,7 @@ var FBInstant = {
             new PaymentsService(name);
             new AdsService(name);
             new ShareService(name);
+            new DebugService(name);
         }
         else if (name === "kongregate")
         {
