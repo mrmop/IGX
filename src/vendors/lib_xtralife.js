@@ -220,8 +220,10 @@ LibXtralife.prototype.Logout = function(done_cb)
 {
     if (this.gamerData)
     {
-        this.clan.withGamer(this.gamerData).logout(function(error)
+        this.clan.withGamer(this.gamerData).logout(function(error, logoutRes)
         {
+            if (!error)
+                this.gamerData = undefined;
             if (done_cb !== undefined)
                 done_cb(error);
         }.bind(this));
