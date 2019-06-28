@@ -8,6 +8,7 @@ function LibUnity()
     LibUnity.Log(">>>> Unity: construct");
     this.iap_init = false;
     this.profile = new UserService.Player("User", "", "", "", "us");
+    this.gamerData = null;
 }
 
 LibUnity.Log = function(message)
@@ -164,9 +165,14 @@ LibUnity.LoginCallback = function(success, user)
     if (service.login_complete !== undefined)
     {
         if (success)
+        {
+            service.gamerData = { network: "unity" };
             service.login_complete(null, user);
+        }
         else
+        {
             service.login_complete({code: "NETWORK_FAILURE", message: "NETWORK_FAILURE"}, user);
+        }
         service.login_complete = undefined;
         service.profile = user;
     }
@@ -309,6 +315,11 @@ LibUnity.prototype.addSupportedAPI = function(type)
         FBInstant.supportedAPIs.push("payments.getPurchasesAsync");
         FBInstant.supportedAPIs.push("payments.consumePurchaseAsync");
         FBInstant.supportedAPIs.push("payments.purchaseAsync");
+    }
+    else if (type === "debug")
+    {
+        FBInstant.supportedAPIs.push("ext.debug.show");
+        FBInstant.supportedAPIs.push("ext.debug.log");
     }
 }
 
@@ -514,3 +525,25 @@ LibUnity.prototype.OpenURL = function(options)
 {
     LibUnity.SendMessageToUnity("openurl" + options.url);
 }
+
+//
+// DEBUG
+//
+LibUnity.prototype.ShowDebug = function(options)
+{
+    if (options === true)
+        LibUnity.SendMessageToUnity("showdbg1");
+    else
+        LibUnity.SendMessageToUnity("showdbg0");
+}
+
+LibUnity.prototype.ClearDebug = function()
+{
+    LibUnity.SendMessageToUnity("clog");
+}
+
+LibUnity.prototype.LogDebug = function(string)
+{
+    LibUnity.SendMessageToUnity("dlog" + string);
+}
+

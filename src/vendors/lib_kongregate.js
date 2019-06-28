@@ -19,6 +19,7 @@ function LibKongregate()
 {
     LibKongregate.Log(">>>> Kongregate: construct");
     this.loggedIn = false;
+    this.gamerData = null;    
 }
 
 LibKongregate.Log = function(message)
@@ -55,6 +56,9 @@ LibKongregate.prototype.Init = function(options)
             if (self.messageReceivedCallback !== undefined)
                 self.messageReceivedCallback(new ChatService.Message(event.data.message, event.data.username, "recv", event.data.room));
         });
+        this.gamerData = {
+            network: "kong"
+        }
     }
 
     kongregateAPI.loadAPI(function() {

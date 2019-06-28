@@ -12,14 +12,16 @@ FBInstant.ext = {
      * @return true if logged in
      */
     isLoggedIn: function() {
-        return UserService.instance.GetProfileData() !== null;
+        if (UserService.instance === undefined)
+            return false;
+        return UserService.instance.GetGamerData() !== null;
     },
     /**
      * Gets the login type, e.g. anonymous, email, facebook etc..
      * @return Login network type
      */
     getLoginType: function() {
-        var data = UserService.instance.GetProfileData();
+        var data = UserService.instance.GetGamerData();
         if (data === null)
             return "none";
         return data.network;
@@ -29,7 +31,7 @@ FBInstant.ext = {
      * @return List of games
      */
     getRegistrationDate: function() {
-        var data = UserService.instance.GetProfileData();
+        var data = UserService.instance.GetGamerData();
         if (data === null)
             return null;
         return data.registerTime;
