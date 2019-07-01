@@ -303,6 +303,8 @@ LibXtralife.prototype.ChangePassword = function(new_password, done_cb)
 //
 LibXtralife.prototype.GetGamerData = function()
 {
+    if (this.gamerData === undefined)
+        return null;
     return this.gamerData;
 }
 

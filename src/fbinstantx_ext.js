@@ -22,7 +22,7 @@ FBInstant.ext = {
      */
     getLoginType: function() {
         var data = UserService.instance.GetGamerData();
-        if (data === null)
+        if (!data)
             return "none";
         return data.network;
     },
@@ -32,7 +32,7 @@ FBInstant.ext = {
      */
     getRegistrationDate: function() {
         var data = UserService.instance.GetGamerData();
-        if (data === null)
+        if (!data)
             return null;
         return data.registerTime;
     },
@@ -55,7 +55,7 @@ FBInstant.ext = {
     loginAsync: function() {
         return new Promise(function(resolve, reject){
             UserService.instance.Login(FBInstant.options.userOptions.allowAnonymous, function(error, data) {
-                if (error === null)
+                if (!error)
                 {
                     FBInstant.Log(">> Login success");
                     resolve();
@@ -78,7 +78,7 @@ FBInstant.ext = {
     loginWithEmailAsync: function(email, password, options) {
         return new Promise(function(resolve, reject){
             UserService.instance.LoginWithCredentials(email, password, options, function(error, data) {
-                if (error === null)
+                if (!error)
                 {
                     FBInstant.Log(">> Login with email success");
                     resolve();
