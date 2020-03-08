@@ -39,7 +39,8 @@ LibGeneric.prototype.addSupportedAPI = function(type)
 
 LibGeneric.prototype.SharePrimary = function(options)
 {
-    ShareService.instance.ShareFacebook(options);
+    //ShareService.instance.ShareFacebook(options);
+    WebUtils.ShareDataURL(options.data, options.text);
 }
 
 LibGeneric.prototype.OpenURL = function(options)

@@ -4,6 +4,7 @@ var compressor = require('node-minify');
 var sources = [
 	'../src/fbinstantx.js',
 	'../src/fbinstantx_ext.js',
+	'../src/lib_webutils.js',
 	'../src/lib_utils.js',
 	'../src/lib_socials.js',
 	'../src/lib_gameservice.js',

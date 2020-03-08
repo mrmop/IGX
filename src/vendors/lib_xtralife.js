@@ -158,7 +158,7 @@ LibXtralife.prototype.ResumeSession = function(gamer_id, gamer_secret, done_cb)
 
 LibXtralife.prototype.LoginWithCredentials = function(email, password, options, done_cb)
 {
-    if (this.gamerData)
+    if (this.gamerData)  // MAY NEED TO REMOVE
     {
         this.ResumeSession(this.gamerData.gamer_id, this.gamerData.gamer_secret, done_cb);
         return;
@@ -178,7 +178,7 @@ LibXtralife.prototype.LoginWithCredentials = function(email, password, options, 
 
 LibXtralife.prototype.LoginWithShortCode = function(short_code, done_cb)
 {
-    if (this.gamerData)
+    if (this.gamerData) // MAY NEED TO REMOVE
     {
         this.ResumeSession(this.gamerData.gamer_id, this.gamerData.gamer_secret, done_cb);
         return;
@@ -198,7 +198,7 @@ LibXtralife.prototype.LoginWithShortCode = function(short_code, done_cb)
 
 LibXtralife.prototype.LoginWithFacebook = function(facebook_access_token, done_cb)
 {
-    if (this.gamerData)
+    if (this.gamerData && this.gamerData.network === "facebook")     // MAY NEED TO REMOVE
     {
         this.ResumeSession(this.gamerData.gamer_id, this.gamerData.gamer_secret, done_cb);
         return;

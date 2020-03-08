@@ -126,7 +126,7 @@ UserService.prototype.LoginWithFacebook = function(facebook_access_token, done_c
         if (done_cb !== undefined)
             done_cb({code: "CLIENT_UNSUPPORTED_OPERATION ", message: "CLIENT_UNSUPPORTED_OPERATION "}, null);
     }
-    else return this.service.LoginWithFacebook (facebook_access_token, done_cb);
+    else return this.service.LoginWithFacebook(facebook_access_token, done_cb);
 };
 
 UserService.prototype.Logout = function(done_cb)

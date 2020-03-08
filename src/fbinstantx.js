@@ -138,7 +138,9 @@ var FBInstant = {
             // TODO:
         },
         setStatsAsync: function(obj) {
-            // TODO:
+            return new Promise(function(resolve, reject) {
+                resolve();
+            });
         },
         incrementStatsAsync: function(obj) {
             // TODO:
