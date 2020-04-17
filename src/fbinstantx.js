@@ -267,7 +267,7 @@ var FBInstant = {
     getLocale: function() {
         var data = UserService.instance.GetProfileData();
         if (data === null)
-            return "en_US";
+            return LibUtils.GetLocale();
         return data.lang + "_";
     },
 
@@ -307,6 +307,8 @@ var FBInstant = {
 
     setLoadingProgress: function(progress) {
         return new Promise(function(resolve, reject) {
+            if (GameService.instance && GameService.instance.service && GameService.instance.service.SetLoadingProgress)
+                GameService.instance.service.SetLoadingProgress(progress);
             resolve();
         });
     },
@@ -314,6 +316,8 @@ var FBInstant = {
     startGameAsync: function() {
         return new Promise(function(resolve, reject){
             FBInstant.Log(">>>> startGameAsync");
+            if (GameService.instance && GameService.instance.service && GameService.instance.service.FinishedLoading)
+                GameService.instance.service.FinishedLoading();
             UserService.instance.Login(FBInstant.options.userOptions.allowAnonymous, function(error, data) {
                 if (error === null)
                 {
@@ -497,6 +501,13 @@ var FBInstant = {
             new PaymentsService(name);
             new ShareService(name);
             new ChatService(name);
+        }
+        else if (name === "poki")
+        {
+            new GameService(name);
+            new UserService("none");
+            new AdsService(name);
+            new ShareService("generic");
         }
         else if (name === "none")
         {

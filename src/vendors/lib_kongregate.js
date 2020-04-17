@@ -170,7 +170,7 @@ LibKongregate.prototype.GetProfileData = function()
     {
         return null;
     }
-    return new UserService.Player(this.kongregate.services.getUserId(), this.kongregate.services.getUsername(), null, null, "en_US");
+    return new UserService.Player(this.kongregate.services.getUserId(), this.kongregate.services.getUsername(), null, null, LibUtils.GetLocale());
 }
 
 LibKongregate.prototype.GetFriends = function(done_cb)

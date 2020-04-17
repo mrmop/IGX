@@ -10,6 +10,8 @@ function AdsService(name)
     {
         if (name === "crazygames")
             this.service = new LibCrazyGames();
+        else if (name === "poki")
+            this.service = new LibPoki();
         else if (name === "gamedistribution")
             this.service = new LibGameDistribution();
         else if (name === "adinplay")

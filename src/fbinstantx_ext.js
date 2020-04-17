@@ -344,6 +344,14 @@ FBInstant.ext = {
         LeaderboardsService.instance.ShowLeaderboard(options);
     },
 
+    /**
+     * Game event messages
+     */
+    gameEvent: function(options) {
+        if (GameService.instance && GameService.instance.service && GameService.instance.service.GameEvent)
+            GameService.instance.service.GameEvent(options);
+    },
+
     debug: {
         /*
         * Show debug window

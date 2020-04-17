@@ -42,24 +42,24 @@ LibCrazyGames.prototype.InitAds = function(options)
 
     this.crazysdk.addEventListener("adStarted", function() {
         LibCrazyGames.Log("CrazyGames: adStarted");
-        if (self.startedCallback !== undefined)
+        if (self.startedCallback)
             self.startedCallback();
     });
     this.crazysdk.addEventListener("adError", function() {
         LibCrazyGames.Log("CrazyGames: adError");
         self.adRequested = false;
-        if (self.finishedCallback !== undefined)
+        if (self.finishedCallback)
             self.finishedCallback(false);
-        if (self.watchedCallback !== undefined)
+        if (self.watchedCallback)
             self.watchedCallback({code: "ADS_NOT_LOADED", message: "ADS_NOT_LOADED"});
         self.watchedCallback = undefined;
     });
     this.crazysdk.addEventListener("adFinished", function() {
         LibCrazyGames.Log("CrazyGames: adFinished");
         self.adRequested = false;
-        if (self.finishedCallback !== undefined)
+        if (self.finishedCallback)
             self.finishedCallback(true);
-        if (self.watchedCallback !== undefined)
+        if (self.watchedCallback)
             self.watchedCallback(null);
         self.watchedCallback = undefined;
     });
@@ -89,7 +89,7 @@ LibCrazyGames.prototype.ShowAd = function(id, type, done_cb)
     if (this.adRequested)
     {
         LibCrazyGames.Log("CrazyGames: Ad already requested");
-        self.watchedCallback({code: "ADS_NOT_LOADED", message: "ADS_NOT_LOADED"});
+        done_cb({code: "ADS_NOT_LOADED", message: "ADS_NOT_LOADED"});
     }
     LibCrazyGames.Log("CrazyGames: Requesting ad");
     
@@ -102,8 +102,8 @@ LibCrazyGames.prototype.ShowAd = function(id, type, done_cb)
     else
     if (type === "inter")
     {
+        this.watchedCallback = done_cb;
         this.crazysdk.requestAd("midgame");
-        done_cb(null);
     }
     else
     {

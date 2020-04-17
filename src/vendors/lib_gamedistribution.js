@@ -43,22 +43,22 @@ LibGameDistribution.prototype.InitAds = function(options)
             switch (event.name) {
                 case "SDK_GAME_START":
                     LibGameDistribution.Log("GameDistribution: adFinished");
-                    if (self.finishedCallback !== undefined)
+                    if (self.finishedCallback)
                         self.finishedCallback();
-                    if (self.watchedCallback !== undefined)
+                    if (self.watchedCallback)
                         self.watchedCallback(null);
                     self.watchedCallback = undefined;
                     break;
                 case "SDK_GAME_PAUSE":
                     LibGameDistribution.Log("GameDistribution: adStarted");
-                    if (self.startedCallback !== undefined)
+                    if (self.startedCallback)
                         self.startedCallback();
                     break;
                 case "AD_ERROR":
                     LibGameDistribution.Log("GameDistribution: adError");
-                    if (self.finishedCallback !== undefined)
+                    if (self.finishedCallback)
                         self.finishedCallback(false);
-                    if (self.watchedCallback !== undefined)
+                    if (self.watchedCallback)
                         self.watchedCallback({code: "ADS_NOT_LOADED", message: "ADS_NOT_LOADED"});
                     self.watchedCallback = undefined;
                     break;

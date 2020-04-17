@@ -59,5 +59,11 @@ var LibUtils = {
             return DebugService.instance.service;
         }
     },
+    GetLocale: function()
+    {
+        var lang = navigator.languages ? navigator.languages[0] : (navigator.language || navigator.userLanguage);
+        if (!lang) return "en_US";
+        return lang.replace("-", "_");
+    },
 }
 

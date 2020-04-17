@@ -14,6 +14,8 @@ function GameService(name)
             this.service = new LibKongregate();
         else if (name === "unity")
             this.service = new LibUnity();
+        else if (name === "poki")
+            this.service = new LibPoki();
     }
     this.name = name;
     GameService.instance = this;
@@ -27,4 +29,18 @@ GameService.prototype.Init = function(options)
     if (this.service === undefined)
         return;
     return this.service.Init(options);
+}
+
+GameService.prototype.SetLoadingProgress = function(options)
+{
+    if (!this.service || !this.service.SetLoadingProgress)
+        return;
+    return this.service.SetLoadingProgress(options);
+}
+
+GameService.prototype.FinishedLoading = function(options)
+{
+    if (!this.service || !this.service.FinishedLoading)
+        return;
+    return this.service.FinishedLoading(options);
 }
