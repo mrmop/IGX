@@ -98,6 +98,7 @@ Vendor specific files:
 <li>lib_googleanalytics.js - Google Analytics implementation of analytics service</li>
 <li>lib_kongregate.js - Kongregate implementation of game services</li>
 <li>lib_paypal.js - PayPal implementation of payments service using PayPal Checkout</li>
+<li>lib_poki.js - Poki implementation of ads service</li>
 <li>lib_unity.js - Unity implementation of IGX</li>
 <li>lib_xtralife.js - Xtralife implementation of game services</li>
 </ul>
@@ -227,6 +228,7 @@ Over time many portals and ad providers will be added to the IGX SDK. At the tim
 <li>AdInPlay</li>
 <li>Crazy Games</li>
 <li>Game Distribution</li>
+<li>Poki</li>
 <li>Unity</li>
 </ul>
 
@@ -275,7 +277,7 @@ Below is a list of planned integrations with the IGX SDK:
 <li>Game Analytics</li>
 <li>Miniclip</li>
 <li>Newgrounds.io</li>
-<li>Poki</li>
+<li>Shockwave</li>
 <li>Y8</li>
 </ul>
 
@@ -297,6 +299,11 @@ You can nnow deploy your games and apps  to mobile app stores using the IGX SDK 
 <li><a href="https://www.kongregate.com/games/drmop/mergebabies">Merge Babies on Kongregate</a>.</li>
 <li><a href="https://itunes.apple.com/us/app/merge-babies/id1444521624">Merge Babies on the App Store</a>.</li>
 <li><a href="https://play.google.com/store/apps/details?id=com.drmop.mergebabies">Merge Babies on Google Play</a>.</li>
+<li><a href="https://www.crazygames.com/game/australian-patience">Australian Patience on Crazy Games</a>.</li>
+<li><a href="https://www.crazygames.com/game/golf-solitaire">Golf Soltaire on Crazy Games</a>.</li>
+<li><a href="https://www.crazygames.com/game/solitaire-reverse">Soltaire Reverse on Crazy Games</a>.</li>
+<li><a href="https://www.crazygames.com/game/tri-peaks-solitaire">Tri Peaks Soltaire on Crazy Games</a>.</li>
+<li><a href="https://www.crazygames.com/game/solitaire-social">Soltaire Social on Crazy Games</a>.</li>
 </ul>
 
 ## Wiki
