@@ -10,6 +10,8 @@ function StorageService(name)
     {
         if (name === "xtralife")
             this.service = new LibXtralife();
+        else if (name === "swag")
+            this.service = new LibSwag();
     }
     this.name = name;
     StorageService.instance = this;

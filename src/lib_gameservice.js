@@ -16,6 +16,8 @@ function GameService(name)
             this.service = new LibUnity();
         else if (name === "poki")
             this.service = new LibPoki();
+        else if (name === "swag")
+            this.service = new LibSwag();
     }
     this.name = name;
     GameService.instance = this;

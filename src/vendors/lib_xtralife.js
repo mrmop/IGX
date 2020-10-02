@@ -25,7 +25,8 @@ LibXtralife.LogError = function(message)
 LibXtralife.prototype.Init = function(options)
 {
     this.clan = Clan(options.apiKey, options.apiSecret, options.devMode);
-    var data = localStorage.getItem("gamer");
+    var store_name = FBInstant.options.name + "_gamer";
+    var data = localStorage.getItem(store_name);
     if (data !== null)
         this.gamerData = JSON.parse(data);
 }
@@ -131,7 +132,8 @@ LibXtralife.prototype.Login = function(allow_anonymous, done_cb)
         if (error == null)
         {
             this.gamerData = gamer;
-            localStorage.setItem("gamer", JSON.stringify(gamer));
+            var store_name = FBInstant.options.name + "_gamer";
+            localStorage.setItem(store_name, JSON.stringify(gamer));
         }
 		
         //LibXtralife.Log(this.gamerData)
@@ -148,7 +150,8 @@ LibXtralife.prototype.ResumeSession = function(gamer_id, gamer_secret, done_cb)
         if (error == null)
         {
             this.gamerData = gamer;
-            localStorage.setItem("gamer", JSON.stringify(gamer));
+            var store_name = FBInstant.options.name + "_gamer";
+            localStorage.setItem(store_name, JSON.stringify(gamer));
         }
 		
         if (done_cb !== undefined)
@@ -168,7 +171,8 @@ LibXtralife.prototype.LoginWithCredentials = function(email, password, options, 
         if (error == null)
         {
             this.gamerData = gamer;
-            localStorage.setItem("gamer", JSON.stringify(gamer));
+            var store_name = FBInstant.options.name + "_gamer";
+            localStorage.setItem(store_name, JSON.stringify(gamer));
         }
         
         if (done_cb !== undefined)
@@ -188,7 +192,8 @@ LibXtralife.prototype.LoginWithShortCode = function(short_code, done_cb)
         if (error == null)
         {
             this.gamerData = gamer;
-            localStorage.setItem("gamer", JSON.stringify(gamer));
+            var store_name = FBInstant.options.name + "_gamer";
+            localStorage.setItem(store_name, JSON.stringify(gamer));
         }
 	
         if (done_cb !== undefined)
@@ -208,7 +213,8 @@ LibXtralife.prototype.LoginWithFacebook = function(facebook_access_token, done_c
         if (error == null)
         {
             this.gamerData = gamer;
-            localStorage.setItem("gamer", JSON.stringify(gamer));
+            var store_name = FBInstant.options.name + "_gamer";
+            localStorage.setItem(store_name, JSON.stringify(gamer));
         }
 
         if (done_cb !== undefined)

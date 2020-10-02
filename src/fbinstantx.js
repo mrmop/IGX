@@ -5,10 +5,13 @@
 
 var FBInstant = {
     options: {
+        name: "",                   // Game name
         apiKey: "",                 // Game service back-end API key
         apiSecret: "",              // Game service back-end API secret
         devMode: "sandbox",         // sandbox or prod
         container: null,            // Container element
+        generalOptions: {           // General options
+        },
         shareOptions: {             // Ads service options
             shareURI: "",           // URI used by shareAsync dialog
             dlgWidth: 600,          // shareAsync dialog width
@@ -75,17 +78,18 @@ var FBInstant = {
         },
         getDataAsync: function(keys) {
             return new Promise(function(resolve, reject){
+                var store_name = FBInstant.options.name + "userData";
                 if (StorageService.instance !== undefined)
                 {
-                    StorageService.instance.GetUserData("userData", function(data) {
+                    StorageService.instance.GetUserData(store_name, function(data) {
                         var response = {};
                         if (data === null) {
-                            data = localStorage.getItem("userData");
+                            data = localStorage.getItem(store_name);
                             data = JSON.parse(data);
                         }
                         else
                         {
-                            localStorage.setItem("userData", JSON.stringify(data));
+                            localStorage.setItem(store_name, JSON.stringify(data));
                         }
                         if (data !== null) {
                             keys.forEach(function(key){
@@ -100,9 +104,15 @@ var FBInstant = {
                 else
                 {
                     var response = {};
-                    var data = localStorage.getItem("userData");
+                    var data = localStorage.getItem(store_name);
                     data = JSON.parse(data);
-                    if (data !== null) {
+                    if (data === null)  // TEMP: Loads previous games before storage scoping change
+                    {
+                        data = localStorage.getItem("userData");
+                        data = JSON.parse(data);
+                    }
+                    if (data !== null)
+                    {
                         keys.forEach(function(key){
                             if (data[key] !== "undefined") {
                                 response[key] = data[key];
@@ -115,16 +125,17 @@ var FBInstant = {
         },
         setDataAsync: function(data_object) {
             return new Promise(function(resolve, reject) {
-                var data = localStorage.getItem("userData");
+                var store_name = FBInstant.options.name + "userData";
+                var data = localStorage.getItem(store_name);
                 var obj = JSON.parse(data);
                 if (obj === undefined || obj == null)
                     obj = {};
                 for (var attr in data_object)
                     obj[attr] = data_object[attr];
-                localStorage.setItem("userData", JSON.stringify(obj));
+                localStorage.setItem(store_name, JSON.stringify(obj));
                 if (StorageService.instance !== undefined)
                 {
-                    StorageService.instance.SetUserData("userData", JSON.stringify(obj), function(success) {
+                    StorageService.instance.SetUserData(store_name, JSON.stringify(obj), function(success) {
                         resolve();
                     });
                 }
@@ -513,6 +524,15 @@ var FBInstant = {
         {
             new GameService(name);
             new UserService(name);
+            new ShareService("generic");
+        }
+        else if (name === "swag")
+        {
+            new GameService(name);
+            new StorageService(name);
+            new UserService(name);
+            new AnalyticsService(name);
+            new LeaderboardsService(name);
             new ShareService("generic");
         }
     },

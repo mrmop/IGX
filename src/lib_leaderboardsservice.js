@@ -12,6 +12,8 @@ function LeaderboardsService(name)
             this.service = new LibXtralife();
         else if (name === "unity")
             this.service = new LibUnity();
+        else if (name === "swag")
+            this.service = new LibSwag();
     }
     this.name = name;
     LeaderboardsService.instance = this;
