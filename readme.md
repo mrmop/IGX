@@ -62,6 +62,7 @@ Once you have an account and have added a game to the system you will be given a
 To set this up in code use:
 
 ```
+FBInstant.options.name = 'mygame_name';
 FBInstant.options.apiKey = "Your games Xtralife key";
 FBInstant.options.apiSecret = "Your games Xtralife secret";
 FBInstant.options.devMode = "sandbox";
@@ -99,6 +100,7 @@ Vendor specific files:
 <li>lib_kongregate.js - Kongregate implementation of game services</li>
 <li>lib_paypal.js - PayPal implementation of payments service using PayPal Checkout</li>
 <li>lib_poki.js - Poki implementation of ads service</li>
+<li>lib_swag.js - Shockwave / Addicting Games implementation of various service</li>
 <li>lib_unity.js - Unity implementation of IGX</li>
 <li>lib_xtralife.js - Xtralife implementation of game services</li>
 </ul>
@@ -175,11 +177,12 @@ IGX supports user login and mangagement. The following user providers are curren
 <ul>
 <li>Xtralife</li>
 <li>Kongregate</li>
+<li>SWAG</li>
 <li>Unity (Google Play Games and Game Centre)</li>
 </ul>
 
 ## On Device Debug Console Logging
-IGX supports a bdeug console logging window that you can send strings to and view at any time. The following providers are currently supported:
+IGX supports a debug console logging window that you can send strings to and view at any time. The following providers are currently supported:
 <ul>
 <li>Unity</li>
 </ul>
@@ -187,6 +190,7 @@ IGX supports a bdeug console logging window that you can send strings to and vie
 ## Server Side Data Persistence
 IGX supports server side data persistence for sharing data across devices. The following storage providers are currently supported:
 <ul>
+<li>SWAG</li>	
 <li>Xtralife</li>
 </ul>
 
@@ -206,6 +210,7 @@ See the <a href="https://github.com/mrmop/IGX/wiki/Social-Sharing">Leaderboards 
 ## Leaderboards
 IGX supports leaderboards. The following leaderboard providers are currently supported:
 <ul>
+<li>SWAG</li>	
 <li>Xtralife</li>
 <li>Unity (Google Play Games and Game Centre)</li>
 </ul>
@@ -217,6 +222,7 @@ IGX supports collection of user data for game analytics purposes. The following 
 <ul>
 <li>Google Analytics</li>
 <li>Kongregate</li>
+<li>SWAG</li>	
 <li>Unity</li>
 </ul>
 
@@ -277,7 +283,6 @@ Below is a list of planned integrations with the IGX SDK:
 <li>Game Analytics</li>
 <li>Miniclip</li>
 <li>Newgrounds.io</li>
-<li>Shockwave</li>
 <li>Y8</li>
 </ul>
 
