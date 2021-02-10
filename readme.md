@@ -53,9 +53,18 @@ The layer also includes additional functionality that is available outside of th
 <li>Portal specific services</li>
 </ul>
 
+## How to get started very quickly
+Instead of linking to the Facebook Instants JS file, add igx_min.js to your index page. 
+Add the following code before calling FBInstant.initializeAsync():
+```
+FBInstant.options.name = 'game_name';
+FBInstant.createDefaultServices('none');
+```
+IGX is now ready and set up with minimal services such as local storage data save / load and game sharing via a custom url containing encoded entry point data.
+
 ## How to get started
 Instead of linking to the Facebook Instants JS file, add igx_min.js and xtralife-3.2.3.min.js to your index page.
-Note that the back-end used by IGX to provide server side features is called Xtralife (http://xtralife.cloud/), you will need to create a free account and add a game to obtain an API key and secret to use the API.
+Note that the back-end used by IGX to provide server side features is called Xtralife (http://xtralife.cloud/), you will need to create a free account and add a game to obtain an API key and secret to use the API. Note that you do not have to use Xtralife and can replace it with your own service or use no service at all.
 
 Once you have an account and have added a game to the system you will be given an API key and secret which you can use to access back-end features.
 
