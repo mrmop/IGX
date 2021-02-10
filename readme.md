@@ -214,7 +214,7 @@ IGX supports social sharing. The following social sharing providers are currentl
 <li>Unity</li>
 </ul>
 
-See the <a href="https://github.com/mrmop/IGX/wiki/Social-Sharing">Leaderboards wiki page</a> for more info.
+See the <a href="https://github.com/mrmop/IGX/wiki/Leaderboards">Social Sharing wiki page</a> for more info.
 
 ## Leaderboards
 IGX supports leaderboards. The following leaderboard providers are currently supported:
@@ -224,7 +224,7 @@ IGX supports leaderboards. The following leaderboard providers are currently sup
 <li>Unity (Google Play Games and Game Centre)</li>
 </ul>
 
-See the <a href="https://github.com/mrmop/IGX/wiki/Leaderboards">Social Sharing wiki page</a> for more info.
+See the <a href="https://github.com/mrmop/IGX/wiki/Social-Sharing">Leaderboards wiki page</a> for more info.
 
 ## Analytics
 IGX supports collection of user data for game analytics purposes. The following analytics providers are currently supported:
@@ -276,15 +276,14 @@ See the <a href="https://github.com/mrmop/IGX/wiki/User-to-User-Messaging">User 
 
 ## Important Notices!
 <ul>
-<li>Before releasing your game ensure that you switch from sandbox to production, users are not shared between the two.</li>
-<li>This SDK is very heavily under development so things can change quite quickly.</li>
+<li>If using the Xtralife backend then before releasing your game ensure that you switch from sandbox to production, users are not shared between the two.</li>
 </ul>
 
 ## Integrating Guides
 Check the <a href="https://github.com/mrmop/IGX/wiki/Integration-Guides">Integration Guides wiki page</a> for more info
 
 ## Issues
-When switching from a sandbox to production environment, be aware that data from the sandbox session will still be stored in the browser, so when you try to log into the production environment old stale data from ths sandbox environment will be used. If this occurs you will see errors relating to 401 (Unauthorized) and possibly also No 'Access-Control-Allow-Origin' header is present on the requested resource. To fix this, clear the storage for your domain. For example, to do this in Chrome go to developer tools->Application->Clear storage then click the Clear Site Data button.
+When using the Xtralife backend and switching from a sandbox to production environment, be aware that data from the sandbox session will still be stored in the browser, so when you try to log into the production environment old stale data from ths sandbox environment will be used. If this occurs you will see errors relating to 401 (Unauthorized) and possibly also No 'Access-Control-Allow-Origin' header is present on the requested resource. To fix this, clear the storage for your domain. For example, to do this in Chrome go to developer tools->Application->Clear storage then click the Clear Site Data button.
 
 ## Future Integrations
 Below is a list of planned integrations with the IGX SDK:
