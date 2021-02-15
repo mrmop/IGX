@@ -240,9 +240,11 @@ See the <a href="https://github.com/mrmop/IGX/wiki/Analytics">Analytics wiki pag
 ## Ads Services and Portals
 Over time many portals and ad providers will be added to the IGX SDK. At the time of writing the following ad providers / portals have been added:
 <ul>
+<li>Addicting games / Shockwave</li>
 <li>AdInPlay</li>
 <li>Crazy Games</li>
 <li>Game Distribution</li>
+<li>Kongregate</li>
 <li>Poki</li>
 <li>Unity</li>
 </ul>
