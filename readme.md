@@ -314,6 +314,7 @@ You can nnow deploy your games and apps  to mobile app stores using the IGX SDK 
 <li><a href="https://www.kongregate.com/games/drmop/mergebabies">Merge Babies on Kongregate</a>.</li>
 <li><a href="https://itunes.apple.com/us/app/merge-babies/id1444521624">Merge Babies on the App Store</a>.</li>
 <li><a href="https://play.google.com/store/apps/details?id=com.drmop.mergebabies">Merge Babies on Google Play</a>.</li>
+<li><a href="https://www.crazygames.com/game/blocks-fill-tangram">Blocks Fill Tangram on Crazy Games</a>.</li>
 <li><a href="https://www.crazygames.com/game/australian-patience">Australian Patience on Crazy Games</a>.</li>
 <li><a href="https://www.crazygames.com/game/golf-solitaire">Golf Soltaire on Crazy Games</a>.</li>
 <li><a href="https://www.crazygames.com/game/solitaire-reverse">Soltaire Reverse on Crazy Games</a>.</li>
@@ -325,6 +326,7 @@ You can nnow deploy your games and apps  to mobile app stores using the IGX SDK 
 <li><a href="https://poki.com/en/g/solitaire-golf">Solitaire Golf on Poki</a>.</li>
 <li><a href="https://poki.com/en/g/solitaire-reverse">Solitaire Reverse on Poki</a>.</li>
 <li><a href="https://poki.com/en/g/wordsmith">Wordsmith on Poki</a>.</li>
+<li><a href="https://poki.com/en/g/brain-dozer">Brain Dozer on Poki</a>.</li>
 
 </ul>
 
