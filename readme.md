@@ -246,7 +246,7 @@ Over time many portals and ad providers will be added to the IGX SDK. At the tim
 <li>Game Distribution</li>
 <li>Kongregate</li>
 <li>Poki</li>
-<li>Unity</li>
+<li>Unity (Unity Ads with Admob, Facebook Audience Network and Chartboost coming soon)</li>
 </ul>
 
 See the <a href="https://github.com/mrmop/IGX/wiki/Monetisation">Monetisation wiki page</a> for more info.
@@ -306,20 +306,33 @@ Other possible integrations with the IGX SDK:
 ## Android and iOS App Stores
 You can nnow deploy your games and apps  to mobile app stores using the IGX SDK using IGX for Unity.
 
-## Examples of games using IGX
+## Examples of games using IGX on the App Stores
 <ul>
-<li><a href="http://m.me/725255924476151?game=mergebabies">Merge Babies on Facebook Instant Games</a>.</li>
+<li><a href="https://play.google.com/store/apps/details?id=com.drmop.dungeonminer">Dungeon Miner on Google Play</a>.</li>
+<li><a href="https://play.google.com/store/apps/details?id=com.drmop.solitairesocial">Soltaire Social (Big) on Google Play</a>.</li>
+<li><a href="https://play.google.com/store/apps/details?id=com.drmop.mergebabies">Merge Babies on Google Play</a>.</li>
+<li><a href="https://itunes.apple.com/us/app/merge-babies/id1444521624">Merge Babies on the App Store</a>.</li>
+<li><a href="https://play.google.com/store/apps/details?id=com.drmop.todayquiz">Today Quizzes on the App Store</a>.</li>
+</ul>
+
+## Examples of games using IGX on the Web
+<ul>
 <li><a href="https://www.crazygames.com/game/merge-babies">Merge Babies on Crazy Games</a>.</li>
 <li><a href="https://gamedistribution.com/games/merge-babies">Merge Babies on Game Distribution</a>.</li>
 <li><a href="https://www.kongregate.com/games/drmop/mergebabies">Merge Babies on Kongregate</a>.</li>
-<li><a href="https://itunes.apple.com/us/app/merge-babies/id1444521624">Merge Babies on the App Store</a>.</li>
-<li><a href="https://play.google.com/store/apps/details?id=com.drmop.mergebabies">Merge Babies on Google Play</a>.</li>
 <li><a href="https://www.crazygames.com/game/blocks-fill-tangram">Blocks Fill Tangram on Crazy Games</a>.</li>
 <li><a href="https://www.crazygames.com/game/australian-patience">Australian Patience on Crazy Games</a>.</li>
 <li><a href="https://www.crazygames.com/game/golf-solitaire">Golf Soltaire on Crazy Games</a>.</li>
 <li><a href="https://www.crazygames.com/game/solitaire-reverse">Soltaire Reverse on Crazy Games</a>.</li>
 <li><a href="https://www.crazygames.com/game/tri-peaks-solitaire">Tri Peaks Soltaire on Crazy Games</a>.</li>
 <li><a href="https://www.crazygames.com/game/solitaire-social">Soltaire Social on Crazy Games</a>.</li>
+<li><a href="https://www.crazygames.com/game/blocks-fill-tangram">Blocks Fill Tangram on Crazy Games</a>.</li>
+<li><a href="https://www.crazygames.com/game/monster-mash">Monster Mash on Crazy Games</a>.</li>
+<li><a href="https://www.crazygames.com/game/puzzle-balls">Puzzle Balls on Crazy Games</a>.</li>
+<li><a href="https://www.crazygames.com/game/daily-kick">Daily Kick on Crazy Games</a>.</li>
+<li><a href="https://www.crazygames.com/game/candy-cup">Candy Cup on Crazy Games</a>.</li>
+<li><a href="https://www.crazygames.com/game/friend-falls">Friend Falls on Crazy Games</a>.</li>
+<li><a href="https://www.crazygames.com/game/smash-hits">Friend Falls on Crazy Games</a>.</li>
 <li><a href="https://poki.com/en/g/monster-mash">Monster Mash on Poki</a>.</li>
 <li><a href="https://poki.com/en/g/tri-peaks">Tri Peaks on Poki</a>.</li>
 <li><a href="https://poki.com/en/g/australian-patience">Australian Patience on Poki</a>.</li>
@@ -327,7 +340,6 @@ You can nnow deploy your games and apps  to mobile app stores using the IGX SDK 
 <li><a href="https://poki.com/en/g/solitaire-reverse">Solitaire Reverse on Poki</a>.</li>
 <li><a href="https://poki.com/en/g/wordsmith">Wordsmith on Poki</a>.</li>
 <li><a href="https://poki.com/en/g/brain-dozer">Brain Dozer on Poki</a>.</li>
-
 </ul>
 
 ## Wiki
