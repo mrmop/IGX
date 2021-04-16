@@ -28,6 +28,8 @@ LibCrazyGames.LogError = function(message)
 // options
 // - startedCallback - Can be tapped into to mute audio during video playback
 // - finishedCallback - Can be tapped into to unmute audio after video playback
+// - bannerRenderedCallback = Called when a banner has rendered
+// - bannerErrorCallback = Called when there is a banner error
 LibCrazyGames.prototype.InitAds = function(options)
 {
     LibCrazyGames.Log(">>>> CrazyGames: InitAds");
@@ -63,6 +65,17 @@ LibCrazyGames.prototype.InitAds = function(options)
             self.watchedCallback(null);
         self.watchedCallback = undefined;
     });
+
+    this.crazysdk.addEventListener('bannerRendered', (event) => {
+        LibCrazyGames(`Banner for container ${event.containerId} has been rendered!`);
+        if (self.bannerRenderedCallback)
+            self.bannerRenderedCallback();
+    });
+    this.crazysdk.addEventListener('bannerError', (event) => {
+        LibCrazyGames(`Banner render error: ${event.error}`);
+        if (self.bannerErrorCallback)
+            self.bannerErrorCallback();
+    });
 }
 
 LibCrazyGames.prototype.addSupportedAPI = function(type)
@@ -86,24 +99,35 @@ LibCrazyGames.prototype.PreloadAd = function(id, type, done_cb)
 
 LibCrazyGames.prototype.ShowAd = function(id, type, done_cb)
 {
-    if (this.adRequested)
+    if (this.adRequested && type !== "banner")
     {
         LibCrazyGames.Log("CrazyGames: Ad already requested");
         done_cb({code: "ADS_NOT_LOADED", message: "ADS_NOT_LOADED"});
     }
     LibCrazyGames.Log("CrazyGames: Requesting ad");
     
-    this.adRequested = true;
     if (type === "video")
     {
         this.watchedCallback = done_cb;
         this.crazysdk.requestAd("rewarded");
+		this.adRequested = true;
     }
     else
     if (type === "inter")
     {
         this.watchedCallback = done_cb;
         this.crazysdk.requestAd("midgame");
+		this.adRequested = true;
+    }
+    else
+    if (type === "banner")
+    {
+        this.crazysdk.requestBanner([
+            {
+                containerId: id.containerId,
+                size: id.size,
+            }
+        ]);
     }
     else
     {

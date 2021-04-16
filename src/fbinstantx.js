@@ -84,12 +84,20 @@ var FBInstant = {
                     StorageService.instance.GetUserData(store_name, function(data) {
                         var response = {};
                         if (data === null) {
-                            data = localStorage.getItem(store_name);
-                            data = JSON.parse(data);
+                            try
+                            {
+                                data = localStorage.getItem(store_name);
+                                data = JSON.parse(data);
+                            }
+                            catch (e) { data = null; }
                         }
                         else
                         {
-                            localStorage.setItem(store_name, JSON.stringify(data));
+                            try
+                            {
+                                localStorage.setItem(store_name, JSON.stringify(data));
+                            }
+                            catch (e) { }
                         }
                         if (data !== null) {
                             keys.forEach(function(key){
@@ -104,12 +112,21 @@ var FBInstant = {
                 else
                 {
                     var response = {};
-                    var data = localStorage.getItem(store_name);
-                    data = JSON.parse(data);
+                    var data = null;
+                    try
+                    {
+                        data = localStorage.getItem(store_name);
+                        data = JSON.parse(data);
+                    }
+                    catch (e) {}
                     if (data === null)  // TEMP: Loads previous games before storage scoping change
                     {
-                        data = localStorage.getItem("userData");
-                        data = JSON.parse(data);
+                        try
+                        {
+                            data = localStorage.getItem("userData");
+                            data = JSON.parse(data);
+                        }
+                        catch (e) {}
                     }
                     if (data !== null)
                     {
@@ -126,13 +143,22 @@ var FBInstant = {
         setDataAsync: function(data_object) {
             return new Promise(function(resolve, reject) {
                 var store_name = FBInstant.options.name + "userData";
-                var data = localStorage.getItem(store_name);
+                var data = null;
+                try
+                {
+                    data = localStorage.getItem(store_name);
+                }
+                catch (e) {}
                 var obj = JSON.parse(data);
                 if (obj === undefined || obj == null)
                     obj = {};
                 for (var attr in data_object)
                     obj[attr] = data_object[attr];
-                localStorage.setItem(store_name, JSON.stringify(obj));
+                try
+                {
+                    localStorage.setItem(store_name, JSON.stringify(obj));
+                }
+                catch (e) {}
                 if (StorageService.instance !== undefined)
                 {
                     StorageService.instance.SetUserData(store_name, JSON.stringify(obj), function(success) {
@@ -395,7 +421,7 @@ var FBInstant = {
     },
 
     getSDKVersion: function() {
-        return '6.2';
+        return '6.3';
     },
 
     postSessionScore: function() {
@@ -580,9 +606,9 @@ FBInstant.AdInstance.prototype.showAsync = function()
         return;
     var self = this;
     return new Promise(function(resolve, reject) {
-        AdsService.instance.ShowAd(self.id, self.type, function(error) {
+        AdsService.instance.ShowAd(self.id, self.type, function(error, p1, p2, p3) {
             if (error === null)
-                resolve();
+                resolve(p1, p2, p3);
             else
                 reject(error);
         })

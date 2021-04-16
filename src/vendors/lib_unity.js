@@ -113,18 +113,19 @@ LibUnity.IAPCallback = function(message, products)
     var service = PaymentsService.instance.service;
     if (message === "success")
     {
-        // Upate product prices
-        var product_info = FBInstant.options.paymentsOptions.products;
-        for (var product in product_info)
+        // Add products
+        FBInstant.options.paymentsOptions.products = [];
+        for (var t = 0; t < products.length; t++)
         {
-            for (var t = 0; t < products.length; t++)
-            {
-                if (product_info[product].productID === products[t].id)
-                {
-                    product_info[product].price = products[t].price;
-                    //console.log(">>>>>>>> JS: " + product_info[product].productID + " - " + product_info[product].price);
-                }
+            var product = {
+                title: "",
+                productID: products[t].id,
+                description: "",
+                imageURI: "",
+                price: "" + products[t].price,
+                priceCurrencyCode: "",
             }
+            FBInstant.options.paymentsOptions.products.push(product);
         }
         service.iap_init = true;
         service.iap_initialised(null);
@@ -370,13 +371,13 @@ LibUnity.prototype.PreloadAd = function(id, type, done_cb)
     if (type === "video")
     {
         this.loadRewardedCallback = done_cb;
-        LibUnity.SendMessageToUnity("loadVideo");
+        LibUnity.SendMessageToUnity("loadVideo" + id);
     }
     else
     if (type === "inter")
     {
         this.loadCallback = done_cb;
-        LibUnity.SendMessageToUnity("loadInter");
+        LibUnity.SendMessageToUnity("loadInter" + id);
     }
     else
     {

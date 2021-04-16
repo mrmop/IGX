@@ -115,12 +115,12 @@ LibGameDistribution.prototype.ShowAd = function(id, type, done_cb)
     if (type === "video")
     {
         this.watchedCallback = done_cb;
-        gdsdk.showBanner();
+        gdsdk.showAd();
     }
     else
     if (type === "inter")
     {
-        gdsdk.showBanner();
+        gdsdk.showAd();
         done_cb(null);
     }
     else

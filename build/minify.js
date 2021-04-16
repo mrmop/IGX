@@ -26,6 +26,7 @@ var sources = [
 	'../src/vendors/lib_paypal.js',				// Exclude if not needed
 	'../src/vendors/lib_unity.js',				// Exclude if not needed
 	'../src/vendors/lib_poki.js',				// Exclude if not needed
+	'../src/vendors/lib_swag.js',				// Exclude if not needed
 	'../src/lib_adsservice.js',
 	'../src/lib_paymentsservice.js',
 	'../src/lib_analyticsservice.js',
