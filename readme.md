@@ -232,7 +232,7 @@ IGX supports collection of user data for game analytics purposes. The following 
 <li>Google Analytics</li>
 <li>Kongregate</li>
 <li>SWAG</li>	
-<li>Unity</li>
+<li>Unity (Unity analytics and Firebase)</li>
 </ul>
 
 See the <a href="https://github.com/mrmop/IGX/wiki/Analytics">Analytics wiki page</a> for more info.
@@ -246,7 +246,7 @@ Over time many portals and ad providers will be added to the IGX SDK. At the tim
 <li>Game Distribution</li>
 <li>Kongregate</li>
 <li>Poki</li>
-<li>Unity (Unity Ads with Admob, Facebook Audience Network and Chartboost coming soon)</li>
+<li>Unity (Unity Ads, Admob, Facebook Audience Network)</li>
 </ul>
 
 See the <a href="https://github.com/mrmop/IGX/wiki/Monetisation">Monetisation wiki page</a> for more info.
@@ -257,7 +257,7 @@ Over time a variety of payment processing services will be added to the IGX SDK.
 <li>Kongregate</li>
 <li>PayPal Checkout</li>
 <li>App stores via Unity</li>
-<li>Unity</li>
+<li>Unity (app store in-app purchasing)</li>
 </ul>
 
 See the <a href="https://github.com/mrmop/IGX/wiki/Monetisation">Monetisation wiki page</a> for more info.
@@ -290,6 +290,7 @@ When using the Xtralife backend and switching from a sandbox to production envir
 ## Future Integrations
 Below is a list of planned integrations with the IGX SDK:
 <ul>
+<li>Facebook SDK</li>
 <li>Game Analytics</li>
 <li>Miniclip</li>
 <li>Newgrounds.io</li>
@@ -309,10 +310,11 @@ You can nnow deploy your games and apps  to mobile app stores using the IGX SDK 
 ## Examples of games using IGX on the App Stores
 <ul>
 <li><a href="https://play.google.com/store/apps/details?id=com.drmop.dungeonminer">Dungeon Miner on Google Play</a>.</li>
+<li><a href="https://play.google.com/store/apps/details?id=com.drmop.blocksfilltangrampuzzle">Blocks Fill Tangram Puzzle on Google Play</a>.</li>
 <li><a href="https://play.google.com/store/apps/details?id=com.drmop.solitairesocial">Soltaire Social (Big) on Google Play</a>.</li>
 <li><a href="https://play.google.com/store/apps/details?id=com.drmop.mergebabies">Merge Babies on Google Play</a>.</li>
+<li><a href="https://play.google.com/store/apps/details?id=com.drmop.todayquiz">Today Quizzes on Google Play</a>.</li>
 <li><a href="https://itunes.apple.com/us/app/merge-babies/id1444521624">Merge Babies on the App Store</a>.</li>
-<li><a href="https://play.google.com/store/apps/details?id=com.drmop.todayquiz">Today Quizzes on the App Store</a>.</li>
 </ul>
 
 ## Examples of games using IGX on the Web
