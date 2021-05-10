@@ -311,6 +311,8 @@ You can nnow deploy your games and apps  to mobile app stores using the IGX SDK 
 <ul>
 <li><a href="https://play.google.com/store/apps/details?id=com.drmop.dungeonminer">Dungeon Miner on Google Play</a>.</li>
 <li><a href="https://play.google.com/store/apps/details?id=com.drmop.blocksfilltangrampuzzle">Blocks Fill Tangram Puzzle on Google Play</a>.</li>
+<li><a href="https://play.google.com/store/apps/details?id=com.drmop.quizlol">Quiz LOL on Google Play</a>.</li>
+<li><a href="https://play.google.com/store/apps/details?id=com.drmop.puzzleballs">Puzzle Balls on Google Play</a>.</li>
 <li><a href="https://play.google.com/store/apps/details?id=com.drmop.solitairesocial">Soltaire Social (Big) on Google Play</a>.</li>
 <li><a href="https://play.google.com/store/apps/details?id=com.drmop.mergebabies">Merge Babies on Google Play</a>.</li>
 <li><a href="https://play.google.com/store/apps/details?id=com.drmop.todayquiz">Today Quizzes on Google Play</a>.</li>
