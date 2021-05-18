@@ -312,6 +312,7 @@ You can nnow deploy your games and apps  to mobile app stores using the IGX SDK 
 <li><a href="https://play.google.com/store/apps/details?id=com.drmop.dungeonminer">Dungeon Miner on Google Play</a>.</li>
 <li><a href="https://play.google.com/store/apps/details?id=com.drmop.blocksfilltangrampuzzle">Blocks Fill Tangram Puzzle on Google Play</a>.</li>
 <li><a href="https://play.google.com/store/apps/details?id=com.drmop.quizlol">Quiz LOL on Google Play</a>.</li>
+<li><a href="https://play.google.com/store/apps/details?id=com.drmop.jigsopushpuzzle">Jigso Push Puzzle on Google Play</a>.</li>
 <li><a href="https://play.google.com/store/apps/details?id=com.drmop.puzzleballs">Puzzle Balls on Google Play</a>.</li>
 <li><a href="https://play.google.com/store/apps/details?id=com.drmop.solitairesocial">Soltaire Social (Big) on Google Play</a>.</li>
 <li><a href="https://play.google.com/store/apps/details?id=com.drmop.mergebabies">Merge Babies on Google Play</a>.</li>
@@ -337,6 +338,7 @@ You can nnow deploy your games and apps  to mobile app stores using the IGX SDK 
 <li><a href="https://www.crazygames.com/game/candy-cup">Candy Cup on Crazy Games</a>.</li>
 <li><a href="https://www.crazygames.com/game/friend-falls">Friend Falls on Crazy Games</a>.</li>
 <li><a href="https://www.crazygames.com/game/smash-hits">Friend Falls on Crazy Games</a>.</li>
+<li><a href="https://www.crazygames.com/game/push-jigso">Push Jigso on Crazy Games</a>.</li>
 <li><a href="https://poki.com/en/g/dungeon-miner">Dungeon Miner on Poki</a>.</li>
 <li><a href="https://poki.com/en/g/monster-mash">Monster Mash on Poki</a>.</li>
 <li><a href="https://poki.com/en/g/tri-peaks">Tri Peaks on Poki</a>.</li>
